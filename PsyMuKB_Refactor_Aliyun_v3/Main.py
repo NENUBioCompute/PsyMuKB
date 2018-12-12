@@ -15,7 +15,6 @@ app = Flask(__name__)
 bootstrap = Bootstrap(app)
 app.config['SECRET_KEY'] = 'nenu204'
 
-# 注册蓝图
 app.register_blueprint(app_Index, url_prefix="")
 app.register_blueprint(app_Search, url_prefix="")
 app.register_blueprint(app_Browser, url_prefix="/Browse")
