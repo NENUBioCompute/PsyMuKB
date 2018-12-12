@@ -1,0 +1,152 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% include "muttemp.html" %}
+{% block content %} 
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.js"></script>
+<!-- Latest compiled and minified Locales -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/locale/bootstrap-table-bootstrap-table-en-US.min.js"></script>
+<style type="text/css">
+
+body{
+	background-color:rgba(204,204,204,0.1);
+}
+.table{
+	border:1px solid #ffffff;
+	background-color:#ffffff;
+ 	border-radius:3px;
+ 	padding:20px;
+}
+</style>
+<style>
+/*footer*/
+.footer
+{
+    background-color:#669999;
+    width:100%;
+    display: block;
+    height:180px;
+     display: flex;
+     margin-top:20px;
+     position:relative;
+}
+.foot
+{
+    height:100px;
+    left:25%;
+    float:left;
+    font-size:15px;
+    color:#fff;
+    padding:0;
+    position:relative;
+    margin:20px;
+}
+.foot a{
+    text-decoration:none;
+    color:#CCCCCC;
+}
+.foot a:hover{
+    text-decoration:none;
+    color:#fff;
+    border-bottom:3px solid  #FFFFFF;
+}
+.foot-p
+{
+    position:absolute;
+    top:130px;
+    left:40%;
+    text-align:center;
+}
+.line2
+{
+    position:absolute;
+    top:-30px;
+    left:-25%;
+    text-align:center;
+}
+</style>
+<div class="container">
+         {% if message %}
+         	<!--{% for i in message %}
+         	<p class="bg-primary">{{ i }},{{ message[i] }}</p>
+         	{% endfor %}-->
+         	<!--{% if 'ENTREZ_ID' in message %}
+         	<p class="bg-primary">{{ message['ENTREZ_ID'] }}</p>
+         	{% endif %}-->
+         	{% if message is not sequence %}
+         		{% for i in message %}
+         		<p>{{ i }}</p>
+         		{% endfor %}
+         	{% else %}
+         	<div class="table">
+         	<table id="table" data-class="table table-hover"  data-toggle="table" data-pagination="true" data-show-pagination-switch="true" data-page-size=10>
+         		<thead style="background-color:#669999">
+         		<tr>
+         			<th data-field="ID">EntrezID</th>
+    				<th data-field="sym">Symbol</th>
+    				<th data-field="chr">Chr</th>
+    				<th data-field="Band">Band</th>
+    				<th data-field="Type">Type</th>
+                    <th data-field="Gene Detail">Gene Information</th>
+                    <th data-field="Mutation Detail">Mutation Information</th>
+         		</tr>
+         		</thead>
+         		<tbody>
+         		{% for i in message %}
+         		<tr>
+         			<td>{{ i['ENTREZ_ID'] }}</td>
+    				<td>{{ i['Symbol'] }}</td>
+    				<td>{{ i['LOC_CHR'] }}</td>
+    				<td>{{ i['LOC_BAND'] }}</td>
+    				<td>{{ i['TYPE'] }}</td>
+                    <td>
+    					<a href="/GeneDetail/{{ i['ENTREZ_ID'] }}" target="_blank">Detail</a>
+    				</td>
+    				<td>
+    					<a href="/MutationDetail/{{ i['ENTREZ_ID'] }}" target="_blank">Detail</a>
+    				</td>
+         		</tr>
+         		{% endfor %}
+         		</tbody>
+         		
+			</table>
+			{% endif %}
+		
+		 {% else %}
+		 	<p class="page-header">Sorry, your searching has no result in our knowledgebase.</p>
+         {% endif %}
+     </div>
+	{% if x %}
+		<p>{{ x }}</p>
+	{% endif %}
+
+
+{% endblock %}
+</div>
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<div class="footer">
+    <div class="foot">
+        <div class="row" style="left: 0; background-color:#669999; border: 0px ; text-align: center" >
+            <div class="col-md-6"><a href="http://bmi.sjtu.edu.cn" target="_blank">SJTU - Biomedical Information Lab</a></div>
+            <div class="col-md-6"><a href="http://bioinformatics.nenu.edu.cn/" target="_blank">NENU - Institute of Computational Biology</a></div>
+        </div>
+    <br />
+    <div class="row" style="left: 0 ; background-color:#669999; border: 2px;" >
+
+        <div class="col-md-3"><a href="http://exac.broadinstitute.org/" target="_blank"><img src="/static/foot1.png" style="width: 150px; height: 50px"></a></div>
+        <div class="col-md-3"><a href="http://www.bioinfo.org.cn/relative/dbSNP%20Home%20Page.htm" target="_blank"><img src="/static/foot2.jpg" style="width: 150px; height: 50px"></a></div>
+        <div class="col-md-3"><a href="http://wannovar.wglab.org/" target="_blank"><img src="/static/foot3.png" style="width: 150px; height: 50px"></a></div>
+        <div class="col-md-3"><a href="http://genome.ucsc.edu/" target="_blank"><img src="/static/foot4.png" style="width: 150px; height: 50px"></a></div>
+    </div>
+
+    </div>
+        <div class="foot-p">
+
+{#           <img class="line2" alt=""  src="/static/line2.png" style="width: 600px; height: 60px;" />#}
+            <p><small>© 2018 bmi.sjtu.edu.cn. All rights reserved.</small><br />
+                <small>浙ICP备18030141号.</small></p>
+
+        </div>
+</div>

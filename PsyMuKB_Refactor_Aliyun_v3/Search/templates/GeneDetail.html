@@ -1,0 +1,1179 @@
+{% include "muttemp.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block content %}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/locale/bootstrap-table-bootstrap-table-en-US.min.js"></script>
+    <script src="\static\bootstrap-table-export.js"></script>
+    <script src="\static\tableExport.js"></script>
+    <script src="\static\nav.js"></script>
+    <script src="../static/assets-master/js/cytoscape.min.js"></script>
+    <script src="../static/assets-master/js/echarts.min.js"></script>
+    <script type="text/javascript" src="/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/jquery.js"></script>
+    <script type="text/javascript" src="/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-collapse.js"></script>
+    <style type="text/css">
+
+        #cy {
+            height: 800px;
+        }
+
+        .container{
+            padding-right: 0px;
+            padding-left: 0px;
+        }
+
+        body {
+            {#background-color: rgba(204, 204, 204, 0.1);#}
+        }
+
+        .accordion {
+            border: 1px solid #ffffff;
+            background-color: #ffffff;
+            border-radius: 3px;
+            padding: 20px;
+            margin: 30px;
+        }
+
+        .little_title {
+            color: #663333;
+            font-size: 24px;
+            font-family: "Verdana";
+            padding: 5px;
+            border-bottom: 3px solid #663333;
+        }
+
+        .col-md-12 {
+            margin-top: 10px;
+        }
+
+        .accordion-heading {
+            background: url('../static/subtitle.png') no-repeat;
+            background-size: 400px 50px;
+            height: 50px;
+            width: 400px;
+            display: inline-block;
+            vertical-align: middle;
+            color: #fff;
+            padding-left: 40px;
+        }
+
+        .row {
+            margin-top: 20px;
+        }
+
+        /*fixednav*/
+        .fixednav {
+            position: fixed;
+            top: 50px;
+            left: 30%;
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+            position: fixed;
+            z-index: 999;
+            background-color: rgba(102, 153, 153, 0.8);
+        }
+
+        header ul {
+            height: 30px;
+            list-style-type: none;
+            padding-left: 25px;
+        }
+
+        header li {
+            float: left;
+            padding-right: 20px;
+
+        }
+
+        header li a {
+            text-decoration: none;
+            color: #D3D3D3;
+            font-size: 15px;
+            border-left: 3px solid #333333;
+            padding-left: 5px;
+        }
+
+        header li a:hover {
+            text-decoration: none;
+            color: #FFFFFF;
+            border-bottom: 3px solid #FFFFFF;
+        }
+    .div-a{  float:left;width:49%;height:400px;
+    border: 0; }
+    .div-b{  float:right;width:49%;height:400px;
+        border: 0;}
+    .login-button { /* 按钮美化 */
+	width: 100px; /* 宽度 */
+	height: 38px; /* 高度 */
+	border-width: 0px; /* 边框宽度 */
+	border-radius: 10px; /* 边框半径 */
+	background: #669999; /* 背景颜色 */
+	cursor: pointer; /* 鼠标移入按钮范围时出现手势 */
+	outline: none; /* 不显示轮廓线 */
+	font-family: Microsoft YaHei; /* 设置字体 */
+	color: white; /* 字体颜色 */
+	font-size: 20px; /* 字体大小 */
+}
+.login-button:hover { /* 鼠标移入按钮范围时改变颜色 */
+	background: #5599FF;
+}
+
+
+    </style>
+    <style>
+        .active a{
+            text-decoration: none;
+            color: #5599FF;
+            border-bottom: 3px solid #FFFFFF;
+        }
+    </style>
+    <style>
+        .nav {
+              margin-bottom: 0;
+              padding-left: 0;
+              list-style: none;
+              background-color: rgba(102, 153, 153, 0.8);
+            }
+            .nav > li {
+              position: relative;
+              display: block;
+            }
+            .nav > li > a {
+              position: relative;
+              display: block;
+              padding: 10px 15px;
+            }
+            .nav > li > a:hover,
+            .nav > li > a:focus {
+              text-decoration: none;
+              background-color: rgba(220, 157, 22, 0.8);
+            }
+            .nav > li.disabled > a {
+              color: black;
+            }
+            .nav > li.disabled > a:hover,
+            .nav > li.disabled > a:focus {
+              color: #777777;
+              text-decoration: none;
+              background-color: transparent;
+              cursor: not-allowed;
+            }
+            .nav .open > a,
+            .nav .open > a:hover,
+            .nav .open > a:focus {
+              background-color: green;
+              border-color: #337ab7;
+            }
+            .nav .nav-divider {
+              height: 1px;
+              margin: 8px 0;
+              overflow: hidden;
+              background-color: #e5e5e5;
+            }
+            .nav > li > a > img {
+              max-width: none;
+            }
+            .nav-tabs {
+              border-bottom: 1px solid #ddd;
+            }
+            .nav-tabs > li {
+              float: left;
+              margin-bottom: 2px;
+            }
+            .nav-tabs > li > a {
+              margin-right: 2px;
+              line-height: 1.42857143;
+              border: 1px solid transparent;
+              border-radius: 2px 2px 0 0;
+            }
+            .nav-tabs > li > a:hover {
+              {#border-color: #eeeeee #eeeeee #ddd;#}
+                text-decoration: none;
+            color: black;
+            border-bottom: 3px solid #FFFFFF;
+            }
+            .nav-tabs > li.active > a,
+            .nav-tabs > li.active > a:hover,
+            .nav-tabs > li.active > a:focus {
+                text-decoration: none;
+              color: #D3D3D3;
+              font-size: 15px;
+              border-left: 3px solid #333333;
+              padding-left: 5px;
+              background-color: rgba(102, 153, 153, 0.8);
+              border-bottom-color: transparent;
+              cursor: default;
+            }
+
+    </style>
+    <style>
+/*footer*/
+.footer
+{
+    background-color:#669999;
+    width:100%;
+    display: block;
+    height:130px;
+     display: flex;
+     margin-top:20px;
+     position:relative;
+}
+.foot
+{
+    height:50px;
+    left:15%;
+    float:left;
+    font-size:15px;
+    color:#fff;
+    padding:0;
+    position:relative;
+    margin:20px;
+}
+.foot a{
+    text-decoration:none;
+    color:#CCCCCC;
+}
+.foot a:hover{
+    text-decoration:none;
+    color:#fff;
+    border-bottom:3px solid  #FFFFFF;
+}
+.foot-p
+{
+    position:absolute;
+    top:100px;
+    left:30%;
+    text-align:center;
+}
+.line2
+{
+    position:absolute;
+    top:-30px;
+    left:-25%;
+    text-align:center;
+}
+</style>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129012764-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-129012764-1');
+    </script>
+    <header>
+        <div class="accordion-heading-nav" style="font-size: x-large;">
+            <nav class="fixednav" id="myScrollspy">
+                <ul class="nav nav-tabs" data-spy="affix">
+                    <li class="active"><a href="#collapseOne">Gene Information</a></li>
+                    <li><a href="#collapseTwo">Expressions</a></li>
+                    <li><a href="#collapseThree"><i>De novo</i> Variants</a></li>
+                    <li><a href="#collapseFour">Transcripts</a></li>
+                    <li><a href="#collapseFive">Protein-Protein Interaction</a></li>
+{#                    <li class="move"></li>#}
+                </ul>
+            </nav>
+        </div>
+    </header>
+   <body data-spy="scroll" data-target="#myScrollspy">
+    <div class="container text-justify">
+    <div class="row">
+{#        <div class="col-md-2" id="myScrollspy">#}
+{#            <ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="125">#}
+{#                <li class="active"><a href="#collapseOne">Gene Information</a></li>#}
+{#                <li><a href="#collapseTwo">Mutations Information</a></li>#}
+{#                <li><a href="#collapseFour">Transcripts Information</a></li>#}
+{#                <li><a href="#collapseFive">Protein-Protein Interaction</a></li>#}
+{#            </ul>#}
+{#        </div>#}
+        <div class="col-md-12">
+            <div id="collapseOne" class="accordion">
+            <div class="accordion-group">
+                <div class="accordion-heading" style="font-size: x-large;">
+                    Gene Information
+
+                </div>
+
+                <div class="accordion-body collapse in">
+                    <div class="accordion-inner">
+                        <!-- 基因基本信息-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="little_title">
+                                    Basic information
+                                </div>
+                                <table data-class="table table-hover" data-toggle="table" data-show-export="true">
+                                    <thead style="background-color:#669999">
+                                    <tr>
+                                        <th>Entrez ID</th>
+                                        <th>Official symbol</th>
+                                        <th>Synonyms</th>
+                                        <th>Description</th>
+                                        <th>Location</th>
+                                        <th>Type of protein</th>
+                                        <th>External annotation</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for i in message %}
+                                        <tr>
+                                            <td>{{ i['ENTREZ_ID'] }}</td>
+                                            <td>{{ i['Symbol'] }}</td>
+                                            {% if i['NAME'] is string %}
+                                                <td>{{ i['NAME'] }}</td>
+                                            {% else %}
+                                                <td>{{ i['NAME']|join(', ') }}</td>
+                                            {% endif %}
+                                            <td>{{ i['description'] }}</td>
+                                            <td>{{ i['LOC_BAND'] }}</td>
+                                            <td>{{ i['TYPE'] }}</td>
+                                            <td><a href="https://www.genecards.org/cgi-bin/carddisp.pl?gene={{ i['Symbol'] }}" target="_blank">Genecard</a></td>
+
+                                        </tr>
+                                        </tbody>
+                                        </table>
+                                        </div>
+                                        </div>
+                                        <!--Gene Summary-->
+                                        <div class="row">
+                                        <div class="col-md-12">
+                                        <div class="little_title">
+                                            Summary
+                                        </div>
+                                        <table class="table table-bordered table-hover table-striped"
+                                               style="margin-top:10px; " data-class="table table-hover" data-toggle="table" data-show-export="false" data-height="300">
+                                        <thead style="background-color:#669999">
+{#                                        <tr style="background-color:#669999">#}
+                                            <th>uniprot_summary</th>
+                                            <th>refseq_summary</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="col-md-6">{{ i['uniprot_summary']|replace('"','',count=2) }}</td>
+                                                <td class="col-md-6">{{ i['refseq_summary']|replace('"','',count=2) }}</td>
+                                            </tr>
+                                        </tbody>
+                                    {% endfor %}
+                                    </table>
+                                    </div>
+                                    </div>
+
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div id="collapseTwo" class="accordion-group">
+            <div class="accordion-heading" style="font-size: x-large;">
+                Expressions
+            </div>
+            <div class="accordion-body collapse in">
+                <div class="accordion-inner">
+                    <div class="row">
+                            <div class="col-md-12">
+                                <!-- Gtex Expression-->
+                                <div>
+                                    <div style="margin-top:20px;" class="little_title">
+                                        Gene-level expression in different tissues (data source: GTEx v7)
+                                    </div>
+                                    {% if pic7 %}
+                                        <div>
+                                            {{ pic7|safe }}
+                                        </div>
+                                    {% endif %}
+                                    <hr/>
+                                </div>
+                                <!-- BainSpan-->
+                                <div class="row">
+                                    <div class="col-md-12">
+
+                                        <div class="little_title">
+                                            Spatio-temporal human developmental brain expression (data source: BrainSpan)
+
+                                        </div>
+                                        {% if pic2 %}
+                                            {{ pic2|safe }}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <!-- HumanBrain SingleCell-->
+                                <div class="row">
+                                    <div class="col-md-12">
+
+                                        <div class="little_title">
+                                            Human embryonic prefrontal cortex single cell expression
+                                            <a href="https://www.ncbi.nlm.nih.gov/pubmed/29539641" target="_blank"><img src="/static/pumbed.gif"></a>
+                                        </div>
+                                        {% if pic3_2 %}
+                                            {{ pic3_2|safe }}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <!-- MouseBrain SingleCell-->
+                                <div class="row">
+                                    <div class="col-md-12">
+
+                                        <div class="little_title">
+                                            Adult mouse brain single cell expresssions
+                                            <a href="https://www.ncbi.nlm.nih.gov/pubmed/30096299" target="_blank"><img src="/static/pumbed.gif"></a>
+                                        </div>
+                                        {% if pic3_1 %}
+                                            {{ pic3_1|safe }}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            <hr>
+                            <div class="row">
+                                    <div class="col-md-12">
+
+                                        <div class="little_title">
+                                            Protein expression (data source: Proteomics DB)
+                                        </div>
+                                        {% if pic3_3 %}
+                                            {{ pic3_3|safe }}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            <hr>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div id="collapseThree" class="accordion-group">
+            <div class="accordion-heading" style="font-size: x-large;">
+                <i>De novo</i> Variants
+            </div>
+            <div class="accordion-body collapse in">
+                <div class="accordion-inner">
+                    <div class="row">
+                            <div class="col-md-12">
+                                    {% if mutation_count %}
+                                         <table border="1" style="text-align: center; vertical-align: middle!important;">
+
+                                      <tr>
+                                                <th bgcolor="#669999">Variant type</th>
+                                                <th bgcolor="#669999" colspan="4">Phenotypes</th>
+                                                <th bgcolor="#FB8072"><abbr title="Autism">ASD</abbr></th>
+                                                <th bgcolor="#BEBADA"><abbr title="Schizophrenia">SCZ</abbr></th>
+                                                <th bgcolor="#FFED6F"><abbr title="Bipolar Disorder">BD</abbr></th>
+                                                <th bgcolor="#8DD3C7"><abbr title="Attention Deficit Hyperactivity Disorder">ADHD</abbr></th>
+                                                <th bgcolor="#DCC184"><abbr title="Intellectual Disability">ID</abbr></th>
+                                                <th bgcolor="#CCEBC5"><abbr title="Developmental Delay">DD</abbr></th>
+                                                <th bgcolor="#C28BC3"><abbr title="Obsessive-Compulsive Disorder">OCD</abbr></th>
+                                                <th bgcolor="#FCDE5"><abbr title="Tourette Disorder">TD</abbr></th>
+                                                <th bgcolor="#AB7BF9"><abbr title="Developmental and Epileptic Encephalopathies">DEE</abbr></th>
+                                                <th bgcolor="#8DDEFB"><abbr title="Epileptic Encephalopathies">EE</abbr></th>
+                                                <th bgcolor="#90BBD8"><abbr title="Alzheimer Disorder early-onset">AD</abbr></th>
+                                                <th bgcolor="#FCB462"><abbr title="Parkinson Disorder early-onset">PD</abbr></th>
+                                                <th bgcolor="#B3DE69"><abbr title="Congenital heart disease">CHD</abbr></th>
+                                                <th bgcolor="#B6BA5E"><abbr title="Others">Others</abbr></th>
+                                                <th bgcolor="#D9D9D9"><abbr title="Control">Control</abbr></th>
+                                                <th bgcolor="#669999"><abbr title="Total">Total</abbr></th>
+                                            </tr>
+                                            <tr>
+                                                <th rowspan="15"><i>De novo</i> variants hit small genomic regions (DNMs)</th>
+                                                <th rowspan="9">DNM hits protein coding regions</th>
+                                                <th colspan="3">All mutations</th>
+                                                <td>
+                                                    <a href="/GeneDetailMutation/{{ name }}_ASD_coding-all" target="_blank">{{ mutation_count.get("ASD").get("coding-all")}}</a>
+                                                </td>
+                                                <td>
+                                                     <a href="/GeneDetailMutation/{{ name }}_SCZ_coding-all" target="_blank">{{ mutation_count.get("SCZ").get("coding-all")}}</a>        </td>
+                                                <td>
+                                                    <a href="/GeneDetailMutation/{{ name }}_BD_coding-all" target="_blank">{{ mutation_count.get("BD").get("coding-all")}}</a>
+                                                </td>
+                                                <td>
+                                                     <a href="/GeneDetailMutation/{{ name }}_ADHD_coding-all" target="_blank">{{ mutation_count.get("ADHD").get("coding-all")}}</a>        </td>
+                                                <td>
+                                                     <a href="/GeneDetailMutation/{{ name }}_ID_coding-all" target="_blank">{{ mutation_count.get("ID").get("coding-all")}}</a>
+                                                </td>
+                                                <td>
+                                                    <a href="/GeneDetailMutation/{{ name }}_DD_coding-all" target="_blank">{{ mutation_count.get("DD").get("coding-all")}}</a>
+                                                </td>
+                                                <td>
+                                                     <a href="/GeneDetailMutation/{{ name }}_OCD_coding-all" target="_blank">{{ mutation_count.get("OCD").get("coding-all")}}</a>
+                                                </td>
+                                                <td>
+                                                     <a href="/GeneDetailMutation/{{ name }}_TS_coding-all" target="_blank">{{ mutation_count.get("TS").get("coding-all")}}</a>
+                                                </td>
+                                                <td>
+                                                     <a href="/GeneDetailMutation/{{ name }}_DEE_coding-all" target="_blank">{{ mutation_count.get("DEE").get("coding-all")}}</a>
+                                                </td>
+                                                <td>
+                                                     <a href="/GeneDetailMutation/{{ name }}_EE_coding-all" target="_blank">{{ mutation_count.get("EE").get("coding-all")}}</a>
+                                                </td>
+                                                <td>
+                                                     <a href="/GeneDetailMutation/{{ name }}_AD_coding-all" target="_blank">{{ mutation_count.get("AD").get("coding-all")}}</a>
+                                                </td>
+                                                <td>
+                                                     <a href="/GeneDetailMutation/{{ name }}_PD_coding-all" target="_blank">{{ mutation_count.get("PD").get("coding-all")}}</a>
+                                                </td>
+                                                <td>
+                                                     <a href="/GeneDetailMutation/{{ name }}_CHD_coding-all" target="_blank">{{ mutation_count.get("CHD").get("coding-all")}}</a>
+                                                </td>
+                                                <td>
+                                                     <a href="/GeneDetailMutation/{{ name }}_Others_coding-all" target="_blank">{{ mutation_count.get("Others").get("coding-all")}}</a>
+                                                </td>
+                                                <td>
+                                                     <a href="/GeneDetailMutation/{{ name }}_Control_coding-all" target="_blank">{{ mutation_count.get("Control").get("coding-all")}}</a>
+                                                </td>
+                                                <td>
+                                                     <a href="/GeneDetailMutation/{{ name }}_all_coding-all" target="_blank">{{ mutation_count.get("all").get("coding-all")}}</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="7">Non-symonymous</td>
+                                                <td rowspan="3">Loss of Functions (LoF)</td>
+                                                <td>Frameshift</td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_frameshift" target="_blank">{{ mutation_count.get("ASD").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_frameshift" target="_blank">{{ mutation_count.get("SCZ").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BD_frameshift" target="_blank">{{ mutation_count.get("BD").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_frameshift" target="_blank">{{ mutation_count.get("ADHD").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_frameshift" target="_blank">{{ mutation_count.get("ID").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_frameshift" target="_blank">{{ mutation_count.get("DD").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_frameshift" target="_blank">{{ mutation_count.get("OCD").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TS_frameshift" target="_blank">{{ mutation_count.get("TS").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_frameshift" target="_blank">{{ mutation_count.get("DEE").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_frameshift" target="_blank">{{ mutation_count.get("EE").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AD_frameshift" target="_blank">{{ mutation_count.get("AD").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_PD_frameshift" target="_blank">{{ mutation_count.get("PD").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_frameshift" target="_blank">{{ mutation_count.get("CHD").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_frameshift" target="_blank">{{ mutation_count.get("Others").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Control_frameshift" target="_blank">{{ mutation_count.get("Control").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_frameshift" target="_blank">{{ mutation_count.get("all").get("frameshift") }}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Nonsense</td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_nonsense" target="_blank">{{ mutation_count.get("ASD").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_nonsense" target="_blank">{{ mutation_count.get("SCZ").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BD_nonsense" target="_blank">{{ mutation_count.get("BD").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_nonsense" target="_blank">{{ mutation_count.get("ADHD").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_nonsense" target="_blank">{{ mutation_count.get("ID").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_nonsense" target="_blank">{{ mutation_count.get("DD").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_nonsense" target="_blank">{{ mutation_count.get("OCD").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TS_nonsense" target="_blank">{{ mutation_count.get("TS").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_nonsense" target="_blank">{{ mutation_count.get("DEE").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_nonsense" target="_blank">{{ mutation_count.get("EE").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AD_nonsense" target="_blank">{{ mutation_count.get("AD").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_PD_nonsense" target="_blank">{{ mutation_count.get("PD").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_nonsense" target="_blank">{{ mutation_count.get("CHD").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_nonsense" target="_blank">{{ mutation_count.get("Others").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Control_nonsense" target="_blank">{{ mutation_count.get("Control").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_nonsense" target="_blank">{{ mutation_count.get("all").get("nonsense") }}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Splice-site</td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_splice-site" target="_blank">{{ mutation_count.get("ASD").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_splice-site" target="_blank">{{ mutation_count.get("SCZ").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BD_splice-site" target="_blank">{{ mutation_count.get("BD").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_splice-site" target="_blank">{{ mutation_count.get("ADHD").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_splice-site" target="_blank">{{ mutation_count.get("ID").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_splice-site" target="_blank">{{ mutation_count.get("DD").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_splice-site" target="_blank">{{ mutation_count.get("OCD").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TS_splice-site" target="_blank">{{ mutation_count.get("TS").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_splice-site" target="_blank">{{ mutation_count.get("DEE").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_splice-site" target="_blank">{{ mutation_count.get("EE").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AD_splice-site" target="_blank">{{ mutation_count.get("AD").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_PD_splice-site" target="_blank">{{ mutation_count.get("PD").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_splice-site" target="_blank">{{ mutation_count.get("CHD").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_splice-site" target="_blank">{{ mutation_count.get("Others").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Control_splice-site" target="_blank">{{ mutation_count.get("Control").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_splice-site" target="_blank">{{ mutation_count.get("all").get("splice-site") }}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">Missense</td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_missense" target="_blank">{{ mutation_count.get("ASD").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_missense" target="_blank">{{ mutation_count.get("SCZ").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BD_missense" target="_blank">{{ mutation_count.get("BD").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_missense" target="_blank">{{ mutation_count.get("ADHD").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_missense" target="_blank">{{ mutation_count.get("ID").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_missense" target="_blank">{{ mutation_count.get("DD").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_missense" target="_blank">{{ mutation_count.get("OCD").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TS_missense" target="_blank">{{ mutation_count.get("TS").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_missense" target="_blank">{{ mutation_count.get("DEE").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_missense" target="_blank">{{ mutation_count.get("EE").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AD_missense" target="_blank">{{ mutation_count.get("AD").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_PD_missense" target="_blank">{{ mutation_count.get("PD").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_missense" target="_blank">{{ mutation_count.get("CHD").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_missense" target="_blank">{{ mutation_count.get("Others").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Control_missense" target="_blank">{{ mutation_count.get("Control").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_missense" target="_blank">{{ mutation_count.get("all").get("missense") }}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">Start gain</td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_start gain" target="_blank">{{ mutation_count.get("ASD").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_start gain" target="_blank">{{ mutation_count.get("SCZ").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BD_start gain" target="_blank">{{ mutation_count.get("BD").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_start gain" target="_blank">{{ mutation_count.get("ADHD").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_start gain" target="_blank">{{ mutation_count.get("ID").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_start gain" target="_blank">{{ mutation_count.get("DD").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_start gain" target="_blank">{{ mutation_count.get("OCD").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TS_start gain" target="_blank">{{ mutation_count.get("TS").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_start gain" target="_blank">{{ mutation_count.get("DEE").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_start gain" target="_blank">{{ mutation_count.get("EE").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AD_start gain" target="_blank">{{ mutation_count.get("AD").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_PD_start gain" target="_blank">{{ mutation_count.get("PD").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_start gain" target="_blank">{{ mutation_count.get("CHD").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_start gain" target="_blank">{{ mutation_count.get("Others").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Control_start gain" target="_blank">{{ mutation_count.get("Control").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_start gain" target="_blank">{{ mutation_count.get("all").get("start gain") }}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">Stoploss</td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_stoploss" target="_blank">{{ mutation_count.get("ASD").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_stoploss" target="_blank">{{ mutation_count.get("SCZ").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BD_stoploss" target="_blank">{{ mutation_count.get("BD").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_stoploss" target="_blank">{{ mutation_count.get("ADHD").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_stoploss" target="_blank">{{ mutation_count.get("ID").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_stoploss" target="_blank">{{ mutation_count.get("DD").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_stoploss" target="_blank">{{ mutation_count.get("OCD").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TS_stoploss" target="_blank">{{ mutation_count.get("TS").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_stoploss" target="_blank">{{ mutation_count.get("DEE").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_stoploss" target="_blank">{{ mutation_count.get("EE").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AD_stoploss" target="_blank">{{ mutation_count.get("AD").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_PD_stoploss" target="_blank">{{ mutation_count.get("PD").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_stoploss" target="_blank">{{ mutation_count.get("CHD").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_stoploss" target="_blank">{{ mutation_count.get("Others").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Control_stoploss" target="_blank">{{ mutation_count.get("Control").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_stoploss" target="_blank">{{ mutation_count.get("all").get("stoploss") }}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">Non-frameshit</td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_Non-frameshit" target="_blank">{{ mutation_count.get("ASD").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_Non-frameshit" target="_blank">{{ mutation_count.get("SCZ").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BD_Non-frameshit" target="_blank">{{ mutation_count.get("BD").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_Non-frameshit" target="_blank">{{ mutation_count.get("ADHD").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_Non-frameshit" target="_blank">{{ mutation_count.get("ID").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_Non-frameshit" target="_blank">{{ mutation_count.get("DD").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_Non-frameshit" target="_blank">{{ mutation_count.get("OCD").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TS_Non-frameshit" target="_blank">{{ mutation_count.get("TS").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_Non-frameshit" target="_blank">{{ mutation_count.get("DEE").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_Non-frameshit" target="_blank">{{ mutation_count.get("EE").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AD_Non-frameshit" target="_blank">{{ mutation_count.get("AD").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_PD_Non-frameshit" target="_blank">{{ mutation_count.get("PD").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_Non-frameshit" target="_blank">{{ mutation_count.get("CHD").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_Non-frameshit" target="_blank">{{ mutation_count.get("Others").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Control_Non-frameshit" target="_blank">{{ mutation_count.get("Control").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_Non-frameshit" target="_blank">{{ mutation_count.get("all").get("Non-frameshit") }}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3">Synonymous SNV</td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_synonymous SNV" target="_blank">{{ mutation_count.get("ASD").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_synonymous SNV" target="_blank">{{ mutation_count.get("SCZ").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BD_synonymous SNV" target="_blank">{{ mutation_count.get("BD").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_synonymous SNV" target="_blank">{{ mutation_count.get("ADHD").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_synonymous SNV" target="_blank">{{ mutation_count.get("ID").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_synonymous SNV" target="_blank">{{ mutation_count.get("DD").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_synonymous SNV" target="_blank">{{ mutation_count.get("OCD").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TS_synonymous SNV" target="_blank">{{ mutation_count.get("TS").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_synonymous SNV" target="_blank">{{ mutation_count.get("DEE").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_synonymous SNV" target="_blank">{{ mutation_count.get("EE").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AD_synonymous SNV" target="_blank">{{ mutation_count.get("AD").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_PD_synonymous SNV" target="_blank">{{ mutation_count.get("PD").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_synonymous SNV" target="_blank">{{ mutation_count.get("CHD").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_synonymous SNV" target="_blank">{{ mutation_count.get("Others").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Control_synonymous SNV" target="_blank">{{ mutation_count.get("Control").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_synonymous SNV" target="_blank">{{ mutation_count.get("all").get("synonymous SNV") }}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <th rowspan="6">DNM hits non-coding regions</th>
+                                                <th colspan="3">All mutations</th>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_non-coding-all" target="_blank">{{ mutation_count.get("ASD").get("non-coding-all")}} </a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_non-coding-all" target="_blank">{{ mutation_count.get("SCZ").get("non-coding-all") }} </a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BD_non-coding-all" target="_blank">{{ mutation_count.get("BD").get("non-coding-all") }} </a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_non-coding-all" target="_blank">{{ mutation_count.get("ADHD").get("non-coding-all") }} </a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_non-coding-all" target="_blank">{{ mutation_count.get("ID").get("non-coding-all") }} </a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_non-coding-all" target="_blank">{{ mutation_count.get("DD").get("non-coding-all") }} </a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_non-coding-all" target="_blank">{{ mutation_count.get("OCD").get("non-coding-all") }} </a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TS_non-coding-all" target="_blank">{{ mutation_count.get("TS").get("non-coding-all") }} </a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_non-coding-all" target="_blank">{{ mutation_count.get("DEE").get("non-coding-all") }} </a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_non-coding-all" target="_blank">{{ mutation_count.get("EE").get("non-coding-all") }} </a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AD_non-coding-all" target="_blank">{{ mutation_count.get("AD").get("non-coding-all") }} </a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_PD_non-coding-all" target="_blank">{{ mutation_count.get("PD").get("non-coding-all") }} </a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_non-coding-all" target="_blank">{{ mutation_count.get("CHD").get("non-coding-all") }} </a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_non-coding-all" target="_blank">{{ mutation_count.get("Others").get("non-coding-all") }} </a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Control_non-coding-all" target="_blank">{{ mutation_count.get("Control").get("non-coding-all") }} </a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_non-coding-all" target="_blank">{{ mutation_count.get("all").get("non-coding-all") }} </a></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3">Intronic</td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_intronic" target="_blank">{{ mutation_count.get("ASD").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_intronic" target="_blank">{{ mutation_count.get("SCZ").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BD_intronic" target="_blank">{{ mutation_count.get("BD").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_intronic" target="_blank">{{ mutation_count.get("ADHD").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_intronic" target="_blank">{{ mutation_count.get("ID").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_intronic" target="_blank">{{ mutation_count.get("DD").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_intronic" target="_blank">{{ mutation_count.get("OCD").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TS_intronic" target="_blank">{{ mutation_count.get("TS").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_intronic" target="_blank">{{ mutation_count.get("DEE").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_intronic" target="_blank">{{ mutation_count.get("EE").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AD_intronic" target="_blank">{{ mutation_count.get("AD").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_PD_intronic" target="_blank">{{ mutation_count.get("PD").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_intronic" target="_blank">{{ mutation_count.get("CHD").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_intronic" target="_blank">{{ mutation_count.get("Others").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Control_intronic" target="_blank">{{ mutation_count.get("Control").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_intronic" target="_blank">{{ mutation_count.get("all").get("intronic") }}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3">UTR region</td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_UTR region" target="_blank">{{ mutation_count.get("ASD").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_UTR region" target="_blank">{{ mutation_count.get("SCZ").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BD_UTR region" target="_blank">{{ mutation_count.get("BD").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_UTR region" target="_blank">{{ mutation_count.get("ADHD").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_UTR region" target="_blank">{{ mutation_count.get("ID").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_UTR region" target="_blank">{{ mutation_count.get("DD").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_UTR region" target="_blank">{{ mutation_count.get("OCD").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TS_UTR region" target="_blank">{{ mutation_count.get("TS").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_UTR region" target="_blank">{{ mutation_count.get("DEE").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_UTR region" target="_blank">{{ mutation_count.get("EE").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AD_UTR region" target="_blank">{{ mutation_count.get("AD").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_PD_UTR region" target="_blank">{{ mutation_count.get("PD").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_UTR region" target="_blank">{{ mutation_count.get("CHD").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_UTR region" target="_blank">{{ mutation_count.get("Others").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Control_UTR region" target="_blank">{{ mutation_count.get("Control").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_UTR region" target="_blank">{{ mutation_count.get("all").get("UTR region") }}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3">Up-/down-stream</td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_up-/down-stream" target="_blank">{{ mutation_count.get("ASD").get("up-/down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_up-/down-stream" target="_blank">{{ mutation_count.get("SCZ").get("up-/down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BD_up-/down-stream" target="_blank">{{ mutation_count.get("BD").get("up-/down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_up-/down-stream" target="_blank">{{ mutation_count.get("ADHD").get("up-/down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_up-/down-stream" target="_blank">{{ mutation_count.get("ID").get("up-/down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_up-/down-stream" target="_blank">{{ mutation_count.get("DD").get("up-/down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_up-/down-stream" target="_blank">{{ mutation_count.get("OCD").get("up-/down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TS_up-/down-stream" target="_blank">{{ mutation_count.get("TS").get("up-/down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_up-/down-stream" target="_blank">{{ mutation_count.get("DEE").get("up-/down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_up-/down-stream" target="_blank">{{ mutation_count.get("EE").get("up-/down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AD_up-/down-stream" target="_blank">{{ mutation_count.get("AD").get("up-/down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_PD_up-/down-stream" target="_blank">{{ mutation_count.get("PD").get("up-/down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_up-/down-stream" target="_blank">{{ mutation_count.get("CHD").get("up-/down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_up-/down-stream" target="_blank">{{ mutation_count.get("Others").get("up-/down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Control_up-/down-stream" target="_blank">{{ mutation_count.get("Control").get("up-/down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_up-/down-stream" target="_blank">{{ mutation_count.get("all").get("up-/down-stream") }}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3">Intergenic</td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_intergenic" target="_blank">{{ mutation_count.get("ASD").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_intergenic" target="_blank">{{ mutation_count.get("SCZ").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BD_intergenic" target="_blank">{{ mutation_count.get("BD").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_intergenic" target="_blank">{{ mutation_count.get("ADHD").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_intergenic" target="_blank">{{ mutation_count.get("ID").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_intergenic" target="_blank">{{ mutation_count.get("DD").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_intergenic" target="_blank">{{ mutation_count.get("OCD").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TS_intergenic" target="_blank">{{ mutation_count.get("TS").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_intergenic" target="_blank">{{ mutation_count.get("DEE").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_intergenic" target="_blank">{{ mutation_count.get("EE").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AD_intergenic" target="_blank">{{ mutation_count.get("AD").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_PD_intergenic" target="_blank">{{ mutation_count.get("PD").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_intergenic" target="_blank">{{ mutation_count.get("CHD").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_intergenic" target="_blank">{{ mutation_count.get("Others").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Control_intergenic" target="_blank">{{ mutation_count.get("Control").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_intergenic" target="_blank">{{ mutation_count.get("all").get("intergenic") }}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3">Non-coding RNA</td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_ncRNA" target="_blank">{{ mutation_count.get("ASD").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_ncRNA" target="_blank">{{ mutation_count.get("SCZ").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BD_ncRNA" target="_blank">{{ mutation_count.get("BD").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_ncRNA" target="_blank">{{ mutation_count.get("ADHD").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_ncRNA" target="_blank">{{ mutation_count.get("ID").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_ncRNA" target="_blank">{{ mutation_count.get("DD").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_ncRNA" target="_blank">{{ mutation_count.get("OCD").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TS_ncRNA" target="_blank">{{ mutation_count.get("TS").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_ncRNA" target="_blank">{{ mutation_count.get("DEE").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_ncRNA" target="_blank">{{ mutation_count.get("EE").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AD_ncRNA" target="_blank">{{ mutation_count.get("AD").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_PD_ncRNA" target="_blank">{{ mutation_count.get("PD").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_ncRNA" target="_blank">{{ mutation_count.get("CHD").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_ncRNA" target="_blank">{{ mutation_count.get("Others").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Control_ncRNA" target="_blank">{{ mutation_count.get("Control").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_ncRNA" target="_blank">{{ mutation_count.get("all").get("ncRNA") }}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <th rowspan="2"> <i>De novo</i> variants hit large genomic regions</th>
+                                                <th rowspan="2">Copy number variants (CNVs)</th>
+                                                <td colspan="3">Deletion</td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_deletion" target="_blank">{{ mutation_count.get("ASD").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_deletion" target="_blank">{{ mutation_count.get("SCZ").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BD_deletion" target="_blank">{{ mutation_count.get("BD").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_deletion" target="_blank">{{ mutation_count.get("ADHD").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_deletion" target="_blank">{{ mutation_count.get("ID").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_deletion" target="_blank">{{ mutation_count.get("DD").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_deletion" target="_blank">{{ mutation_count.get("OCD").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TS_deletion" target="_blank">{{ mutation_count.get("TS").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_deletion" target="_blank">{{ mutation_count.get("DEE").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_deletion" target="_blank">{{ mutation_count.get("EE").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AD_deletion" target="_blank">{{ mutation_count.get("AD").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_PD_deletion" target="_blank">{{ mutation_count.get("PD").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_deletion" target="_blank">{{ mutation_count.get("CHD").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_deletion" target="_blank">{{ mutation_count.get("Others").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Control_deletion" target="_blank">{{ mutation_count.get("Control").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_deletion" target="_blank">{{ mutation_count.get("all").get("deletion") }}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3">Duplication</td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_duplication" target="_blank">{{ mutation_count.get("ASD").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_duplication" target="_blank">{{ mutation_count.get("SCZ").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BD_duplication" target="_blank">{{ mutation_count.get("BD").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_duplication" target="_blank">{{ mutation_count.get("ADHD").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_duplication" target="_blank">{{ mutation_count.get("ID").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_duplication" target="_blank">{{ mutation_count.get("DD").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_duplication" target="_blank">{{ mutation_count.get("OCD").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TS_duplication" target="_blank">{{ mutation_count.get("TS").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_duplication" target="_blank">{{ mutation_count.get("DEE").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_duplication" target="_blank">{{ mutation_count.get("EE").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AD_duplication" target="_blank">{{ mutation_count.get("AD").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_PD_duplication" target="_blank">{{ mutation_count.get("PD").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_duplication" target="_blank">{{ mutation_count.get("CHD").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_duplication" target="_blank">{{ mutation_count.get("Others").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Control_duplication" target="_blank">{{ mutation_count.get("Control").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_duplication" target="_blank">{{ mutation_count.get("all").get("duplication") }}</a></td>
+                                            </tr>
+
+                                      </table>
+
+                                        <hr />
+
+                                        <table></table>
+
+                                    {% endif %}
+
+
+                            </div>
+                                </div>
+
+
+
+                            </div>
+                    </div>
+                </div>
+            <div id="collapseFour" class="accordion-group">
+            <div class="accordion-heading" style="font-size: x-large;">
+                Transcripts
+            </div>
+            <div class="little_title">
+                Visualization of regulatory element with DNMs in transcripts
+            </div>
+            {% if pic6 %}
+                <div class="row">
+                <div class="col-md-9">
+                    {{ pic6|safe }}
+                </div>
+                <div class="col-md-3">
+                    </br>
+                    </br>
+                    <img src="/static/leg2.png" style="width: 100%;height: 100%;">
+                </div>
+             </div>
+            {% endif %}
+            <hr />
+            <div class="little_title">
+                Visualization of <i>de novo</i> variants in transcripts
+            </div>
+
+            {% if pic5 %}
+                <div class="row">
+                    <div class="col-md-9">
+                        {{ pic5|safe }}
+                    </div>
+                    <div class="col-md-3">
+                        </br>
+                        </br>
+                        <img src="/static/leg1.png" style="width: 100%;height: 100%;">
+                    </div>
+                </div>
+            {% endif %}
+
+
+            <div class="little_title">
+                Visualization of <i>de novo</i> CNVs
+            </div>
+            {% if pic8 %}
+                {{ pic8|safe }}
+            {% else %}
+                <div style="align-self: center;">&nbsp; &nbsp;Not available.</div>
+            {% endif %}
+            <hr />
+             <div class="accordion-body collapse in">
+             <div class="accordion-inner">
+             <div >
+                <div>
+
+                    <div>
+             <div class="little_title" style="margin-top:20px;width:49%;float:left">
+                 <center> Gencode transcripts (data
+                     source: Gencode)</center>
+                </div>
+        </div>
+         <div>
+                <div  class="little_title"  style="margin-top:20px;width:49%;float:right">
+                    <center> Refseq transcripts (data source: Refseq)</center>
+                    </div>
+         </div>
+                </div>
+                        <div>
+                         <div class="div-a">
+                    {% for j in message %}
+                        {% if j['Trans_Gencode'] %}
+                            <table data-class="table table-hover" data-toggle="table" data-pagination="true"
+                                   data-show-pagination-switch="true" data-page-size=5>
+                                <thead style="background-color:#669999">
+                                <tr>
+                                    <th>TranscriptID</th>
+                                    <th>Transcript_exon_region</th>
+                                    <th>Coding_exon_region</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for i in j['Trans_Gencode'] %}
+                                    <tr>
+                                        {% if i['TranscriptID'] is string %}
+                                            <td>{{ i['TranscriptID'] }}</td>
+                                        {% else %}
+                                            <td>{{ i['TranscriptID']|join(',') }}</td>
+                                        {% endif %}
+                                        <td>{{ i['transcript_exon_region'] }}</td>
+                                        <td>{{ i['coding_exon_region'] }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <hr />
+                        {% else %}
+                            <div >
+                                <br>Not available.
+                                <hr/>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                         <div class="div-b">
+                        {% for j in message %}
+                            {% if j['Trans_Ref'] %}
+                                <table data-class="table table-hover" data-toggle="table" data-pagination="true"
+                                       data-show-pagination-switch="true" data-page-size=5>
+                                    <thead style="background-color:#669999">
+                                    <tr>
+                                        <th>TranscriptID</th>
+                                        <th>Transcript_exon_region</th>
+                                        <th>Coding_exon_region</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for i in j['Trans_Ref'] %}
+                                        <tr>
+                                            {% if i['TranscriptID'] is string %}
+                                                <td>{{ i['TranscriptID'] }}</td>
+                                            {% else %}
+                                                <td>{{ i['TranscriptID']|join(',') }}</td>
+                                            {% endif %}
+                                            <td>{{ i['transcript_exon_region'] }}</td>
+                                            <td>{{ i['coding_exon_region'] }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                <hr />
+                            {% else %}
+                                <div>
+                                    <br>Not available.
+                                    <hr/>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                </div>
+                     </div>
+                     </div>
+        </div></div>
+            <hr>
+
+        </div>
+            <div id="collapseFive" class="accordion-group">
+            <div class="accordion-heading" style="font-size: x-large;">
+                Protein-Protein Interaction
+            </div>
+            <div class="accordion-body collapse in">
+                    <div class="accordion-inner">
+{#                        {% if nodes_edges %}#}
+
+                        <div class='little_title'>
+                            PPI Network (data source: BioGrid)
+                            <button type="button" class="login-button " style="float:right" onclick="Reset()">Refresh</button>
+                        </div>
+                        <div id="cy">
+                            <script type="text/javascript" src="../static/Js/code.js"></script>
+{#                            <script type="text/javascript" src="../static/assets-master/js/code.js"></script>#}
+                        <script type="text/javascript">
+                          window.onload = function(){
+                          var fun = show; //引用show函数
+                          var a= eval('{{nodes_edges|safe }}');
+                          fun(a);
+                          }
+                          function Reset()
+                        {
+                            var fun = show; //引用show函数
+                            var a= eval('{{nodes_edges|safe }}');
+                            fun(a);
+                        }
+                        </script>
+                        </div>
+                        <div>
+                            {% if message[0]["PPI"] %}
+                                <table id="table-PPI_Table" data-class="table table-hover" data-toggle="table" data-pagination="true"
+                                       data-show-pagination-switch="true" data-page-size=10  data-search="true" data-search-on-enter-key="true" data-show-refresh="true"
+{#                                       data-search-text="Search any character-match string"#}
+                                >
+                                    <thead style="background-color:#669999">
+                                    <tr>
+                                        <th>Symbol A</th>
+                                        <th>Symbol B</th>
+                                        <th>Interaction Detection Method</th>
+                                        <th>Publication</th>
+                                        <th>Evidence</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for i in message[0]["PPI"] %}
+                                        <tr>
+                                            <td><a href="/GeneDetail/{{ i['ENTREZ_A'] }}" target="_blank">{{ i['Symbol_A'] }}</a></td>
+
+                                            <td><a href="/GeneDetail/{{ i['ENTREZ_B'] }}" target="_blank">{{ i['Symbol_B'] }}</a></td>
+                                            {% if i['Interaction Detection Method'] is string %}
+                                                {% if i['Interaction Detection Method']|length ==1 %}
+                                                    <td>
+                                                        <a href="http://purl.obolibrary.org/obo/MI_000{{ i['Interaction Detection Method'] }}"  target="_blank">{{ i['interaction_method_str'] }}</a>
+
+                                                    </td>
+                                                {% elif i['Interaction Detection Method']|length ==2 %}
+                                                    <td>
+                                                        <a href="http://purl.obolibrary.org/obo/MI_00{{ i['Interaction Detection Method'] }}" target="_blank">{{ i['interaction_method_str'] }}</a>
+                                                    </td>
+                                                {% elif i['Interaction Detection Method']|length ==3 %}
+                                                    <td>
+                                                        <a href="http://purl.obolibrary.org/obo/MI_0{{ i['Interaction Detection Method'] }}" target="_blank">{{ i['interaction_method_str'] }}</a>
+                                                    </td>
+                                                {% elif i['Interaction Detection Method']|length ==4 %}
+                                                    <td>
+                                                        <a href="http://purl.obolibrary.org/obo/MI_{{ i['Interaction Detection Method'] }}" target="_blank">{{ i['interaction_method_str'] }}</a>
+                                                    </td>
+                                                {% else %}
+                                                        <a href="http://purl.obolibrary.org/obo/MI_{{ i['Interaction Detection Method'] }}" target="_blank">{{ i['interaction_method_str'] }}</a>
+                                                {% endif %}
+                                            {% else %}
+                                                <td>
+                                                    {% for j in i['Interaction Detection Method'] %}
+
+                                                        {% if j|length ==1 %}
+
+                                                            <a href="http://purl.obolibrary.org/obo/MI_000{{ j }}" target="_blank">{{ i['interaction_method_str'][loop.index0] }} </a>
+
+
+                                                        {% elif j|length ==2 %}
+
+                                                            <a href="http://purl.obolibrary.org/obo/MI_00{{ j }}" target="_blank">{{ i['interaction_method_str'][loop.index0] }} </a>
+
+                                                        {% elif j|length ==3 %}
+
+                                                            <a href="http://purl.obolibrary.org/obo/MI_0{{ j }}" target="_blank">{{ i['interaction_method_str'][loop.index0] }} </a>
+
+                                                        {% elif j|length ==4 %}
+                                                            {% if loop.last %}
+                                                                <a href="http://purl.obolibrary.org/obo/MI_{{ j }}" target="_blank">{{ i['interaction_method_str'][loop.index0] }}</a>
+                                                            {% else %}
+                                                                 <a href="http://purl.obolibrary.org/obo/MI_{{ j }}" target="_blank">{{ i['interaction_method_str'][loop.index0] }},</a>
+                                                            {% endif %}
+
+
+                                                        {% endif %}
+
+                                                    {% endfor %}
+                                                </td>
+                                            {% endif %}
+                                            {% if i['Publication_id'] is string %}
+                                                <td>
+                                                    <a href="https://www.ncbi.nlm.nih.gov/pubmed/{{ i['Publication_id'] }}" target="_blank">{{ i['Publication'] }}</a>
+                                                </td>
+                                            {% else %}
+                                                <td>
+                                                    {% for j in i['Publication_id'] %}
+                                                        {% if loop.last %}
+                                                            <a href="https://www.ncbi.nlm.nih.gov/pubmed/{{ j }}" target="_blank">{{ i['Publication'][loop.index0] }}</a>
+                                                        {% else %}
+                                                            <a href="https://www.ncbi.nlm.nih.gov/pubmed/{{ j }}" target="_blank">{{ i['Publication'][loop.index0] }}, </a>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </td>
+                                            {% endif %}
+                                            {% if i['Evidence'] %}
+                                                <td>
+                                                    {{ i['Evidence'] }}
+                                                </td>
+                                            {% else %}
+                                                <td>
+                                                    {% for j in i['Evidence'] %}
+                                                        {{ i['Evidence'] }}
+                                                    {% endfor %}
+                                                </td>
+                                            {% endif %}
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+{#                            {% endif %}#}
+                        </div>
+                      {% else %}
+                                  <script>
+                                $("#cy").text("There is no corresponding data published yet,we will update it when such data available.");
+                                </script>
+{#                            <div>Sorry, Not found protein-protein interaction information in Biogrid !#}
+{#                            <hr/>#}
+{#                            </div>#}
+                      {% endif %}
+
+                    </div>
+                </div>
+
+        </div>
+        </div>
+    </div>
+</div>
+    <div class="footer">
+    <div class="foot">
+{#        <div class="row" style="left: 0; background-color:#669999; border: 0px ; text-align: center" >#}
+{#            <div class="col-md-6"><a href="http://bmi.sjtu.edu.cn" target="_blank">SJTU - Biomedical Information Lab</a></div>#}
+{#            <div class="col-md-6"><a href="http://bioinformatics.nenu.edu.cn/" target="_blank">NENU - Institute of Computational Biology</a></div>#}
+{#        </div>#}
+    <div class="row" style="left: 0 ; background-color:#669999; border: 2px;" >
+        <div class="col-md-4">
+            <table>
+            <tr><td><a href="http://bmi.sjtu.edu.cn" target="_blank">SJTU - Biomedical Information Lab</a></td></tr>
+            <tr><td>&nbsp;</td></tr>
+            <tr><td><a href="http://bioinformatics.nenu.edu.cn/" target="_blank">NENU - Institute of Computational Biology</a></td></tr>
+            </table>
+        </div>
+        <div class="col-md-2"><a href="http://exac.broadinstitute.org/" target="_blank"><img src="/static/foot1.png" style="width: 150px; height: 50px"></a></div>
+        <div class="col-md-2"><a href="http://www.bioinfo.org.cn/relative/dbSNP%20Home%20Page.htm" target="_blank"><img src="/static/foot2.jpg" style="width: 150px; height: 50px"></a></div>
+        <div class="col-md-2"><a href="http://wannovar.wglab.org/" target="_blank"><img src="/static/foot3.png" style="width: 150px; height: 50px"></a></div>
+        <div class="col-md-2"><a href="http://genome.ucsc.edu/" target="_blank"><img src="/static/foot4.png" style="width: 150px; height: 50px"></a></div>
+    </div>
+
+    </div>
+        <div class="foot-p">
+
+{#           <img class="line2" alt=""  src="/static/line2.png" style="width: 600px; height: 60px;" />#}
+            <p><strong><small>© 2018 bmi.sjtu.edu.cn. All rights reserved. 浙ICP备18030141号.</small></strong></p>
+
+        </div>
+</div>
+
+
+
+    </body>
+
+{% endblock %}

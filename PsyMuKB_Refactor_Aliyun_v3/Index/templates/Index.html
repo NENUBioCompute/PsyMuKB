@@ -1,0 +1,435 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% include "muttemp.html" %}
+
+{% block content %} 
+<style type="text/css">
+
+body{
+	background-color:rgba(204,204,204,0.1);
+    width:100%;
+    {#text-align: justify;#}
+}
+.little_title
+{
+    color:#663333;
+    font-size:24px;
+    font-family:"Verdana";
+    padding:5px;
+    border-bottom:3px solid #663333;
+
+}
+.little_title-2
+{
+	color:#fff;
+	font-size:24px;
+	font-family:"Verdana";
+    padding:5px;
+    padding-left:25px;
+    background:url('../static/subtitle.png') no-repeat;
+    background-size:267px 40px ;
+    height:50px;
+
+}
+.header-text
+{
+	padding:20px;
+}
+
+.search-style
+{
+	border:2px solid #663333;
+	border-top-right-radius:15px;
+	border-bottom-right-radius:15px;
+	background:url('/static/pattern.jpg');
+	background-size:320px;
+	padding:30px;
+	margin-top:80px;
+
+}
+p{
+	font-family:"Verdana";
+}
+
+#qs
+{
+	font-family:"Verdana";
+	font-size:24px;
+
+}
+#arrow-img
+{
+    position:absolute;
+
+    top:150px;
+    right:200px;
+    transform: rotate(180deg);
+}
+.row{
+	border:1px solid #ffffff;
+	background-color:#ffffff;
+ 	border-radius:3px;
+
+}
+
+/* table style*/
+.table-color {
+    background-color:#669999;
+    height:15px;
+}
+.table-bordered{
+    margin-top:15px;
+}
+</style>
+<style>
+/*footer*/
+.footer
+{
+    background-color:#669999;
+    width:100%;
+    display: block;
+    height:130px;
+     display: flex;
+     margin-top:20px;
+     position:relative;
+}
+.foot
+{
+    height:50px;
+    left:15%;
+    float:left;
+    font-size:15px;
+    color:#fff;
+    padding:0;
+    position:relative;
+    margin:20px;
+}
+.foot a{
+    text-decoration:none;
+    color:#CCCCCC;
+}
+.foot a:hover{
+    text-decoration:none;
+    color:#fff;
+    border-bottom:3px solid  #FFFFFF;
+}
+.foot-p
+{
+    position:absolute;
+    top:100px;
+    left:30%;
+    text-align:center;
+}
+.line2
+{
+    position:absolute;
+    top:-30px;
+    left:-25%;
+    text-align:center;
+}
+</style>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129012764-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129012764-1');
+</script>
+
+<div class="container">
+         <!--<div class="page-header">-->
+{#         	<!--<a href="{{url_for('GeneDetail',name='2')}}">123123</a>-->#}
+             <!--<h1>Welcome to use PsyMuKB</h1>-->
+         <!--</div>-->
+	<div class="row">
+    		<div class="col-md-2" >
+    			<img src="/static/logo.png"
+                     style="width: 179px;height: 130px; "
+                >
+    		</div>
+    		<div class="col-md-10" style=" margin-top: 60px" >
+    			<p style="font-size: 35px; color: #083B66; margin-left: 2px">&nbsp;Neuro<strong>Psy</strong>chiatric <strong>Mu</strong>tation <strong>K</strong>nowledge <strong>B</strong>ase </p>
+            </div>
+
+
+
+	</div>
+	<div class="row" style="text-align: justify">
+		<div class='col-md-8'>
+			<div class="page-header">
+         	<div class='little_title'>
+         		About
+         	</div>
+         	<div class="header-text">
+             <p>
+             	Welcome to the our access database <b>PsyMuKB</b>.
+             </p>
+
+            <p>
+                <b>PsyMuKB is a comprehensive knowledge base that links transcriptional and translational annotations to <i>de novo</i> variants, which are found in subjects but not in their parents, in developmental and neuropsychiatric disorders. Large-scale genomics and proteomic data are integrated into PsyMuKB, including developmental brain expressions, neuronal single-cell transcriptome, regulatory elements and transcript annotations, protein-protein interactions (PPI) and protein isoform expressions. It aims to provide users with a comprehensive data exploration on <i>de novo</i> variants, such as their genomic locations on alternatively spliced isoforms, expression patterns of the mutation-disrupted genes and/or isoforms, and interaction network of impacted proteins.</b>
+            </p>
+			<p>
+                We provide the detailed annotations for various types of <i>de novo</i> variants, such as single nucleotide variations (SNVs), small insertions and deletions (indels) and copy number of variants (CNVs). It currently contains >448,623 curated <i>de novo</i> variants, including coding and non-coding (~ 15,291 cases and 1,969 controls) from more than 90 published studies of >14 neural and developmental diseases, including Autism Spectrum Disorder (ASD), Bipolar Disorder (BD), Developmental Delay (DD), Intellectual Disability (ID), Obsessive Compulsive Disorder (OCD), Schizophrenia (SCZ), Tourette Disorder (TD), Alzheimer early-onset (AD), etc., and unaffected siblings as control (CTR). (Detail in  <a href="/Document">Document</a>)</p>
+			<p>
+                PsyMuKB will be updated regularly to provide the research community with an up-to-date knowledge base. When using PsyMuKB, please feel free to start with the Document section.
+			</p>
+			</div>
+         	</div>
+         </div>
+    	<div class="col-md-4">
+    		<div class="search-style">
+    		<div id="qs">Quick Search</div>
+     		{{ wtf.quick_form(form) }}
+     		{% if notmatch %}
+     		<p style="color:red;">
+     			No match found
+     		</p>
+     		{% endif %}
+			<p style="color: gray; text-align: left">
+    		&bull; Gene symbol e.g. SHANK3 or SHANK*</br>
+			&bull; Gene ID e.g. 9527</br>
+			&bull; Chr. position e.g. chr11:11186630-12284618
+
+    		</p>
+    		</div>
+    	</div>
+    </div>
+    <div class="row" style="text-align: justify">
+    	<div class="col-md-3">
+    		<div class='little_title-2' style="font-size:12px;">
+                <b>Variants with brain expression</b>
+         	</div>
+    		<img alt="" src="/static/I_Pic1.png" style="width: 100%;
+    height: 100%;" />
+            <br/><br/><br/><br/><br/>
+    		<p style="font-size:10px; font-family: 'Arial';">
+            We compile different sets of tissues and neuronal cell-specific brain expression data, including spatio-temporal human brain developmental expression data from BrainSpan, human brain isoform expression data from GTEx, and single-cell human <a href="https://www.ncbi.nlm.nih.gov/pubmed/29539641" target="_blank">(Zhong et. al. 2018)</a> & mouse RNA-seq brain expression data <a href="https://www.ncbi.nlm.nih.gov/pubmed/30096299" target="_blank">(Saunders et. al. 2018)</a>. The brain expression patterns are mapped to genes and can be visualized for in-depth mutation explorations.
+            </p>
+    	</div>
+    	<div class="col-md-3">
+    		<div class='little_title-2' style="font-size:12px;">
+                <b>Variant visualizations</b>
+
+         	</div>
+    		<img alt="" src="/static/I_Pic2.png" style="width: 100%;
+    height: 100%;" />
+            <br/><br/>
+    		<p style="font-size:10px; font-family: 'Arial';">
+                We curate a comprehensive list of >448,623 <i>de novo</i> variants from >14 neuropsychiatric disorders with functional annotations, and map them to all the alternatively spliced isoforms and regulatory elements, such as promoters and enhancers, of the impacted gene. Meanwhile, >800 <i>de novo</i> CNVs are aligned by gene location in chromatins. All information can be exported in various formats.
+            </p>
+    	</div>
+    	<div class="col-md-3">
+    		<div class='little_title-2' style="font-size:12px;">
+                <b>Explore DNMs at isoform-level</b>
+
+
+         	</div>
+
+    		<img alt="" src="/static/I_Pic3.png" style="width: 100%;
+    height: 100%;" />
+            <br/><br/>
+    		<p style="font-size:10px; font-family: 'Arial';">
+            Interface design is executed to study focused mutations like coding DNM, non-coding DNM, and CNVs. To certain variant, independent information is showed according its mRNA and protein expression levels. Personal choices are accepted to present special expression pattern.
+            </p>
+    	</div>
+    	<div class="col-md-3">
+    		<div class='little_title-2' style="font-size:12px;">
+                <b>Interactome and Structure</b>
+         	</div>
+    		<img alt="" src="/static/PPI.png" style="width: 100%;
+    height: 100%;" />
+            <br/>
+    		<p style="font-size:10px; font-family: 'Arial';">
+            We provide >409,000 curated experimentally-determined high-quality human physical protein-protein interactions (PPI) from BioGRID v3.5.165 Interactome Resource. Interactions are filtered both systematically and manually to remove low-quality interactions. Node of Interactome Networks showing in our website is limited under 200 to properly organization. PPIs can be exported in various formats.
+            </p>
+    	</div>
+    </div>
+    <script src="/static/assets-master/js/echarts.min.js"></script>
+    <div class="row">
+    	<div class="col-md-6">
+    		<div class='little_title'>
+         		Data statistics
+         	</div>
+    		<table class="table table-bordered" style="height:400px; font-size:15px;">
+                <tr class="table-color">
+
+                    <th>Data Type</th>
+                    <th>Source</th>
+                    <th>Count</th>
+
+
+                </tr>
+                <tr>
+
+                    <td rowspan="2"><i>De novo</i> variants from psychiatric disorder studies
+
+</td>
+                    <td> <i>De novo</i> mutation (DNM)
+</td>
+                    <td>448,623 mutations
+</td>
+
+                </tr>
+                <tr>
+
+                    <td>Copy number variant (CNV)
+</td>
+                    <td>841 CNVs
+</td>
+
+                </tr>
+                <tr>
+
+                    <td rowspan="4">Gene expressions
+
+
+</td>
+                    <td>Spatio-temporal brain expression (BrainSpan)
+</td>
+                    <td>15,383  genes
+</td>
+
+                </tr>
+                <tr>
+
+                    <td>Single cell RNA-seq of mouse brain
+</td>
+                    <td>22,460 genes
+</td>
+
+                </tr>
+                <tr>
+
+                    <td>Single cell RNA-seq of human brain
+</td>
+                    <td>22,087 genes
+</td>
+
+                </tr>
+                <tr>
+
+                    <td>Various tissues expression of the human body (Gtex)
+</td>
+                    <td>56,200 genes
+</td>
+
+                </tr>
+                <tr>
+
+                    <td>mRNA transcripts expression
+</td>
+                    <td>GTEx
+</td>
+                    <td>196,520 transcripts
+</td>
+
+                </tr>
+                <tr>
+                    <td>Protein (including isoforms) expression</td>
+                    <td>ProteomicsDB</td>
+                    <td>18,634 genes (43,015 isoforms)</td>
+                </tr>
+                <tr>
+
+                    <td rowspan="2">Regulatory elements
+
+</td>
+                    <td>Promoter (FANTOM5)
+</td>
+                    <td>82,149 promoters
+</td>
+
+                </tr>
+                <tr>
+
+                    <td>Enhancer (Genehancer)
+</td>
+                    <td>250,733 enhancers
+</td>
+
+                </tr>
+                <tr>
+
+                    <td rowspan="2">Transcript annotations
+
+</td>
+                    <td>Refseq
+</td>
+                    <td>58,384 transcripts
+</td>
+
+                </tr>
+                <tr>
+
+                    <td>Gencode
+</td>
+                    <td>196,520 transcripts
+</td>
+
+                </tr>
+                <tr>
+
+                    <td>Protein-protein interaction (PPI)
+</td>
+                    <td>BioGRID
+
+</td>
+                    <td>409,173 pairs
+
+</td>
+
+                </tr>
+            </table>
+
+    	</div>
+    		<div class='little_title'>
+         		Distribution of disease variants
+         	</div>
+            <HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="40%" color=#987cb9 SIZE=0>
+        	<div class="col-md-6" style="height=200px;">
+        	{{ dnm_pie|safe }}
+        	</div>
+            <br />
+            <HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="40%" color=#987cb9 SIZE=1>
+
+            <div class="col-md-6" style="height=200px;">
+        	{{ cnv_pie|safe }}
+        	</div>
+{#        	<div class="col-md-6" style="height=200px;">#}
+{#        	{{ myechart2|safe }}#}
+    	</div>
+
+    </div>
+
+<div class="footer">
+    <div class="foot">
+{#        <div class="row" style="left: 0; background-color:#669999; border: 0px ; text-align: center" >#}
+{#            <div class="col-md-6"><a href="http://bmi.sjtu.edu.cn" target="_blank">SJTU - Biomedical Information Lab</a></div>#}
+{#            <div class="col-md-6"><a href="http://bioinformatics.nenu.edu.cn/" target="_blank">NENU - Institute of Computational Biology</a></div>#}
+{#        </div>#}
+    <div class="row" style="left: 0 ; background-color:#669999; border: 2px;" >
+        <div class="col-md-4">
+            <table>
+            <tr><td><a href="http://bmi.sjtu.edu.cn" target="_blank">SJTU - Biomedical Information Lab</a></td></tr>
+            <tr><td>&nbsp;</td></tr>
+            <tr><td><a href="http://bioinformatics.nenu.edu.cn/" target="_blank">NENU - Institute of Computational Biology</a></td></tr>
+            </table>
+        </div>
+        <div class="col-md-2"><a href="http://exac.broadinstitute.org/" target="_blank"><img src="/static/foot1.png" style="width: 150px; height: 50px"></a></div>
+        <div class="col-md-2"><a href="http://www.bioinfo.org.cn/relative/dbSNP%20Home%20Page.htm" target="_blank"><img src="/static/foot2.jpg" style="width: 150px; height: 50px"></a></div>
+        <div class="col-md-2"><a href="http://wannovar.wglab.org/" target="_blank"><img src="/static/foot3.png" style="width: 150px; height: 50px"></a></div>
+        <div class="col-md-2"><a href="http://genome.ucsc.edu/" target="_blank"><img src="/static/foot4.png" style="width: 150px; height: 50px"></a></div>
+    </div>
+
+    </div>
+        <div class="foot-p">
+
+{#           <img class="line2" alt=""  src="/static/line2.png" style="width: 600px; height: 60px;" />#}
+            <p><strong><small>© 2018 bmi.sjtu.edu.cn. All rights reserved. 浙ICP备18030141号.</small></strong></p>
+
+        </div>
+</div>
+
+{% endblock %}
+      

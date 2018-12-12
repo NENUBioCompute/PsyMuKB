@@ -1,0 +1,1315 @@
+{% include "muttemp.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+    <style>
+        body {
+            background-color: rgba(204, 204, 204, 0.1);
+        }
+
+        img {
+        {#width:80%;#} height: auto;
+        }
+    </style>
+    <style>
+        /*footer*/
+        .footer {
+            background-color: #669999;
+            width: 100%;
+            display: block;
+            height: 200px;
+            display: flex;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .foot {
+            height: 100px;
+            left: 25%;
+            float: left;
+            font-size: 15px;
+            color: #fff;
+            padding: 0;
+            position: relative;
+            margin: 20px;
+        }
+
+        .foot a {
+            text-decoration: none;
+            color: #CCCCCC;
+        }
+
+        .foot a:hover {
+            text-decoration: none;
+            color: #fff;
+            border-bottom: 3px solid #FFFFFF;
+        }
+
+        .foot-p {
+            position: absolute;
+            top: 130px;
+            left: 40%;
+            text-align: center;
+        }
+
+        .line2 {
+            position: absolute;
+            top: -30px;
+            left: -25%;
+            text-align: center;
+        }
+    </style>
+    <style>
+        /* Custom Styles */
+        ul.nav-tabs {
+            width: 140px;
+            margin-top: 20px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+        }
+
+        ul.nav-tabs li {
+            margin: 0;
+            border-top: 1px solid #ddd;
+        }
+
+        ul.nav-tabs li:first-child {
+            border-top: none;
+        }
+
+        ul.nav-tabs li a {
+            margin: 0;
+            padding: 8px 16px;
+            border-radius: 0;
+        }
+
+        ul.nav-tabs li.active a, ul.nav-tabs li.active a:hover {
+            color: #fff;
+            background: #0088cc;
+            border: 1px solid #0088cc;
+        }
+
+        ul.nav-tabs li:first-child a {
+            border-radius: 4px 4px 0 0;
+        }
+
+        ul.nav-tabs li:last-child a {
+            border-radius: 0 0 4px 4px;
+        }
+
+        ul.nav-tabs.affix {
+            top: 30px; /* Set the top position of pinned element */
+        }
+    </style>
+    <style>
+        .active a {
+            text-decoration: none;
+            color: #5599FF;
+            border-bottom: 3px solid #FFFFFF;
+        }
+    </style>
+    <body data-spy="scroll" data-target="#myScrollspy">
+    <div class="container" style="text-align: justify">
+
+        <div class="row">
+            <div class="col-md-3" id="myScrollspy">
+                <ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="150">
+                    <li class="active"><a href="#collapse1">1.Overview</a></li>
+                    <li><a href="#collapse2">2.Data Summary</a></li>
+                    <li><a href="#collapse3">3.Browse</a></li>
+                    <li><a href="#collapse4">4.Search</a></li>
+                    <li><a href="#collapse5">5.Information related to the query results</a></li>
+                    <li><a href="#collapse6">6.Download</a></li>
+                    <li><a href="#collapse7">7.Instruction</a></li>
+                    {#                <li><a href="#collapseFive">Protein-Protein Interaction</a></li>#}
+                </ul>
+            </div>
+            <div class="col-md-9">
+                    <h2 id="collapse1">1.Overview</h2>
+                    <br>
+                    <p><b>PsyMuKB</b> (<b><u>Psy</u></b>chiatric <b><u>Mu</u></b>tation <b><u>K</u></b>nowledge <b><u>B</u></b>ase) is a comprehensive knowledge base that provides information about various types of <u><b><i>de novo</i></b> variants</u>, such as single nucleotide variations (<b><u>SNVs</u></b>), small insertions and deletions (<b><u>indels</u></b>) and copy number of variants (<b><u>CNVs</u></b>), reported in patients with psychiatric disorders. (Detail in Table 1)</p>
+                    <p><b>PsyMuKB</b> currently includes published <i>de novo</i> variants, both coding and non-coding, from <b>14</b> neuropsychiatric diseases, including Autism Spectrum Disorder (<b><u>ASD</u></b>), Bipolar Disorder (<b><u>BD</u></b>), Developmental Delay (<b><u>DD</u></b>), Intellectual Disability (<b><u>ID</u></b>), Obsessive Compulsive Disorder (<b><u>OCD</u></b>), Schizophrenia (<b><u>SCZ</u></b>), Tourette Syndrome (<b><u>TS</u></b>), Alzheimer early-onset (<b><u>AD</u></b>), etc., and unaffected siblings as control (<b><u>CTR</u></b>). (Detail in Table 1)</p>
+                    <p>In addition, large-scale genomics data is integrated into the&nbsp;PsyMuKB&nbsp;database including mRNA brain expression, transcript and regulatory element annotation, and protein-protein interactions (PPI). Thus, PsyMuKB provides users with the comprehensive exploration of the variants with the visualization, in terms of the brain expression pattern of the disrupted gene and/or isoform, its genomic location in transcripts, and PPIs of the impacted protein.</p>
+                    <br>
+                    <div style="text-align: center">
+                    <img src="/static/image001.png" alt="">
+                    <p><small>Fig 1. Flowchart of the PsyMuKB database</small></p>
+                    </div>
+                    <hr>
+
+                    <h2 id="collapse2">2.Data Summary</h2>
+                    <br>
+                    <p>At present, the PsyMuKB database contains various types of mutations and more than ~440,000 de novo variants. (Table 1).</p>
+                    <br>
+                    <div style="text-align: center">
+                    <img src="/static/image003.png" alt="">
+                    <p> <small>Table 1. Statistics of de novo mutations in PsyMuKB</small></p>
+                    <br>
+                    <img src="/static/image005.png" alt="">
+                    <p><small>Table 2. The types of de novo variants</small></p>
+                    </div>
+                    <hr>
+
+                    <h2 id="collapse3">3.Browse</h2>
+                    <h3>3.1 Browse by gene symbol</h3>
+                    <p>You can select the interested gene by browsing through the list of gene symbols.(Fig 3.)</p>
+                    <br>
+                    <div style="text-align: center">
+                    <img src="/static/image007.png" alt="">
+                    <p><small>Fig 2. The interface of browsing by gene symbol</small></p>
+                    <br>
+                    </div>
+                    <h3>3.2 Browser by gene sets</h3>
+                    <p>You can select the interested gene by selecting symbols from different gene sets. PsyMuKB provides users with 16 different gene sets curated from literature that are associated with neuronal functional, developments or behaviors, etc.(Fig 4.)</p>
+                    <br>
+                    <div style="text-align: center">
+                    <img src="/static/image009.png" alt="">
+                        <p><small>Fig 3. The interface of browsing by gene sets</small></p>
+                    </div>
+                    <hr>
+
+                    <h2 id="collapse4">4.Search</h2>
+                    <br>
+                    <p>There are numbers of options available for querying the PsyMuKB. </p>
+                    <h3>4.1 Quick Search:</h3>
+                    <p>You can search by gene symbol, gene ID, or chromosome coordinates  on "Home" page.</p>
+                    <br>
+                    <div style="text-align: center">
+                    <img src="/static/image010.png" alt="">
+                        <p><small>Fig 4. Quick Search interface</small></p>
+                    </div>
+                    <br>
+                    <h3>4.2 Advance search:</h3>
+                    <ul>
+                        <li><strong>Search by gene symbol or gene entrez ID (same as in Quick Search):</strong></li>
+                    <br>
+                    <div style="text-align: center">
+                    <img src="/static/image011.png" alt="">
+                        <p><small>Fig 5. Gene Search interface</small></p>
+                    </div>
+                    <br>
+                    <li><strong>Search by DNMs:</strong></li>
+                    <p>One can search for more precise <i>de novo</i> mutations by indicating mutations type and disorder, with optional specification of chromosome number and coordinates.</p>
+                    <br>
+                    <div style="text-align: center">
+                    <img src="/static/image013.png" alt="">
+                        <p><small>Fig 6. DNM Search interface</small></p>
+                    </div>
+                    <br>
+                    <li><strong>Search by CNVs:</strong></li>
+                    <p>One can search for more precise <i>de novo</i> copy number of variants by indicating mutations type and disorder, with optional specification of chromosome number and coordinates.</p>
+                    <br>
+                    <div style="text-align: center">
+                    <img src="/static/image015.png" alt="">
+                        <p><small>Fig 7. CNV Search interface</small></p>
+                    </div>
+                    </ul>
+                    <hr>
+
+
+                    <h2 id="collapse5">5.Information related to the query results</h2>
+                    <br>
+                    <p>The query results contain two major sections: "<b>Gene information</b>" and "<b>Mutation information</b>".</p>
+
+                    <h3>5.1 Gene information</h3>
+                    <p>There are five modules: basic information (Uniprot summary and Refseq summary), gene expression in specific tissue or cell types, "Mutation statics", <b>"Transcript information"</b>, and<b> "Protein-protein interaction"</b>.</p>
+                    <h4>5.1.1 Gene expression in specific tissue or cell types</h4>
+                    <p>The brain expressions including Spatio-temporal human developmental brain expression (BrainSpan), Genotype-Tissue expression (GTEx), human brain single cell expression (Zhang et al., PMID: 25186741), adult mouse brain single cell expression (Saunders et al., PMID: 30096299).</p>
+                    <br>
+                    <div style="text-align: center">
+                    <img src="/static/image017.png" alt="" align="absbottom "><p><small>a</small></p>
+                    <img src="/static/image018.png" alt=""><p><small>b</small></p>
+                    <img src="/static/image019.png" alt=""><p><small>c</small></p>
+                    <img src="/static/image020.png" alt=""><p><small>d</small></p>
+                        <p><small>Fig 8.  Gene expression in specific tissue or cell types. (a) Tissue expression (Data source: GTEx V7). (b) Spatio-temporal Human Developmental Brain Expression (BrainSpan). (c) Human embryonic prefrontal cortex single cell expression. (d) Adult mouse Brain single cell expression.</small></p>
+                    </div>
+
+                    <br>
+                    <h4>5.1.2 Neuropsychiatric diseases related mutation information</h4>
+                    <p>The "Mutations" part in gene information page provides the information of neuropsychiatric diseases related to the certain gene mutations.</p>
+                    <br>
+                    <div style="text-align: center">
+                    <img src="/static/image021.png" alt="">
+                        <p><small>Fig 9. Gene mutation-Neuropsychiatric diseases information table</small></p>
+                    <br>
+                    </div>
+
+                    <h4>5.1.3 Transcript information</h4>
+                    <p>The mutations are visualized on top of all the isoforms of impacted gene. Mutations are drawn on top of all the isoforms according to their chromosome locations. The mutation size has been adjusted for the visualization purpose. </p>
+                    <p>The information including <b>3 diagrams</b>: Visualization of regulatory element DNMs, Visualizations of de novo variants in transcripts, Visualizations of de novo CNVs. With similar modes of structure, Visualization of regulatory element DNMs (Fig 11.) as example.</p>
+                    <br>
+                    <div style="text-align: center">
+                    <img src="/static/image022.png" alt="">
+                        <p><small>Fig 10. Visualization of regulatory element DNMs</small></p>
+                    </div>
+                    <br>
+                    <p>The tables of <b>Gencode</b> transcripts and <b>Refseq</b> transcripts are also shown in this part.</p>
+                    <br>
+                    <div style="text-align: center">
+                    <img src="/static/image023.png" alt="">
+                        <p><small>Fig 11. Gencode transcripts and Refseq transcripts table</small></p>
+                    </div>
+                    <br>
+                    <h4>5.1.4 Protein-protein interaction</h4>
+                    <p>Protein-protein interaction (PPI) data is extracted from Biogrid v3.5.165. The red node indicates the queried gene, and all other blue nodes are its interacting partners (Fig 13.).</p>
+                    <br>
+                    <div style="text-align: center">
+                    <img src="/static/image024.png" alt="">
+                        <p><small>Fig 12. PPI Network (Data source: BioGrid)</small></p>
+                    </div>
+                    <br>
+                    <p>Below PPI diagram, there is a table show all the genes which have PPI in the diagram.(Fig 14.)</p>
+                    <br>
+                    <div style="text-align: center">
+                    <img src="/static/image025.png" alt="">
+                        <p><small>Fig 13. PPI statistical table</small></p>
+                    </div>
+
+
+                    <h3>5.2 Mutation information</h3>
+                    <br>
+                    <h4>5.2.1 SNV mutation</h4>
+                    <p>We collected and curated both coding and non-coding de novo mutations (in total of ~280,000) from ~70 all major WES, WGS and targeted sequencing studies on 14 neuropsychiatric disorders, including autism spectrum disorders (ASD), intellectual disability (ID), epileptic encephalopathy (EE), schizophrenia (SCZ), bipolar disorder (BPD), attention-deficit/hyperactivity disorder (ADHD), obsessive compulsive disorder (OCD), Congenital Heart Disease (CHD), Tourette Disorder (TD), and healthy siblings as controls (<b>Table 1</b>). Further, we included the mutation annotation scores from tools, such as SIFT, PolyPhen, CADD, DeepSea to annotate the pathogenicity of variants. In addition, PsyMuKB also provides the visualization of exact locations of these mutations on the isoforms of the impacted genes in “Transcript information” section.</p>
+                    <p>The mutation table shown as below: </p>
+                    <br>
+                    <div style="text-align: center">
+                    <img src="/static/image026.png" alt=""><p><small>a</small></p>
+                    <img src="/static/image027.png" alt=""><p><small>b</small></p>
+                    <p><small>Fig 14. The mutation table. (a) Coding de novo mutations. (b) Noncoding de novo variations.</small></p>
+                    </div>
+                    <br>
+                    <h4>5.2.2 CNV mutation</h4>
+                    <p>We collected and curated Copy Number Variants from 19 studies on four psychiatric disorders, including ASD, BD, ID/DD, SCZ and Control (<b>Table 1</b>).</p>
+                    <p>The mutation table shown as below:</p>
+                    <br>
+                    <div style="text-align: center">
+                    <img src="/static/image029.png" alt="">
+                        <p><small>Fig 15. De novo copy number variations</small></p>
+                    <br>
+                    </div>
+                    <h4>5.2.3.1 mRNA-level impact</h4>
+                    <p>Isoform expressions of the human brain were downloaded from GTEx portal (2016-01-15_v7_RNASeQCv1.1.8). Interface design provides the graphical view on the brain expressions of all the impacted transcripts owing this mutation, which can help user realize the consequence of isoform carrying a certain mutation in specific brain region.</p>
+                    <br>
+                    <div style="text-align: center">
+                    <img src="/static/image030.png" alt="">
+                        <p><small>Fig 16. mRNA-level impact</small></p>
+                    </div>
+                    <br>
+                    <h4>5.2.3.2 Protein-level impact</h4>
+                    <p>Protein isoform expressions in tissues were downloaded from Proteomics DB. Like mRNA-level, this interface design allowed users to explore gene products special expression patterns by selecting impacted and/or brain expressed protein.</p>
+                    <br>
+                    <div style="text-align: center">
+                    <img src="/static/image031.png" alt="">
+                        <p><small>Fig 17. Protein-level impact</small></p>
+                    </div>
+                    <hr>
+
+                    <h2 id="collapse6">6.Download</h2>
+                    <br>
+                    <p>PsyMuKB provides users with download option next to each data table and visualization.</p>
+                    <br>
+                    <div style="text-align: center">
+                    <img src="/static/image032.png" alt="">
+
+                    <img src="/static/image033.png" alt="">
+                        <p> <small>Fig 18. Download button samples</small></p>
+                    </div>
+					<hr>
+
+					<h2 id="collapse7">7.Instruction</h2>
+                    <br>
+                    <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+lang=EN-US>Various options are available for querying PsyMuKB as follows. </span></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0 width=597
+ style='border-collapse:collapse;mso-table-layout-alt:fixed;border:none;
+ mso-border-alt:solid windowtext .5pt;mso-yfti-tbllook:1184;mso-padding-alt:
+ 0cm 5.4pt 0cm 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td width=104 style='width:77.75pt;border:solid windowtext 1.0pt;mso-border-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center;text-indent:0cm;
+  mso-char-indent-count:0'><span lang=EN-US>Query </span></p>
+  <p class=MsoNormal align=center style='text-align:center;text-indent:0cm;
+  mso-char-indent-count:0'><span lang=EN-US>Type</span></p>
+  </td>
+  <td width=493 style='width:369.7pt;border:solid windowtext 1.0pt;border-left:
+  none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center;text-indent:0cm;
+  mso-char-indent-count:0'><span lang=EN-US>Instruction</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1'>
+  <td width=104 style='width:77.75pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Gene symbol</span></p>
+  </td>
+  <td width=493 valign=top style='width:369.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>TWO main ways to query genes by gene symbol:</span></p>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Exact
+  gene symbol</span></p>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Gene
+  symbols starting with a certain term followed by “<b style='mso-bidi-font-weight:
+  normal'>*</b>”</span></p>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US><o:p>&nbsp;</o:p></span></p>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>e.g.</span></p>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Entering
+  <b style='mso-bidi-font-weight:normal'>SHANK3</b> would pop up all the
+  information of <b style='mso-bidi-font-weight:normal'>SHANK3</b> or <span
+  style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><b
+  style='mso-bidi-font-weight:normal'>SHANK3</b>’s synonyms</span></p>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Entering
+  <b style='mso-bidi-font-weight:normal'>CHD*</b> would pop every gene (or
+  synonyms gene) starting <span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>with
+  <b style='mso-bidi-font-weight:normal'>CHD</b> (<b style='mso-bidi-font-weight:
+  normal'>CHD2</b>, <b style='mso-bidi-font-weight:normal'>CHD3</b>, <b
+  style='mso-bidi-font-weight:normal'>DSCAM</b> (<b style='mso-bidi-font-weight:
+  normal'>CHD2</b>’s synonyms), …)</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2'>
+  <td width=104 style='width:77.75pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Gene ID</span></p>
+  </td>
+  <td width=493 valign=top style='width:369.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Entering exact EntrezID to search matched gene.</span></p>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US><o:p>&nbsp;</o:p></span></p>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>e.g.</span></p>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Entering
+  9527 would pop up <b style='mso-bidi-font-weight:normal'>GOSR1</b> (EntrezID:
+  9527)</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3;mso-yfti-lastrow:yes'>
+  <td width=104 style='width:77.75pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Chr. Position</span></p>
+  </td>
+  <td width=493 valign=top style='width:369.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>This allow you to search for gene information based on chromosome
+  and location information.</span></p>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US><o:p>&nbsp;</o:p></span></p>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>e.g.</span></p>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Entering
+  chr11:11186630-12284618 will pop up all the gene in that <span
+  style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>position,
+  such as <b style='mso-bidi-font-weight:normal'>CSNK2A3 </b>(</span><span
+  lang=EN-US style='font-size:10.5pt;line-height:120%;font-family:"Helvetica",sans-serif;
+  color:#333333;background:white'>11p15.4</span><span lang=EN-US>), <b
+  style='mso-bidi-font-weight:normal'>DKK3 </b>(</span><span lang=EN-US
+  style='font-size:10.5pt;line-height:120%;font-family:"Helvetica",sans-serif;
+  color:#333333;background:white'>11p15.3</span><span lang=EN-US>) and etc.</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+lang=EN-US>Other features:</span></p>
+
+<p class=MsoListParagraph style='margin-left:42.0pt;text-indent:-18.0pt;
+mso-char-indent-count:0;mso-list:l2 level1 lfo6'><![if !supportLists]><span
+lang=EN-US style='mso-fareast-font-family:"Times New Roman"'><span
+style='mso-list:Ignore'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US>In the search result page,
+click the <span style='mso-no-proof:yes'><v:shape id="图片_x0020_13" o:spid="_x0000_i1026"
+ type="#_x0000_t75" style='width:19.5pt;height:18pt;visibility:visible;
+ mso-wrap-style:square'>
+ <v:imagedata src="Document_of_PsyMuKB_v1.0.4.files/image026.png" o:title=""/>
+</v:shape></span><span style='mso-spacerun:yes'>&nbsp;</span>button to
+Hide/Show pagination under the result table.</span></p>
+
+<p class=MsoListParagraph style='margin-left:42.0pt;text-indent:-18.0pt;
+mso-char-indent-count:0;mso-list:l2 level1 lfo6'><![if !supportLists]><span
+lang=EN-US style='mso-fareast-font-family:"Times New Roman"'><span
+style='mso-list:Ignore'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US>Under the result table, click <span
+style='mso-no-proof:yes'><v:shape id="图片_x0020_15" o:spid="_x0000_i1025"
+ type="#_x0000_t75" style='width:24.75pt;height:16.5pt;visibility:visible;
+ mso-wrap-style:square'>
+ <v:imagedata src="Document_of_PsyMuKB_v1.0.4.files/image027.png" o:title=""/>
+</v:shape></span><span style='mso-spacerun:yes'>&nbsp;</span>button to choose
+how many rows (default 10 rows) show each page.</span></p>
+
+<p class=MsoNormal style='mso-char-indent-count:0'><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='mso-char-indent-count:0'><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+lang=EN-US>The fields in the online variant table and download file are
+described below.</span></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0 width=597
+ style='border-collapse:collapse;mso-table-layout-alt:fixed;border:none;
+ mso-border-alt:solid windowtext .5pt;mso-yfti-tbllook:1184;mso-padding-alt:
+ 0cm 5.4pt 0cm 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td width=98 rowspan=15 style='width:73.75pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center;text-indent:0cm;
+  mso-char-indent-count:0'><span lang=EN-US>Basic information</span></p>
+  </td>
+  <td width=176 style='width:131.95pt;border:solid windowtext 1.0pt;border-left:
+  none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center;text-indent:0cm;
+  mso-char-indent-count:0'><span lang=EN-US>Field</span></p>
+  </td>
+  <td width=322 style='width:241.75pt;border:solid windowtext 1.0pt;border-left:
+  none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center;text-indent:0cm;
+  mso-char-indent-count:0'><span lang=EN-US>Description</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>EntrezID</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Entrez Gene ID </span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Gene symbol</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Gene Name. RefSeq gene definition is used.</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Func refGene</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Variant function (exonic, intronic, intergenic, UTR, etc)</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:4'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Exonic Func</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Exonic variant function (non-synonymous, synonymous, etc)</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:5'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Chr</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Chromosome Number</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:6'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Position</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Genomic position on the chromosome as to hg19 (1-based
+  coordinate).</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:7'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Variant</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Reference nucleotide allele &gt; Alternate nucleotide allele</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:8'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Individual ID</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>If some type of sample identifier is given in the study we use
+  that exactly. If there is no sample identifier we use the name of the study
+  and start numbering such that every variant has a unique sample identifier.</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:9'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Primary Phenotype</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Main phenotype of the patients for inclusion in the study.</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:10'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>1st author</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>1<sup>st</sup> author and the year of the study.</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:11'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>PMID</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Pubmed ID for the study publication.</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:12'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Numprobands</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>The total number of probands involved in the study.</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:13'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>NumControls</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>The total number of controls involved in the study.</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:14'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Study_scale</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>The certain research scale of the study.</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:15'>
+  <td width=98 rowspan=20 style='width:73.75pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>ANNOVAR results</span></p>
+  </td>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>AAChange.refGene </span></p>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>or dist.to.genes</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Amino acid changes refers to hg19 reference sequence.</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:16'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>ENST</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Ensembl identifiers for transcripts.</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:17'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>1000G_Freq</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Frequency of the variant in the <span class=MsoHyperlink><a
+  href="http://www.internationalgenome.org/">1000 Genomes</a></span> Project.</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:18'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>ExAC_Freq</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Frequency of the variant in the <span class=MsoHyperlink><a
+  href="http://exac.broadinstitute.org/">ExAC</a></span> database.</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:19'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>dbSNP</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>rsID of the variant.</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:20'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>ClinVar_SIG</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Variant Clinical Significance , including unknown, untested,
+  non-pathogenic, probable-non-pathogenic, probable-pathogenic, pathogenic,
+  drug-response,histocompatibility, other.</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:21'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>ClinVar_DIS</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Variant disease name.</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:22'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>SIFT_score</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>SIFT score, If a score is smaller than 0.05 the corresponding NS
+  is predicted as &quot;D(amaging)&quot;; otherwise it is predicted as
+  &quot;T(olerated)&quot;.</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:23'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>SIFT_pred</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>If SIFTori is smaller than 0.05 (SIFTnew&gt;0.95) the
+  corresponding NS is predicted as &quot;D(amaging)&quot;; otherwise it is
+  predicted as &quot;T(olerated)&quot;.</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:24'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Polyphen2_HDIV_score</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Polyphen2 score based on HumDiv, i.e. hdiv_prob. The score ranges
+  from 0 to 1, and the corresponding prediction is &quot;probably
+  damaging&quot; if it is in [0.957,1]; &quot;possibly damaging&quot; if it is
+  in [0.453,0.956]; &quot;benign&quot; if it is in [0,0.452]. Score cutoff for
+  binary classification is 0.5, i.e. the prediction is &quot;neutral&quot; if
+  the score is smaller than 0.5 and &quot;deleterious&quot; if the score is
+  larger than 0.5.</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:25'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Polyphen2_HDIV_pred</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Polyphen2 prediction based on HumDiv, &quot;D&quot; (&quot;probably
+  damaging&quot;), &quot;P&quot; (&quot;possibly damaging&quot;) and
+  &quot;B&quot; (&quot;benign&quot;). Multiple entries separated by
+  &quot;;&quot;. Because the availability of multiple values, use expression
+  such as 'D' in Polyphen2_HDIV_pred instead of 'D' = Polyphen2_HDIV_pred to
+  filter variants that are probably damaging.</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:26'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Polyphen2_HVAR_score</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Polyphen2 score based on HumVar, i.e. hvar_prob. The score ranges
+  from 0 to 1, and the corresponding prediction is &quot;probably
+  damaging&quot; if it is in [0.909,1]; &quot;possibly damaging&quot; if it is
+  in [0.447,0.908]; &quot;benign&quot; if it is in [0,0.446]. Score cutoff for
+  binary classification is 0.5, i.e. the prediction is &quot;neutral&quot; if
+  the score is smaller than 0.5 and &quot;deleterious&quot; if the score is
+  larger than 0.5.</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:27'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Polyphen2_HVAR_pred</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Polyphen2 prediction based on HumVar, &quot;D&quot;
+  (&quot;porobably damaging&quot;), &quot;P&quot; (&quot;possibly
+  damaging&quot;) and &quot;B&quot; (&quot;benign&quot;). Multiple entries
+  separated by &quot;;&quot;. Because the availability of multiple values, use
+  expression such as 'D' in Polyphen2_HVAR_pred instead of 'D' =
+  Polyphen2_HVAR_pred to filter variants that are probably damaging.</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:28'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>LRT_score</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>The original LRT two-sided p-value (LRTori).</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:29'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>LRT_pred</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>LRT prediction, D(eleterious), N(eutral) or U(nknown)</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:30'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>MutationTaster_score</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>MutationTaster score based on <span class=MsoHyperlink><a
+  href="http://www.mutationtaster.org/">Mutation Taster</a></span></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:31'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>MutationTaster_pred</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>MutationTaster prediction, &quot;A&quot;
+  (&quot;disease_causing_automatic&quot;), &quot;D&quot;
+  (&quot;disease_causing&quot;), &quot;N&quot; (&quot;polymorphism&quot;) or
+  &quot;P&quot; (&quot;polymorphism_automatic&quot;)</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:32'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>CADD_phred</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Combined Annotation Dependent Depletion, phred-scaled scores, 10
+  means 10% percentile highest scores, 20 means 1% percentile highest scores,
+  and 30% means 0.1% percentile highest scores.</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:33'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>GERP++_RS</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>GERP++ RS score, the larger the score, the more conserved the
+  site.</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:34'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>DeepSeaScore</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>DeepSEA score from <span class=MsoHyperlink><a
+  href="http://deepsea.princeton.edu/job/analysis/create/">DeepSEA</a></span>,
+  a deep learning-based algorithmic framework for predicting the chromatin
+  effects of sequence alterations with single nucleotide sensitivity.</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:35'>
+  <td width=98 rowspan=4 style='width:73.75pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Promoter file</span></p>
+  </td>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Promoterid</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>The identifier of promoter.</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:36'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Start</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>The start position of the promoter on the chromosome.</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:37'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>end</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>The end position of the promoter on the chromosome.</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:38'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Targetgeneid</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>The target gene ID of the promoter.</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:39'>
+  <td width=98 rowspan=4 style='width:73.75pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Enhancer file</span></p>
+  </td>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Enhancerid</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>The identifier of enhancer.</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:40'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Start</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>The start position of the enhancer on the chromosome.</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:41'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>End</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>The end position of the enhancer on the chromosome.</span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:42;mso-yfti-lastrow:yes'>
+  <td width=176 valign=top style='width:131.95pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>Targetgeneid</span></p>
+  </td>
+  <td width=322 valign=top style='width:241.75pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+  lang=EN-US>The target gene ID of the enhancer.</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='text-indent:0cm'><span lang=EN-US>Description from:</span></p>
+
+<p class=MsoNormal style='text-indent:0cm'><span lang=EN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Variant
+Tools&nbsp;&nbsp; <span class=MsoHyperlink><a
+href="http://varianttools.sourceforge.net/Annotation/DbNSFP">http://varianttools.sourceforge.net/Annotation/DbNSFP</a></span></span></p>
+
+<p class=MsoNormal style='text-indent:0cm'><span lang=EN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Denovo-db&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span
+class=MsoHyperlink><a
+href="http://denovo-db.gs.washington.edu/denovo-db/Instruction.jsp">http://denovo-db.gs.washington.edu/denovo-db/Instruction.jsp</a></span></span></p>
+
+<p class=MsoNormal style='text-indent:0cm'><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+lang=EN-US>Reference: </span></p>
+
+<p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:24.0pt;text-indent:0cm;mso-char-indent-count:
+0'><span lang=EN-US>Wang K, Li M, Hakonarson H. ANNOVAR: Functional annotation
+of genetic variants from next-generation sequencing data Nucleic Acids
+Research, 38:e164, 2010</span></p>
+
+<p class=MsoNormal style='margin-left:24.0pt;text-indent:0cm;mso-char-indent-count:
+0'><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:24.0pt;text-indent:0cm;mso-char-indent-count:
+0'><span lang=EN-US>F. Anthony San Lucas, Gao Wang, Paul Scheet, and Bo Peng
+(2012) Integrated annotation and analysis of genetic variants from next-generation
+sequencing studies with variant tools, Bioinformatics 28 (3): 421-422.</span></p>
+
+<p class=MsoNormal style='text-indent:0cm;mso-char-indent-count:0'><span
+lang=EN-US><o:p>&nbsp;</o:p></span></p>
+                    </div>
+
+        <hr>
+        </div>
+
+
+    </div>
+    <div class="footer">
+        <div class="foot">
+            <div class="row" style="left: 0; background-color:#669999; border: 0px ; text-align: center">
+                <div class="col-md-6"><a href="http://bmi.sjtu.edu.cn" target="_blank">SJTU - Biomedical Information
+                    Lab</a></div>
+                <div class="col-md-6"><a href="http://bioinformatics.nenu.edu.cn/" target="_blank">NENU - Institute of
+                    Computational Biology</a></div>
+            </div>
+            <br/>
+            <div class="row" style="left: 0 ; background-color:#669999; border: 2px;">
+
+                <div class="col-md-3"><a href="http://exac.broadinstitute.org/" target="_blank"><img
+                        src="/static/foot1.png" style="width: 150px; height: 50px"></a></div>
+                <div class="col-md-3"><a href="http://www.bioinfo.org.cn/relative/dbSNP%20Home%20Page.htm"
+                                         target="_blank"><img src="/static/foot2.jpg"
+                                                              style="width: 150px; height: 50px"></a></div>
+                <div class="col-md-3"><a href="http://wannovar.wglab.org/" target="_blank"><img src="/static/foot3.png"
+                                                                                                style="width: 150px; height: 50px"></a>
+                </div>
+                <div class="col-md-3"><a href="http://genome.ucsc.edu/" target="_blank"><img src="/static/foot4.png"
+                                                                                             style="width: 150px; height: 50px"></a>
+                </div>
+            </div>
+
+        </div>
+        <div class="foot-p">
+
+            {#           <img class="line2" alt=""  src="/static/line2.png" style="width: 600px; height: 60px;" />#}
+            <br/>
+            <p>
+                <small>© 2018 bmi.sjtu.edu.cn. All rights reserved.</small>
+                <br/>
+                <small>浙ICP备18030141号.</small>
+            </p>
+
+        </div>
+    </div>
+    </body>
+{% endblock %}
