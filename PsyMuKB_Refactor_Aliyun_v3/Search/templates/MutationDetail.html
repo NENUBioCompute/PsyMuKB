@@ -354,7 +354,8 @@
                                             <th>Gene</th>
                                             <th>Function</th>
                                             <th>AAChange refGene</th>
-                                            <th>Primary Phenotype</th>
+                                            <th>Primary phenotype</th>
+                                            <th>Mutation site in protein structure</th>
                                             <th>#Probands</th>
                                             <th>#Controls</th>
                                             <th>Study</th>
@@ -367,7 +368,7 @@
                                             <th>Ployphen-2</th>
                                             <th>CADD</th>
                                             <th>DeepSea</th>
-                                            <th>3D visualization</th>
+
 
 
                                         </tr>
@@ -389,6 +390,9 @@
                                             {% else %}
                                                 <td>{{ select_mutation['Disorder']|join(',') }}</td>
                                             {% endif %}
+                                            <td>
+                                                <a href="http://hg19.cravat.us/MuPIT_Interactive/?gm=chr{{ select_mutation['chr'] +":" + select_mutation['Position'] }}"
+                                                   target="_blank">muPIT</a></td>
                                             <td>{{ select_mutation['NumProbands'] }}</td>
                                             <td>{{ select_mutation['NumControls'] }}</td>
                                             <td>
@@ -403,9 +407,7 @@
                                             <td>{{ select_mutation['Polyphen2_HDIV_score'] }}</td>
                                             <td>{{ select_mutation['CADD_phred'] }}</td>
                                             <td>{{ select_mutation['DeepSeaScore'] }}</td>
-                                            <td>
-                                                <a href="http://hg19.cravat.us/MuPIT_Interactive/?gm=chr{{ select_mutation['chr'] +":" + select_mutation['Position'] }}"
-                                                   target="_blank">muPIT</a></td>
+
                                         </tr>
 
 
@@ -518,13 +520,13 @@
             </p>
                     <div style="border:1px solid #fff;">
                         {% if mrna_mutation_pic %}
-                            <div class="little_title">The Selected <i>DNM</i> Occurs On The Transcript</div>
+                            <div class="little_title">The Selected <i>DNM</i> occurs on the transcript</div>
                             {{ mrna_mutation_pic |safe }}
                         {% endif %}
                     </div>
                     <div>
                         {% if mrna_express_pic %}
-                            <div class="little_title">Transcripts Expression in tissues(Data Source: GTEx Analysis Release V7)
+                            <div class="little_title">Transcripts Expression in Tissues (Data Source: GTEx Analysis Release V7)
                             </div>
                             {{ mrna_express_pic |safe }}
                         {% endif %}
@@ -581,9 +583,8 @@
                                 </div>
                         {% endif %}
                         <hr/>
-
                         {% if protein_express_pic %}
-                        <div class="little_title">Isoforms (Median)Expression in Tissues(Data Source: Proteomics DB)</div>
+                        <div class="little_title">Isoforms (Median) Expression in Tissues (Data Source: Proteomics DB)</div>
                         {{ protein_express_pic |safe }}
                         {% endif %}
                         <hr/>

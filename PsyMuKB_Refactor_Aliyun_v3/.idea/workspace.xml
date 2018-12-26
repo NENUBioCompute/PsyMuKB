@@ -50,7 +50,53 @@
     <favorites_list name="PsyMuKB_Refactor_Aliyun_v3" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="MutationDetail.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Search/templates/MutationDetail.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="611" lean-forward="true" selection-start-line="611" selection-end-line="611" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MutationResults.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Search/templates/MutationResults.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="13156">
+              <caret line="598" column="26" selection-start-line="598" selection-start-column="26" selection-end-line="598" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GeneDetailMutation.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Search/templates/GeneDetailMutation.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="11836">
+              <caret line="538" selection-start-line="538" selection-end-line="538" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VisulizationCNV.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Visualization/VisulizationCNV.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17292">
+              <caret line="786" column="67" selection-start-line="786" selection-start-column="67" selection-end-line="786" selection-end-column="67" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Index/templates/Index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="145" column="35" selection-start-line="145" selection-start-column="35" selection-end-line="145" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -63,8 +109,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>my</find>
-      <find>GeneDetail</find>
       <find>sear</find>
       <find>FindByID</find>
       <find>pie</find>
@@ -93,6 +137,8 @@
       <find>Arial</find>
       <find>+200</find>
       <find>*</find>
+      <find>gene_sort</find>
+      <find>gene_s</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -107,7 +153,6 @@
         <option value="$PROJECT_DIR$/Visualization/VisualizeGtexGeneExpress_old.py" />
         <option value="$PROJECT_DIR$/Search/demo.py" />
         <option value="$PROJECT_DIR$/Search/templates/GeneDetailMutation_backup.html" />
-        <option value="$PROJECT_DIR$/Search/templates/MutationDetail.html" />
         <option value="$PROJECT_DIR$/Search/Convert_Enst_to_Isoform.py" />
         <option value="$PROJECT_DIR$/Search/GetBrainExpressedTranscript.py" />
         <option value="$PROJECT_DIR$/Visualization/DBBase.py" />
@@ -122,14 +167,12 @@
         <option value="$PROJECT_DIR$/Visualization/dan_cnv.py" />
         <option value="$PROJECT_DIR$/Index/CNV_pie.py" />
         <option value="$PROJECT_DIR$/Search/GetDisorderAndMutationTableData.py" />
-        <option value="$PROJECT_DIR$/Search/templates/MutationResults.html" />
         <option value="$PROJECT_DIR$/Search/Gene.py" />
         <option value="$PROJECT_DIR$/Search/Mutatioin.py" />
         <option value="$PROJECT_DIR$/Search/MutationImpactTranscript.py" />
         <option value="$PROJECT_DIR$/Document/templates/Document.html" />
         <option value="$PROJECT_DIR$/Visualization/VisualizeProteinExpress.py" />
         <option value="$PROJECT_DIR$/Index/DNM_Pie.py" />
-        <option value="$PROJECT_DIR$/Search/templates/GeneDetailMutation.html" />
         <option value="$PROJECT_DIR$/Visualization/VisualizeProteinExpressInGenePage.py" />
         <option value="$PROJECT_DIR$/Visualization/Transcript_DNM_visualization.py" />
         <option value="$PROJECT_DIR$/Visualization/Visualization_of_regulatory_element_DNMs.py" />
@@ -141,14 +184,17 @@
         <option value="$PROJECT_DIR$/Visualization/VisualizeGtexGeneExpress.py" />
         <option value="$PROJECT_DIR$/Visualization/VisualizeProteinImpactBrainExpress.py" />
         <option value="$PROJECT_DIR$/Visualization/VisualizeMouseBrainExpression.py" />
-        <option value="$PROJECT_DIR$/Visualization/VisulizationCNV.py" />
         <option value="$PROJECT_DIR$/Forms.py" />
         <option value="$PROJECT_DIR$/Search/views.py" />
         <option value="$PROJECT_DIR$/Base/DataStorage.py" />
         <option value="$PROJECT_DIR$/Search/templates/Search.html" />
-        <option value="$PROJECT_DIR$/Index/templates/Index.html" />
         <option value="$PROJECT_DIR$/Browse/__init__.py" />
         <option value="$PROJECT_DIR$/Search/templates/GeneDetail.html" />
+        <option value="$PROJECT_DIR$/Search/templates/MutationResults.html" />
+        <option value="$PROJECT_DIR$/Search/templates/GeneDetailMutation.html" />
+        <option value="$PROJECT_DIR$/Visualization/VisulizationCNV.py" />
+        <option value="$PROJECT_DIR$/Index/templates/Index.html" />
+        <option value="$PROJECT_DIR$/Search/templates/MutationDetail.html" />
       </list>
     </option>
   </component>
@@ -301,16 +347,16 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="F:\6、代码集\PsyMuKB_Refactor\Search\static\Img" />
-      <recent name="F:\6、代码集\PsyMuKB_Refactor\Search\static\js" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\PsyMuKB.net\code\PsyMuKB_Refactor_Aliyun_v3\Visualization" />
       <recent name="F:\PsyMuKB.net\code\PsyMuKB_Refactor_Aliyun_v3\Logs\templates" />
       <recent name="F:\PsyMuKB.net\code\PsyMuKB_Refactor - 副本\static" />
       <recent name="F:\PsyMuKB.net\code\PsyMuKB_Refactor - 副本\Search\templates" />
       <recent name="F:\6、代码集\PsyMuKB_Refactor\static" />
-      <recent name="F:\6、代码集\PsyMuKB_Refactor\Browse\templates" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\6、代码集\PsyMuKB_Refactor\Search\static\Img" />
+      <recent name="F:\6、代码集\PsyMuKB_Refactor\Search\static\js" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -465,7 +511,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.11043873" side_tool="true" weight="0.251634" />
@@ -474,7 +521,7 @@
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8895613" weight="0.27705628" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32843137" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8856209" visible="true" weight="0.15778251" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8856209" visible="true" weight="0.24281392" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info anchor="right" id="SciView" order="3" />
@@ -498,10 +545,94 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="5" />
+      <option name="time" value="6" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Visualization/VisulizationCNV.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17292">
+          <caret line="786" column="67" selection-start-line="786" selection-start-column="67" selection-end-line="786" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/templates/MutationDetail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13464">
+          <caret line="612" column="10" selection-start-line="612" selection-start-column="10" selection-end-line="612" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/templates/MutationResults.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13156">
+          <caret line="598" column="26" selection-start-line="598" selection-start-column="26" selection-end-line="598" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/templates/GeneDetailMutation.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11836">
+          <caret line="538" selection-start-line="538" selection-end-line="538" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Visualization/VisulizationCNV.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="902">
+          <caret line="41" column="30" lean-forward="true" selection-start-line="41" selection-start-column="30" selection-end-line="41" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/templates/MutationDetail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13464">
+          <caret line="612" column="10" selection-start-line="612" selection-start-column="10" selection-end-line="612" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/templates/MutationResults.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13156">
+          <caret line="598" column="26" selection-start-line="598" selection-start-column="26" selection-end-line="598" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/templates/GeneDetailMutation.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11836">
+          <caret line="538" selection-start-line="538" selection-end-line="538" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Visualization/VisulizationCNV.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6666">
+          <caret line="303" lean-forward="true" selection-start-line="303" selection-end-line="303" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/templates/MutationDetail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13464">
+          <caret line="612" column="10" selection-start-line="612" selection-start-column="10" selection-end-line="612" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/templates/MutationResults.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13156">
+          <caret line="598" column="26" selection-start-line="598" selection-start-column="26" selection-end-line="598" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/templates/GeneDetailMutation.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11836">
+          <caret line="538" lean-forward="true" selection-start-line="538" selection-end-line="538" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Logs/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
@@ -530,13 +661,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Visualization/dan_cnv.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Visualization/dan_cnv.py" />
     <entry file="file://$PROJECT_DIR$/Logs/templates/Logs.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1738">
@@ -558,13 +683,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Search/templates/MutationResults.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="589" column="28" selection-start-line="589" selection-start-column="28" selection-end-line="589" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Visualization/VisualizeProteinExpressInGenePage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
@@ -583,13 +701,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="515">
           <caret line="1295" column="39" selection-start-line="1295" selection-start-column="39" selection-end-line="1295" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Search/templates/GeneDetailMutation.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="499" column="30" lean-forward="true" selection-start-line="499" selection-start-column="30" selection-end-line="499" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -684,23 +795,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Visualization/VisulizationCNV.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="795" lean-forward="true" selection-start-line="795" selection-end-line="795" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1579">
           <caret line="115" column="31" selection-start-line="115" selection-start-column="31" selection-end-line="115" selection-end-column="31" />
-          <folding>
-            <element signature="e#1331#1852#0" />
-            <element signature="e#4341#5624#0" />
-            <element signature="e#5665#6638#0" />
-            <element signature="e#4888#5794#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -722,22 +820,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="215">
           <caret line="173" lean-forward="true" selection-start-line="173" selection-end-line="173" />
-          <folding>
-            <element signature="e#94#1166#0#HTML" />
-            <element signature="e#1168#1832#0#HTML" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Index/templates/Index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="421" column="25" lean-forward="true" selection-start-line="421" selection-start-column="25" selection-end-line="421" selection-end-column="25" />
-          <folding>
-            <element signature="n#style#0;n#!!top" />
-            <element signature="n#style#1;n#!!top" />
-            <element signature="n#script#1;n#!!top" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -748,9 +830,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Browse/views.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/Contact/templates/Contact.html">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -758,43 +837,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Contact/templates/Mutation.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Data/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Data/shortlist.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Data/shortlist3.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Data/shortlist4.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Document/templates/doc.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Data/shortlistX.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Document/views.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Document/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Download/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Download/views.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Document/templates/doc.html" />
     <entry file="file://$PROJECT_DIR$/Index/CNV_pie.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2178">
@@ -809,16 +852,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Index/models.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Index/views.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/Search/templates/GeneDetail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-8536">
           <caret line="415" column="58" selection-start-line="415" selection-start-column="58" selection-end-line="415" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/templates/MutationResults.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13156">
+          <caret line="598" column="26" selection-start-line="598" selection-start-column="26" selection-end-line="598" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/templates/GeneDetailMutation.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11836">
+          <caret line="538" selection-start-line="538" selection-end-line="538" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Visualization/VisulizationCNV.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17292">
+          <caret line="786" column="67" selection-start-line="786" selection-start-column="67" selection-end-line="786" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Index/templates/Index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="145" column="35" selection-start-line="145" selection-start-column="35" selection-end-line="145" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/templates/MutationDetail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="611" lean-forward="true" selection-start-line="611" selection-end-line="611" />
         </state>
       </provider>
     </entry>

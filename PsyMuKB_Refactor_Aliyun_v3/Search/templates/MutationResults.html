@@ -11,9 +11,6 @@
     <script src="\static\tableExport.js"></script>
     <script src="\static\nav.js"></script>
     <script src="js\mt.js"></script>
-
-
-
     <style type="text/css">
 
         body {
@@ -141,6 +138,7 @@
         }
 </style>
 
+
     <div class="container text-justify">
 
         <div id = "first-step">
@@ -194,6 +192,7 @@
                                 <th>Function</th>
                                 <th>AAChange refGene</th>
                                 <th>Primary Phenotype</th>
+                                <th>Mutation site in protein structure</th>
                                 <th>#Probands</th>
                                 <th>#Controls</th>
                                 <th>Study</th>
@@ -231,6 +230,9 @@
                                         {% else %}
                                             <td>{{ i['Disorder']|join(',') }}</td>
                                         {% endif %}
+                                        <td>
+                                                <a href="http://hg19.cravat.us/MuPIT_Interactive/?gm=chr{{ i['chr'] +":" + i['Position'] }}"
+                                                   target="_blank">muPIT</a></td>
                                         <td>{{ i['NumProbands'] }}</td>
                                         <td>{{ i['NumControls'] }}</td>
                                         <td>
@@ -266,6 +268,9 @@
                                         {% else %}
                                             <td>{{ i['Disorder']|join(',') }}</td>
                                         {% endif %}
+                                        <td>
+                                                <a href="http://hg19.cravat.us/MuPIT_Interactive/?gm=chr{{ i['chr'] +":" + i['Position'] }}"
+                                                   target="_blank">muPIT</a></td>
                                         <td>{{ i['NumProbands'] }}</td>
                                         <td>{{ i['NumControls'] }}</td>
                                         <td>

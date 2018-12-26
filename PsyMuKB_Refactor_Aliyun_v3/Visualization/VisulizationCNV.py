@@ -11,6 +11,7 @@ import pymongo
 import plotly.graph_objs as go
 import plotly.offline as py
 from itertools import chain
+import json
 
 class DataStorage:
 	"""
@@ -36,6 +37,22 @@ class Cnv_gene:
 	def __init__(self):
 		pass
 
+	def get_index(self, alist, target):
+		for index, item in enumerate(alist):
+			if target == item:
+				return index + 1
+
+	def bubbleSort(self, chr, nums):
+		with open("/var/www/Flask/Visualization/gene_sort.json") as f:
+			g_dict = json.loads(f.read())
+		chr_list = g_dict.get(chr)
+
+		for i in range(len(nums) - 1):  # 这个循环负责设置冒泡排序进行的次数
+			for j in range(len(nums) - i - 1):  # ｊ为列表下标
+				if self.get_index(chr_list, nums[j]) > self.get_index(chr_list, nums[j + 1]):
+					nums[j], nums[j + 1] = nums[j + 1], nums[j]
+		return nums
+
 	def get_len(self, cnv_x_list):
 		alist = []
 		for item in cnv_x_list:
@@ -54,12 +71,15 @@ class Cnv_gene:
 		geneSymbol = []
 		number_cnv = 0
 		dis_list = []
+		patient_list = []
+
 		for item in cnv['CNV']:
 			cnvID.append(item['CNV_ID'])
 			geneSymbol.append(item['genesymbol'])
 			dis_list.append(item.get("Disorder"))
-		# print(len(geneSymbol))
+			patient_list.append(item.get("Patient ID"))
 
+		# print(dis_list)
 		"""
 		重复的CNV去重
 		"""
@@ -109,6 +129,7 @@ class Cnv_gene:
 			"""
 			quchong = []
 			[quchong.append(t) for t in cut_str if not t in quchong]
+			quchong = self.bubbleSort(cnvID[0].split(":")[0], quchong)
 			loc = quchong.index(Symbol)
 			if loc < location:
 				for i in range(location - loc):
@@ -126,6 +147,7 @@ class Cnv_gene:
 			min.append(num)
 			list_gene_of_cnv.append(list_eachCNV)
 			list_y_cnv.append(list_eachY)
+		# print(list_y_cnv)
 
 		"""
 		找到前面空格最少的那条cnv
@@ -170,20 +192,7 @@ class Cnv_gene:
 			mode_size.append(6)
 
 		traces = []
-
-		# print(self.get_len(list_gene_of_cnv))
 		for i in range(0, number_cnv):
-			# for item1, item2 in zip(list_gene_of_cnv[i], list_y_cnv[i]):
-			# 	traces.append(go.Scatter(
-			# 		x=item1,
-			# 		y=item2,
-			# 		xaxis='x1',
-			# 		yaxis='y1',
-			# 		mode='markers',
-			# 		marker=dict(color=colors[i], size=mode_size[i]),
-			# 		hoverinfo=None,
-			# 		text='',
-			# 	))
 			traces.append(go.Scatter(
 				x=list_gene_of_cnv[i],
 				y=list_y_cnv[i],
@@ -191,7 +200,7 @@ class Cnv_gene:
 				yaxis='y1',
 				mode='markers',
 				marker=dict(color=colors[i], size=mode_size[i]),
-				hoverinfo='x+name',
+				hoverinfo='x',
 				name=dis_list[i],
 			))
 		traces.append(go.Scatter(
@@ -215,33 +224,43 @@ class Cnv_gene:
 			# labeling the left_side of the plot
 			annotations.append(dict(xref='paper', x=0.02, y=y_trace[0],
 									xanchor='right', yanchor='middle',
-									text=del_cnvID[i],
+									text=dis_list[i]+":"+patient_list[i]+" "+ del_cnvID[i],
 									font=dict(family='Arial',
 											  size=10,
 											  color=colors, ),
 									# tickangle=-40,
 									showarrow=False))
 			i += 1
+		annotations.append(dict(xref='paper', x=0.02, y=[number_cnv],
+									xanchor='right', yanchor='middle',
+									text="<b>Phenotype:PatientID Location:VariantType<b>",
+									font=dict(family='Arial',
+											  size=10,
+											  color=colors, ),
+									# tickangle=-40,
+									showarrow=False))
+
+
 		if len(traces) <= 2:
 			layout_height = 200
 		elif len(traces) <= 6:
 			layout_height = len(traces) * 60
 		else:
 			layout_height = len(traces) * 30
-		# print(len(traces))
+
 		if self.get_len(list_gene_of_cnv) <50:
-			layout_weight = 800
+			layout_weight = 850
 		elif self.get_len(list_gene_of_cnv) <100:
-			layout_weight = 1300
+			layout_weight = 1320
 		else:
-			layout_weight = 6*self.get_len(list_gene_of_cnv)+500
+			layout_weight = 6*self.get_len(list_gene_of_cnv)+600
 		layout = go.Layout(
 			paper_bgcolor='rgb(249, 249, 249)',
 			plot_bgcolor='rgb(249, 249, 249)',
 			height=layout_height,
 			width=layout_weight,
 			margin = go.Margin(
-				l=150,
+				l=200,
 				r=0,
 				t=20,
 				b=80,
@@ -269,20 +288,35 @@ class Cnv_gene:
 	)
 		layout['annotations'] = annotations
 
-		# for item in traces:
-		# 	print(item)
+		# print(traces)
 		fig = go.Figure(data=traces, layout=layout)
 		# plotly.offline.plot(fig, show_link=False)
 		try:
 			# plotly.offline.plot(fig, show_link=False)
 			return py.plot(fig, show_link=False, output_type="div")
 		except:
-			# print(1)
 			return '<div><p>There is no corresponding data published yet,we will update it when such data available.</p></div>'
 
 class Cnv_gene_double:
 	def __init__(self):
 		pass
+
+	def get_index(self, alist, target):
+		for index, item in enumerate(alist):
+			if target == item:
+				return index + 1
+
+	def bubbleSort(self, chr, nums):
+
+		with open("/var/www/Flask/Visualization/gene_sort.json") as f:
+			g_dict = json.loads(f.read())
+		chr_list = g_dict.get(chr)
+
+		for i in range(len(nums) - 1):  # 这个循环负责设置冒泡排序进行的次数
+			for j in range(len(nums) - i - 1):  # ｊ为列表下标
+				if self.get_index(chr_list, nums[j]) > self.get_index(chr_list, nums[j + 1]):
+					nums[j], nums[j + 1] = nums[j + 1], nums[j]
+		return nums
 
 	def get_len(self, cnv_x_list, cnv_x2_list):
 		alist = []
@@ -312,21 +346,26 @@ class Cnv_gene_double:
 		case_colors = []
 		case_number_cnv = 0
 		case_geneSymbol = []
-		# print(ppi)
 		dis_list = []
+		patient_list = []
+
 		for item in ppi['CNV']:
 			if item['Disorder'] == 'Control':
 				control_cnvID.append(item['CNV_ID'])
 				control_geneSymbol.append(item['genesymbol'])
 				dis_list.append(item.get("Disorder"))
+				patient_list.append(item.get("Patient ID"))
 		for item in ppi['CNV']:
 			if item.get('Disorder') != 'Control':
 				case_cnvID.append(item['CNV_ID'])
 				case_geneSymbol.append(item['genesymbol'])
 				dis_list.append(item.get("Disorder"))
-		# print(dis_list)
-		# print(control_cnvID)
-		# print(case_cnvID)
+				patient_list.append(item.get("Patient ID"))
+
+		if control_cnvID!=[]:
+			chrom = control_cnvID
+		else:
+			chrom = case_cnvID
 		"""
 		cnv去重，并按照del dup类型给定颜色值作为区分
 		"""
@@ -339,7 +378,6 @@ class Cnv_gene_double:
 					del_control_cnvID.append(str(item).lower())
 					loc = control_cnvID.index(item)
 					del_control_geneSymbol.append(control_geneSymbol[loc])
-					# print(str(item).lower(), geneSymbol[loc])
 					if str(item).lower().endswith('del'):
 						control_colors.append("rgba(" + str(199) + "," + str(21) + "," + str(133) + ",1)")
 					else:
@@ -353,7 +391,6 @@ class Cnv_gene_double:
 					del_case_cnvID.append(str(item).lower())
 					loc = case_cnvID.index(item)
 					del_case_geneSymbol.append(case_geneSymbol[loc])
-					# print(str(item).lower(), geneSymbol[loc])
 					if str(item).lower().endswith('del'):
 						case_colors.append("rgba(" + str(199) + "," + str(21) + "," + str(133) + ",1)")
 					else:
@@ -404,6 +441,7 @@ class Cnv_gene_double:
 			"""
 			quchong = []
 			[quchong.append(t) for t in cut_str if not t in quchong]
+			quchong = self.bubbleSort(chrom[0].split(":")[0], quchong)
 			loc = quchong.index(Symbol)
 			if loc < control_location:
 				for i in range(control_location - loc):
@@ -471,7 +509,6 @@ class Cnv_gene_double:
 				case_min_null = item
 				case_index = case_min.index(item)
 
-		# print(self.get_len(control_list_gene_of_cnv, case_list_gene_of_cnv))
 		"""
 		找到最前面的那个，第一个画
 		"""
@@ -549,11 +586,10 @@ class Cnv_gene_double:
 					yaxis='y1',
 					mode='markers',
 					marker=dict(color=case_colors[i], size=mode_size[i]),
-					hoverinfo='x+name',
+					hoverinfo='x',
 					name=dis_list[control_number_cnv+i]
 				))
 			for i in range(0, control_number_cnv):
-				# print("x坐标(control)：", control_list_gene_of_cnv[i])
 				traces.append(go.Scatter(
 					x=control_list_gene_of_cnv[i],
 					y=control_list_y_cnv[i],
@@ -561,7 +597,7 @@ class Cnv_gene_double:
 					yaxis='y1',
 					mode='markers',
 					marker=dict(color=control_colors[i], size=mode_size[i + middle_y - 2]),
-					hoverinfo='x+name',
+					hoverinfo='x',
 					name=dis_list[i]
 				))
 			traces.append(go.Scatter(
@@ -635,7 +671,7 @@ class Cnv_gene_double:
 					# yaxis='y1',
 					mode='markers',
 					marker=dict(color=control_colors[i], size=mode_size[i]),
-					hoverinfo='x+name',
+					hoverinfo='x',
 					name=dis_list[i]
 				))
 
@@ -654,7 +690,7 @@ class Cnv_gene_double:
 					# yaxis='y1',
 					mode='markers',
 					marker=dict(color=case_colors[i], size=mode_size[i + middle_y - 2]),
-					hoverinfo='x+name',
+					hoverinfo='x',
 					name=dis_list[control_number_cnv+i]
 				))
 			traces.append(go.Scatter(
@@ -691,7 +727,7 @@ class Cnv_gene_double:
 			paper_bgcolor='rgb(249, 249, 249)',
 			plot_bgcolor='rgb(249, 249, 249)',
 			margin=go.Margin(
-				l=90,
+				l=200,
 				r=0,
 				t=0,
 				b=80,
@@ -725,18 +761,26 @@ class Cnv_gene_double:
 
 			annotations.append(dict(xref='paper', x=0.02, y=y_trace[0],
 									xanchor='right', yanchor='middle',
-									text=del_cnvID[i],
+									text=dis_list[i]+":"+patient_list[i]+" "+ del_cnvID[i],
 									font=dict(family='Arial',
 											  size=8,
 											  color=colors),
 									showarrow=False))
 			i += 1
+		annotations.append(dict(xref='paper', x=0.02, y=[case_number_cnv + middle_y],
+								xanchor='right', yanchor='middle',
+								text="<b>Phenotype:PatientID Location:VariantType<b>",
+								font=dict(family='Arial',
+										  size=10,
+										  color=colors, ),
+								# tickangle=-40,
+								showarrow=False))
 
 		layout['annotations'] = annotations
 
-		# print(traces)
+
 		fig = go.Figure(data=traces, layout=layout)
-		# print(fig)
+
 		# plotly.offline.plot(fig, show_link=False)
 		try:
 			# plotly.offline.plot(fig, show_link=False)
@@ -760,34 +804,18 @@ class Main:
 				control_f = 0
 				for item in cnv['CNV']:
 					if item.get('Disorder') == 'Control':
-						# 有control
 						control_f = 1
 					elif item.get('Disorder') != None:
-						# print(False)
 						case_f = 1
-				# print(control_f)
-				# print(case_f)
-				# 判断  有control字段执行当前函数；没有则执行dan_cnv.py类的函数
 				if control_f == 1 and case_f == 0:
-					# 没有case  有 control
-					# print(False)
 					return dan_cg.cnv_gene(id, f, cnv)
 
 				elif control_f == 0 and case_f == 1:
-					# 有case 没有control
-					# print(True)
 					return dan_cg.cnv_gene(id, f, cnv)
 				elif control_f == 1 and case_f == 1:
 					return cg.cnv_gene(id, f, cnv)
 		else:
 			pass
-
-			# else:
-			# 	print(2)
-		# else:
-		# 	# print(1)
-		# 	return "<div>not found!</div>"
-
 
 def main(ID):
 	mainer = Main()
@@ -798,6 +826,6 @@ if __name__ == '__main__':
 	mainer = Main()
 	# mainer.run("253980")
 	# mainer.run("53335")
-	mainer.run("100500860")
-	# mainer.run("3737")
+	# mainer.run("6925")
+	mainer.run("3737")
 
