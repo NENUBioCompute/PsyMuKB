@@ -1,0 +1,322 @@
+{% include "muttemp.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block content %}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/locale/bootstrap-table-bootstrap-table-en-US.min.js"></script>
+    <script src="\static\bootstrap-table-export.js"></script>
+    <script src="\static\tableExport.js"></script>
+    <script src="\static\nav.js"></script>
+    <script src="/static/assets-master/js/echarts.min.js"></script>
+    <script type="text/javascript" src="/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/jquery.js"></script>
+    <script type="text/javascript"
+            src="/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-collapse.js"></script>
+    <style type="text/css">
+        .container {
+            padding-right: 0px;
+            padding-left: 0px;
+        }
+        .little_title {
+            color: #663333;
+            font-size: 24px;
+            font-family: "Verdana";
+            padding: 5px;
+            border-bottom: 3px solid #663333;
+        }
+        .accordion-heading {
+            background: url('/static/subtitle.png') no-repeat;
+            background-size: 400px 50px;
+            height: 50px;
+            width: 400px;
+            display: inline-block;
+            vertical-align: middle;
+            color: #fff;
+            padding-left: 40px;
+        }
+        .col-md-12 {
+            margin-top: 10px;
+        }
+        .row {
+            margin-top: 20px;
+        }
+
+        /*fixednav*/
+        .fixednav {
+            position: fixed;
+            top: 50px;
+            left: 30%;
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+            position: fixed;
+            z-index: 999;
+            background-color: rgba(0, 123, 182, 0.8);
+        }
+
+        header ul {
+            height: 30px;
+            list-style-type: none;
+            padding-left: 25px;
+        }
+
+        header li {
+            float: left;
+            padding-right: 20px;
+
+        }
+
+        header li a {
+            text-decoration: none;
+            color: #D3D3D3;
+            font-size: 15px;
+            border-left: 3px solid #333333;
+            padding-left: 5px;
+        }
+        header li a:hover {
+            text-decoration: none;
+            color: #FFFFFF;
+            border-bottom: 3px solid #FFFFFF;
+        }
+         .active a {
+                text-decoration: none;
+                color: white;
+                border-bottom: 3px solid #FFFFFF;
+            }
+    </style>
+    <style type="text/css">
+        .tab{
+          position: fixed;
+            top: 50px;
+            {#left: 30%;#}
+            {#border-bottom-right-radius: 5px;#}
+            {#border-bottom-left-radius: 5px;#}
+            {#position: fixed;#}
+            z-index: 999;
+            {#background-color: rgba(0,123,182, 0.8);#}
+        }
+        .tab .nav-tabs {
+        border-bottom: 0 none;
+        background: #eaeaea;
+        }
+        .tab .nav-tabs li a {
+        background: transparent;
+        border-radius: 0;
+        font-size: 16px;
+        border: none;
+        color: #333;
+        padding: 12px 22px;
+        }
+        .tab .nav-tabs li.active a, .tab .nav-tabs li.active a i {
+        border: 0 none;
+        background:#e67e22;
+        color: #fff;
+        }
+        .tab .nav-tabs li.active a:after {
+        content: "";
+        position: absolute;
+        left: 45%;
+        bottom: -14px;
+        border: 7px solid transparent;
+        border-top: 7px solid #e67e22;
+        }
+        .tab .tab-content {
+        padding: 5px;
+        color: #5a5c5d;
+        font-size: 14px;
+        line-height: 20px;
+        margin-top: 5px;
+        border-bottom: 1px solid #e67e22;
+        }
+        @media only screen and (max-width: 480px) {
+        .tab .nav-tabs, .tab .nav-tabs li {
+        width: 100%;
+        background: transparent;
+        }
+        .tab .nav-tabs li.active a {
+        border-radius: 10px 10px 0 0;
+        }
+        .tab .nav-tabs li:first-child a {
+        border-bottom-left-radius: 0;
+        }
+        .tab .nav-tabs li a {
+        margin-bottom: 10px;
+        border: 1px solid lightgray;
+        }
+        .tab .nav-tabs li.active a:after {
+        border: none;
+        }
+        }
+        </style>
+    <style>
+        /*footer*/
+        .footer
+        {
+            background-color:#007BB6;
+            width:100%;
+            display: block;
+            height:50px;
+             display: flex;
+             margin-top:20px;
+             position:relative;
+        }
+        .foot a{
+            text-decoration:none;
+            color:#CCCCCC;
+        }
+        .foot a:hover{
+            text-decoration:none;
+            color:#fff;
+            border-bottom:3px solid  #FFFFFF;
+        }
+        .foot-p
+        {
+            position:absolute;
+            {#top:100px;#}
+            left:40%;
+            text-align:center;
+        }
+        .line2
+        {
+            position:absolute;
+            top:-30px;
+            left:-25%;
+            text-align:center;
+        }
+    </style>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129012764-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-129012764-1');
+    </script>
+    <script type="text/javascript" src="/static/Js/plotly.min.js"></script>
+
+    <div class="container">
+        <div class="accordion-heading-nav" style="font-size: x-large;">
+            <nav class="tab" id="myScrollspy">
+                <ul class="nav nav-tabs" data-spy="affix">
+                    <li><a href="/GeneDetail/{{ name }}/GeneInformation">Gene Information</a></li>
+                    <li class="active"><a href="/GeneDetail/{{ entrez_id }}/Expression">Expression</a></li>
+                    <li><a href="/GeneDetail/{{ name }}/DenovoVariants"><i>De Novo</i> Variant</a></li>
+                    <li><a href="/GeneDetail/{{ name }}/Transcripts">Transcript</a></li>
+                    <li><a href="/GeneDetail/{{ name }}/PPI">Protein-Protein Interaction</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <body>
+    <div class="container text-justify">
+        <div class="row">
+{#            <div class="accordion-heading" style="font-size: x-large;">#}
+{#                Expressions#}
+{#            </div>#}
+            <div class="col-md-12">
+                <div class="accordion-group">
+                    <div class="accordion-body collapse in">
+                        <div class="accordion-inner">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <!-- Gtex Expression-->
+                                    <div>
+                                        <div class="little_title">
+                                            Gene-level expression in different tissues (data source: GTEx v7)
+                                        </div>
+                                        {% if pic7 %}
+                                            <div>
+                                                {{ pic7|safe }}
+                                            </div>
+                                        {% endif %}
+                                        <hr/>
+                                    </div>
+                                    <!-- BainSpan-->
+                                    <div class="row">
+                                        <div class="col-md-12">
+
+                                            <div class="little_title">
+                                                Spatio-temporal human developmental brain expression (data source:
+                                                BrainSpan)
+
+                                            </div>
+                                            {% if pic2 %}
+                                                {{ pic2|safe }}
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <!-- HumanBrain SinglrCell-->
+                                    <div class="row">
+                                        <div class="col-md-12">
+
+                                            <div class="little_title">
+                                                Human embryonic prefrontal cortex single cell expression
+                                                <a href="https://www.ncbi.nlm.nih.gov/pubmed/29539641"
+                                                   target="_blank"><img src="/static/pumbed.gif"></a>
+                                            </div>
+                                            {% if pic3_2 %}
+                                                {{ pic3_2|safe }}
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <!-- MouseBrain Single Cell-->
+                                    <div class="row">
+                                        <div class="col-md-12">
+
+                                            <div class="little_title">
+                                                Adult mouse brain single cell expresssion
+                                                <a href="https://www.ncbi.nlm.nih.gov/pubmed/30096299"
+                                                   target="_blank"><img src="/static/pumbed.gif"></a>
+                                            </div>
+                                            {% if pic3_1 %}
+                                                {{ pic3_1|safe }}
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-12">
+
+                                            <div class="little_title">
+                                                Protein expression (data source: Proteomics DB)
+                                            </div>
+                                            {% if pic3_3 %}
+                                                {{ pic3_3|safe }}
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="footer">
+
+        <div class="foot-p">
+{#           <img class="line2" alt=""  src="/static/line2.png" style="width: 600px; height: 60px;" />#}
+            <p><small>© 2018 bmi.sjtu.edu.cn. All rights reserved.</small><br />
+                <small>浙ICP备18030141号.</small></p>
+
+        </div>
+</div>
+
+
+    </body>
+
+{% endblock %}
+

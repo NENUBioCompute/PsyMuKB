@@ -1,0 +1,174 @@
+{% include "muttemp.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block content %}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/locale/bootstrap-table-bootstrap-table-en-US.min.js"></script>
+    <script src="\static\bootstrap-table-export.js"></script>
+    <script src="\static\tableExport.js"></script>
+    <script src="\static\nav.js"></script>
+    <script type="text/javascript" src="/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/jquery.js"></script>
+    <script type="text/javascript"
+            src="/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-collapse.js"></script>
+    <style type="text/css">
+
+        .container {
+            padding-right: 0px;
+            padding-left: 0px;
+        }
+
+        body {
+        {#background-color: rgba(204, 204, 204, 0.1);#}
+        }
+
+        .accordion {
+            border: 1px solid #ffffff;
+            background-color: #ffffff;
+            border-radius: 3px;
+            padding: 20px;
+            margin: 30px;
+        }
+
+        .little_title {
+            color: #663333;
+            font-size: 24px;
+            font-family: "Verdana";
+            padding: 5px;
+            border-bottom: 3px solid #663333;
+        }
+
+        .col-md-12 {
+            margin-top: 10px;
+        }
+
+        .accordion-heading {
+            background: url('/static/subtitle.png') no-repeat;
+            background-size: 400px 50px;
+            height: 50px;
+            width: 400px;
+            display: inline-block;
+            vertical-align: middle;
+            color: #fff;
+            padding-left: 40px;
+        }
+
+        .row {
+            margin-top: 20px;
+        }
+
+        /*fixednav*/
+        .fixednav {
+            position: fixed;
+            top: 50px;
+            left: 30%;
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+            position: fixed;
+            z-index: 999;
+            background-color: rgba(0, 123, 182, 0.8);
+        }
+
+        header ul {
+            height: 30px;
+            list-style-type: none;
+            padding-left: 25px;
+        }
+
+        header li {
+            float: left;
+            padding-right: 20px;
+
+        }
+
+        header li a {
+            text-decoration: none;
+            color: #D3D3D3;
+            font-size: 15px;
+            border-left: 3px solid #333333;
+            padding-left: 5px;
+        }
+
+        {#header li a:hover {#}
+        {#    text-decoration: none;#}
+        {#    color: #FFFFFF;#}
+        {#    border-bottom: 3px solid #FFFFFF;#}
+        {
+        #}#}
+    </style>
+    <style>
+        /*footer*/
+        .footer {
+            background-color: #007BB6;
+            width: 100%;
+            display: block;
+            height: 50px;
+            display: flex;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .foot a {
+            text-decoration: none;
+            color: #CCCCCC;
+        }
+
+        .foot a:hover {
+            text-decoration: none;
+            color: #fff;
+            border-bottom: 3px solid #FFFFFF;
+        }
+
+        .foot-p {
+            position: absolute;
+        {#top:100px;#} left: 40%;
+            text-align: center;
+        }
+
+        .line2 {
+            position: absolute;
+            top: -30px;
+            left: -25%;
+            text-align: center;
+        }
+    </style>
+    <body>
+    <div class="container text-justify">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="accordion-group">
+                    <div class="accordion-body collapse in">
+                        <div class="accordion-inner">
+                            <div class="little_title"> Visualization of unique <i>de novo</i> CNV set</div>
+                                {% if cnv_pic %}
+                                    {{ cnv_pic|safe }}
+                                {% else %}
+                                    <div style="align-self: center;">&nbsp; &nbsp;There is no corresponding data published yet, we will update it when such data available. </div>
+                                {% endif %}
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+
+        <div class="foot-p">
+            {#           <img class="line2" alt=""  src="/static/line2.png" style="width: 600px; height: 60px;" />#}
+            <p>
+                <small>© 2018 bmi.sjtu.edu.cn. All rights reserved.</small>
+                <br/>
+                <small>浙ICP备18030141号.</small>
+            </p>
+
+        </div>
+    </div>
+
+
+    </body>
+
+{% endblock %}

@@ -1,0 +1,393 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% include "muttemp.html" %}
+
+{% block content %}
+    <style type="text/css">
+
+        body {
+            background-color: rgba(204, 204, 204, 0.1);
+            width: 100%;
+        {#text-align: justify;#}
+        }
+
+        .little_title {
+            color: #663333;
+            font-size: 24px;
+            font-family: "Verdana";
+            padding: 5px;
+            border-bottom: 3px solid #663333;
+
+        }
+
+        .little_title-2 {
+            color: #fff;
+            font-size: 24px;
+            font-family: "Verdana";
+            padding: 5px;
+            padding-left: 25px;
+            background: url('/static/subtitle.png') no-repeat;
+            background-size: 267px 40px;
+            height: 50px;
+
+        }
+
+        .header-text {
+            padding: 20px;
+        }
+
+        .search-style {
+            border: 2px solid #663333;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+            background: url('/static/pattern.jpg');
+            background-size: 320px;
+            padding: 30px;
+            margin-top: 80px;
+
+        }
+
+        p {
+            font-family: "Verdana";
+        }
+
+        #qs {
+            font-family: "Verdana";
+            font-size: 24px;
+
+        }
+
+        #arrow-img {
+            position: absolute;
+
+            top: 150px;
+            right: 200px;
+            transform: rotate(180deg);
+        }
+
+        .row {
+            border: 1px solid #ffffff;
+            background-color: #ffffff;
+            border-radius: 3px;
+
+        }
+
+        /* table style*/
+        .table-color {
+            background-color: #007BB6;
+            height: 15px;
+        }
+
+        .table-bordered {
+            margin-top: 15px;
+        }
+    </style>
+    <!-- Main Style -->
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/main.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129012764-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-129012764-1');
+    </script>
+    <script type="text/javascript" src="../static/Js/plotly.min.js"></script>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <img src="/static/logo.png"
+                     style="width: 179px;height: 130px; "
+                >
+
+            </div>
+            <div class="col-md-8" style=" margin-top: 60px">
+                <p style="font-size: 30px; color: #083B66; margin-left: 2px">&nbsp;Neuro<strong>Psy</strong>chiatric
+                    <strong>Mu</strong>tation <strong>K</strong>nowledge <strong>B</strong>ase </p>
+            </div>
+            <div class="col-md-2">
+               <a href="http://www.smhc.org.cn/"><img src="/static/SMHC.png" style="width: 130px;height: 130px; margin-top: 20px; margin-left: 2px"/></a>
+            </div>
+        </div>
+        <div class="row" style="text-align: justify">
+            <div class='col-md-8'>
+                <div class="page-header">
+                    <div class='little_title'>
+                        About
+                    </div>
+                    <div class="header-text">
+                        <p>
+                            Welcome to our open access database <strong>PsyMuKB</strong> (current release <a href="/Download" target="_blank">v.1.5</a>).
+                        </p>
+
+                        <p>
+                            <b>PsyMuKB is a comprehensive knowledge base that links transcriptional and translational
+                                annotations to <i>de novo</i> variants, which are found in subjects but not in their
+                                parents, in developmental and neuropsychiatric disorders. Large-scale genomics and
+                                proteomic data are integrated into PsyMuKB, including developmental brain expressions,
+                                neuronal single-cell transcriptome, regulatory elements and transcript annotations,
+                                protein-protein interactions (PPI) and protein isoform expressions. It aims to provide
+                                users with a comprehensive data exploration on <i>de novo</i> variants, such as their
+                                genomic locations on alternatively spliced isoforms, expression patterns of the
+                                mutation-disrupted genes and/or isoforms, and interaction network of impacted proteins.</b>
+                        </p>
+                        <p>
+                            We provide the detailed annotations for various types of <i>de novo</i> variants, such as
+                            single nucleotide variations (SNVs), small insertions and deletions (indels) and copy number
+                            of variants (CNVs). It currently contains <strong>>876,178</strong> curated <i>de novo</i> variants,
+                            including coding and non-coding (<strong>~15,852</strong> cases and <strong>~7,802</strong> controls) from more than <strong>123</strong>
+                            published studies of <strong>>25</strong> neural and developmental diseases, including Autism Spectrum
+                            Disorder (ASD), Bipolar Disorder (BD), Developmental Delay (DD), Intellectual Disability
+                            (ID), Obsessive Compulsive Disorder (OCD), Schizophrenia (SCZ), Tourette Disorder (TD),
+                            Alzheimer early-onset (AD), etc., and unaffected siblings as control (CTR). (Detail in <a
+                                href="/Document/UserGuide">Document</a>)</p>
+                        <p>
+                            PsyMuKB will be updated regularly to provide the research community with an up-to-date
+                            knowledge base. When using PsyMuKB, please feel free to start with the Document section.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="search-style">
+                    <div id="qs">Quick Search</div>
+                    {{ wtf.quick_form(form) }}
+                    {% if notmatch %}
+                        <p style="color:red;">
+                            No match found
+                        </p>
+                    {% endif %}
+                    <p style="color: gray; text-align: left">
+                        <br>
+                        &bull; Gene symbol e.g. SHANK3</br>
+                        &bull; Gene ID e.g. 9527</br>
+                        &bull; Chr. position e.g. chr11:11186630-12284618
+
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="text-align: justify">
+            <div class="col-md-3">
+                <div class='little_title-2' style="font-size:12px;">
+                    <b>Variants with brain expression</b>
+                </div>
+                <img alt="" src="/static/I_Pic1.png" style="width: 100%;
+    height: 100%;"/>
+                <br/><br/><br/><br/><br/>
+                <p style="font-size:10px; font-family: 'Arial';">
+                    We compile different sets of tissues and neuronal cell-specific brain expression data, including
+                    spatio-temporal human brain developmental expression data from BrainSpan, human brain isoform
+                    expression data from GTEx, and single-cell human <a
+                        href="https://www.ncbi.nlm.nih.gov/pubmed/29539641" target="_blank">(Zhong et. al. 2018)</a> &
+                    mouse RNA-seq brain expression data <a href="https://www.ncbi.nlm.nih.gov/pubmed/30096299"
+                                                           target="_blank">(Saunders et. al. 2018)</a>. The brain
+                    expression patterns are mapped to genes and can be visualized for in-depth mutation explorations.
+                </p>
+            </div>
+            <div class="col-md-3">
+                <div class='little_title-2' style="font-size:12px;">
+                    <b>Variant visualizations</b>
+
+                </div>
+                <img alt="" src="/static/I_Pic2.png" style="width: 100%;
+    height: 100%;"/>
+                <br/><br/>
+                <p style="font-size:10px; font-family: 'Arial';">
+                    We curate a comprehensive list of >876,178 <i>de novo</i> variants from >25 neuropsychiatric
+                    disorders with functional annotations, and map them to all the alternatively spliced isoforms and
+                    regulatory elements, such as promoters and enhancers, of the impacted gene. Meanwhile, >800 <i>de
+                    novo</i> CNVs are aligned by gene location in chromatins. All information can be exported in various
+                    formats.
+                </p>
+            </div>
+            <div class="col-md-3">
+                <div class='little_title-2' style="font-size:12px;">
+                    <b>Explore DNMs at isoform-level</b>
+
+
+                </div>
+
+                <img alt="" src="/static/I_Pic3.png" style="width: 100%;
+    height: 100%;"/>
+                <br/><br/>
+                <p style="font-size:10px; font-family: 'Arial';">
+                    Interface design is executed to study focused mutations like coding DNM, non-coding DNM, and CNVs.
+                    To certain variant, independent information is showed according its mRNA and protein expression
+                    levels. Personal choices are accepted to present special expression pattern.
+                </p>
+            </div>
+            <div class="col-md-3">
+                <div class='little_title-2' style="font-size:12px;">
+                    <b>Interactome and Structure</b>
+                </div>
+                <img alt="" src="/static/PPI.png" style="width: 100%;
+    height: 100%;"/>
+                <br/><br><br><br><br>
+                <p style="font-size:10px; font-family: 'Arial';">
+                    We provide >409,000 curated experimentally-determined high-quality human physical protein-protein
+                    interactions (PPI) from BioGRID v3.5.165 Interactome Resource. Interactions are filtered both
+                    systematically and manually to remove low-quality interactions. Node of Interactome Networks showing
+                    in our website is limited under 200 to properly organization. PPIs can be exported in various
+                    formats.
+                </p>
+            </div>
+        </div>
+        <script src="/static/assets-master/js/echarts.min.js"></script>
+        <div class="row">
+            <div class="col-md-6">
+                <div class='little_title'>
+                    Data statistics
+                </div>
+                <table class="table table-bordered" style="height:400px; font-size:15px;">
+                    <thead style="background-color:#007BB6; color: white">
+                        <tr class="table-color">
+                        <th>Data Type</th>
+                        <th>Source</th>
+                        <th>Count</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <td rowspan="2"><i>De novo</i> variants from psychiatric disorder studies</td>
+                        <td><i>De novo</i> mutation (DNM)</td>
+                        <td>876,178 mutations</td>
+                    </tr>
+                    <tr>
+                        <td>Copy number variant (CNV)</td>
+                        <td>841 CNVs</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="4">Gene expressions</td>
+                        <td>Spatio-temporal brain expression (BrainSpan)</td>
+                        <td>15,383 genes</td>
+                    </tr>
+                    <tr>
+                        <td>Single cell RNA-seq of mouse brain</td>
+                        <td>22,460 genes</td>
+                    </tr>
+                    <tr>
+                        <td>Single cell RNA-seq of human brain</td>
+                        <td>22,087 genes</td>
+                    </tr>
+                    <tr>
+                        <td>Various tissues expression of the human body (GTEx v7)</td>
+                        <td>56,200 genes</td>
+                    </tr>
+                    <tr>
+                        <td>mRNA transcripts expression</td>
+                        <td>GTEx v7</td>
+                        <td>196,520 transcripts</td>
+                    </tr>
+                    <tr>
+                        <td>Protein (including isoforms) expression</td>
+                        <td>ProteomicsDB v2018.09</td>
+                        <td>18,634 genes (43,015 isoforms)</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">Regulatory elements</td>
+                        <td>Promoter (FANTOM5)</td>
+                        <td>82,149 promoters</td>
+                    </tr>
+                    <tr>
+                        <td>Enhancer (Genehancer)</td>
+                        <td>250,733 enhancers</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">Transcript annotations</td>
+                        <td>Refseq v2017.09</td>
+                        <td>58,384 transcripts</td>
+                    </tr>
+                    <tr>
+                        <td>Gencode v19</td>
+                        <td>196,520 transcripts</td>
+                    </tr>
+                    <tr>
+                        <td>Protein-protein interaction (PPI)</td>
+                        <td>BioGRID v3.5</td>
+                        <td>409,173 pairs</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class='little_title'>
+                Distribution of disease variants
+            </div>
+            <HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="40%" color=#987cb9 SIZE=0>
+            <div class="col-md-6" style="height=200px;">
+                {{ dnm_pie|safe }}
+            </div>
+            <br/>
+            <HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="40%" color=#987cb9 SIZE=1>
+
+            <div class="col-md-6" style="height=200px;">
+                {{ cnv_pie|safe }}
+            </div>
+            {#        	<div class="col-md-6" style="height=200px;">#}
+            {#        	{{ myechart2|safe }}#}
+        </div>
+
+    </div>
+    <hr>
+    <!-- Footer Section Start -->
+    <footer style="background: #007BB6">
+        <!-- Footer Area Start -->
+        <section class="footer-Content" style="background: #007BB6">  {# 大背景 #}
+            <div class="container" style="background: #007BB6"> {# Copyright那块 #}
+                <div class="row" style="background: #007BB6; border: 0; -webkit-border-radius: 0;-moz-border-radius: 0;border-radius: 0;">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 col-mb-12" style="background: #007BB6">
+                        <div class="widget">
+                            <h3 class="block-title">About</h3>
+                            <ul class="menu">
+                                <li><a href="http://bmi.sjtu.edu.cn">SJTU - Biomedical Information Lab</a></li>
+                                <li><a href="http://bioinformatics.nenu.edu.cn/">NENU - Institute of Computational Biology</a></li>
+                                <li><a href="http://www.smhc.org.cn/">SHANGHAI MENTAL HEALTH CENTER</a></li>
+                                <li><a href="https://www.sjtu.edu.cn/">SHANGHAI JIAO TONG UNIVERSITY</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 col-mb-12" style="background: #007BB6">
+                        <div class="widget">
+                            <h3 class="block-title">Resources</h3>
+                            <ul class="menu">
+                                <li><a href="http://exac.broadinstitute.org/">ExAC</a></li>
+                                <li><a href="http://www.bioinfo.org.cn/relative/dbSNP%20Home%20Page.htm">dbSNP</a></li>
+                                <li><a href="http://wannovar.wglab.org/">wANNOVAR</a></li>
+                                <li><a href="http://genome.ucsc.edu/">UCSC Genome Browser</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 col-mb-12" style="background: #007BB6; color: white">
+                        <div class="widget">
+                            <h3 class="block-title">Contact</h3>
+                            <ul class="menu">
+                                <li>
+                                    Data: <a href="mailto:nickgnlin@sjtu.edu.cn">nickgnlin@sjtu.edu.cn</a>
+                                </li>
+                                <li>
+                                   Technical: <a href="mailto:wangh101@nenu.edu.cn">wangh101@nenu.edu.cn</a>
+                                </li>
+                                <li>
+                                    <strong><span><a href="http://psymukb.net/Contact/">More information</a></span></strong>
+                                </li>
+                            </ul>
+{#                            <img src="/static/SMHC.png" style="width: 110px;height: 110px"/>#}
+                        </div>
+                    </div>
+                </div>
+                <p style="text-align: center"><strong><small>© 2018 bmi.sjtu.edu.cn. All rights reserved. 浙ICP备18030141号.</small></strong></p>
+            </div>
+
+        </section>
+
+        <!-- Footer area End -->
+    </footer>
+{% endblock %}

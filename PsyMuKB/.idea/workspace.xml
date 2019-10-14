@@ -1,0 +1,1009 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f3fe6124-3537-4a5b-967c-da7e2764dfed" name="Default" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor$Transcript_DNM_visualization.coverage" NAME="Transcript_DNM_visualization Coverage Results" MODIFIED="1539702941840" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor_v3$VisualizeBrainSpanExpression.coverage" NAME="VisualizeBrainSpanExpression Coverage Results" MODIFIED="1542093757299" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor$VisualiazeAllDnmsOnAllTranscript.coverage" NAME="VisualiazeAllDnmsOnAllTranscript Coverage Results" MODIFIED="1539702415049" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor$button_demo.coverage" NAME="button_demo Coverage Results" MODIFIED="1539480171696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor_v3$demo.coverage" NAME="demo Coverage Results" MODIFIED="1557200031372" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor_v3$dan_cnv.coverage" NAME="dan_cnv Coverage Results" MODIFIED="1544342206306" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor$demo.coverage" NAME="demo Coverage Results" MODIFIED="1540997299308" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Search" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor$VisualizeBrainSpanExpression.coverage" NAME="VisualizeBrainSpanExpression Coverage Results" MODIFIED="1540996703027" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor_v3$Transcript_DNM_visualization.coverage" NAME="Transcript_DNM_visualization Coverage Results" MODIFIED="1542086638320" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor$VisualizeGSExpression.coverage" NAME="VisualizeGSExpression Coverage Results" MODIFIED="1540630726187" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor______$Flask__Main_py_.coverage" NAME="Flask (Main.py) Coverage Results" MODIFIED="1541352891463" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor$DNM_Pie.coverage" NAME="DNM_Pie Coverage Results" MODIFIED="1540875223043" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Index" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor______$MutationImpactTranscript.coverage" NAME="MutationImpactTranscript Coverage Results" MODIFIED="1541351423131" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Search" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor______$VisualizePartTranscriptOneDNM.coverage" NAME="VisualizePartTranscriptOneDNM Coverage Results" MODIFIED="1541347857131" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor$GetBrainExpressedTranscript.coverage" NAME="GetBrainExpressedTranscript Coverage Results" MODIFIED="1538019704837" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Search" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor$VisualiazeOneDnmOnAllTranscript.coverage" NAME="VisualiazeOneDnmOnAllTranscript Coverage Results" MODIFIED="1540014332722" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor$VisualizeProteinProteinNetwork.coverage" NAME="VisualizeProteinProteinNetwork Coverage Results" MODIFIED="1539530204928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor$VisualizeProteinExpress.coverage" NAME="VisualizeProteinExpress Coverage Results" MODIFIED="1539954031237" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor_v3$Visualization_of_regulatory_element_DNMs.coverage" NAME="Visualization_of_regulatory_element_DNMs Coverage Results" MODIFIED="1542087438489" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor_v3$functionhelp.coverage" NAME="functionhelp Coverage Results" MODIFIED="1555947990027" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor_v3$MutationImpactTranscript.coverage" NAME="MutationImpactTranscript Coverage Results" MODIFIED="1546150839433" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Search" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor_v3$mod_config.coverage" NAME="mod_config Coverage Results" MODIFIED="1557200206086" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Base" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor_v3$VisualiazeOneDnmOnAllTranscript.coverage" NAME="VisualiazeOneDnmOnAllTranscript Coverage Results" MODIFIED="1557285894267" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor_v3$demo__1_.coverage" NAME="demo (1) Coverage Results" MODIFIED="1557285807273" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor_v3$VisualizeGSExpression.coverage" NAME="VisualizeGSExpression Coverage Results" MODIFIED="1542010619674" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor_v3$Flask__Main_py_.coverage" NAME="Flask (Main.py) Coverage Results" MODIFIED="1558094488211" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor_v3$VisualizeGtexGeneExpress.coverage" NAME="VisualizeGtexGeneExpress Coverage Results" MODIFIED="1541954453125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor$VisualizePartTranscriptOneDNM.coverage" NAME="VisualizePartTranscriptOneDNM Coverage Results" MODIFIED="1540014909181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor$MutationImpactTranscript.coverage" NAME="MutationImpactTranscript Coverage Results" MODIFIED="1541131552831" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Search" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor___$Flask__Main_py_.coverage" NAME="Flask (Main.py) Coverage Results" MODIFIED="1541265805923" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor_v3$VisualizeMouseBrainExpression.coverage" NAME="VisualizeMouseBrainExpression Coverage Results" MODIFIED="1542161687951" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor$Flask__Main_py_.coverage" NAME="Flask (Main.py) Coverage Results" MODIFIED="1541126856440" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor_v3$VisulizationCNV.coverage" NAME="VisulizationCNV Coverage Results" MODIFIED="1550127723053" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor$CNV_pie.coverage" NAME="CNV_pie Coverage Results" MODIFIED="1540871379600" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Index" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor$Flask__Main_py___1_.coverage" NAME="Flask (Main.py) Coverage Results" MODIFIED="1539158666882" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor$GetDisorderAndMutationTableData.coverage" NAME="GetDisorderAndMutationTableData Coverage Results" MODIFIED="1540829584985" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Search" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor$VisualizeGtexGeneExpress.coverage" NAME="VisualizeGtexGeneExpress Coverage Results" MODIFIED="1539772764736" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor$VisualizeMouseBrainExpression.coverage" NAME="VisualizeMouseBrainExpression Coverage Results" MODIFIED="1539778196191" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor______$Convert_Enst_to_Isoform.coverage" NAME="Convert_Enst_to_Isoform Coverage Results" MODIFIED="1541342783973" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Search" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor_v3$VisualizeGtexTranscriptExprss.coverage" NAME="VisualizeGtexTranscriptExprss Coverage Results" MODIFIED="1546150713440" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor$Pie.coverage" NAME="Pie Coverage Results" MODIFIED="1540871247521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Index" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor_v3$VisualizeProteinProteinNetwork.coverage" NAME="VisualizeProteinProteinNetwork Coverage Results" MODIFIED="1556766119323" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor$pie_n.coverage" NAME="pie_n Coverage Results" MODIFIED="1540811968960" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Index" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor_v3$VisualizePartTranscriptOneDNM.coverage" NAME="VisualizePartTranscriptOneDNM Coverage Results" MODIFIED="1546150048110" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor$DataStorage.coverage" NAME="DataStorage Coverage Results" MODIFIED="1539789533422" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Base" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor$FindDisorderByMutation.coverage" NAME="FindDisorderByMutation Coverage Results" MODIFIED="1538812928173" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Search" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor$VisualizeProteinImpactBrainExpress.coverage" NAME="VisualizeProteinImpactBrainExpress Coverage Results" MODIFIED="1538039631105" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor_v3$v2.coverage" NAME="v2 Coverage Results" MODIFIED="1541987860688" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor_v3$GetBrainExpressedTranscript.coverage" NAME="GetBrainExpressedTranscript Coverage Results" MODIFIED="1546152790102" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Search" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor$A_add_Pub_and_geneID.coverage" NAME="A_add_Pub_and_geneID Coverage Results" MODIFIED="1537837936508" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor$VisulizationCNV.coverage" NAME="VisulizationCNV Coverage Results" MODIFIED="1540899905315" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor_v3$VisualizeProteinExpress.coverage" NAME="VisualizeProteinExpress Coverage Results" MODIFIED="1542196379783" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor$line_cnv.coverage" NAME="line_cnv Coverage Results" MODIFIED="1539431858527" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor______$demo.coverage" NAME="demo Coverage Results" MODIFIED="1541312367272" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Search" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor$Visualization_of_regulatory_element_DNMs.coverage" NAME="Visualization_of_regulatory_element_DNMs Coverage Results" MODIFIED="1539703275518" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor$MutationQuery.coverage" NAME="MutationQuery Coverage Results" MODIFIED="1537937191863" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Search" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Search/templates/GeneDetail_transcript.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="134">
+              <caret line="209" column="15" selection-start-line="209" selection-start-column="15" selection-end-line="209" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Search/templates/GeneDetail_information.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="225" column="71" lean-forward="true" selection-start-line="225" selection-start-column="71" selection-end-line="225" selection-end-column="71" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Search/templates/GeneDetail_mutation.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="188">
+              <caret line="243" column="58" lean-forward="true" selection-start-line="243" selection-start-column="58" selection-end-line="243" selection-end-column="58" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Search/templates/GeneDetail_expression.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="451">
+              <caret line="210" column="88" lean-forward="true" selection-start-line="210" selection-start-column="88" selection-end-line="210" selection-end-column="88" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Search/templates/GeneDetail_PPI.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="398">
+              <caret line="266" column="27" lean-forward="true" selection-start-line="266" selection-start-column="27" selection-end-line="266" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Flask Main" />
+        <option value="JavaScript File" />
+        <option value="Python Script" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>back</find>
+      <find>backg</find>
+      <find>bac</find>
+      <find>/GeneDetail/</find>
+      <find>biogrid</find>
+      <find>have</find>
+      <find>iBAQ</find>
+      <find>ibaq</find>
+      <find>120</find>
+      <find>&lt;b&gt;</find>
+      <find>Relate</find>
+      <find>more</find>
+      <find>enh</find>
+      <find>up-</find>
+      <find>Not ava</find>
+      <find>fig 13</find>
+      <find>!=</find>
+      <find>onc</find>
+      <find>abbr</find>
+      <find>Potential Severity Level</find>
+      <find>tools</find>
+      <find>gtex</find>
+      <find>mutationm</find>
+      <find>filepath</find>
+      <find>print</find>
+      <find>json</find>
+      <find>plotly</find>
+      <find>marker</find>
+      <find>noncoding</find>
+      <find>non</find>
+    </findStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Visualization/VisualizeProteinExpress_old.py" />
+        <option value="$PROJECT_DIR$/Visualization/VisualizeProteinExpressInGenePage.py" />
+        <option value="$PROJECT_DIR$/Visualization/VisualizeProteinImpactBrainExpress.py" />
+        <option value="$PROJECT_DIR$/Visualization/VisualizeBrainSpanExpression.py" />
+        <option value="$PROJECT_DIR$/Search/templates/GeneDetail.html" />
+        <option value="$PROJECT_DIR$/Visualization/VisualizeGSExpression.py" />
+        <option value="$PROJECT_DIR$/Visualization/VisualizeProteinExpress.py" />
+        <option value="$PROJECT_DIR$/Search/MutationScore.py" />
+        <option value="$PROJECT_DIR$/Search/GetDisorderAndMutationTableData.py" />
+        <option value="$PROJECT_DIR$/Visualization/VisualizeProteinProteinNetwork.py" />
+        <option value="$PROJECT_DIR$/Index/DNM_Pie.py" />
+        <option value="$PROJECT_DIR$/Browse/templates/muttemp.html" />
+        <option value="$PROJECT_DIR$/Document/templates/muttemp.html" />
+        <option value="$PROJECT_DIR$/Document/views.py" />
+        <option value="$PROJECT_DIR$/templates/muttemp.html" />
+        <option value="$PROJECT_DIR$/Download/templates/muttemp.html" />
+        <option value="$PROJECT_DIR$/Search/templates/DNV.html" />
+        <option value="$PROJECT_DIR$/Search/templates/CNV.html" />
+        <option value="$PROJECT_DIR$/Forms.py" />
+        <option value="$PROJECT_DIR$/Index/templates/Index_copy.html" />
+        <option value="$PROJECT_DIR$/Contact/templates/Contact.html" />
+        <option value="$PROJECT_DIR$/Download/templates/Download.html" />
+        <option value="$PROJECT_DIR$/Index/templates/Index.html" />
+        <option value="$PROJECT_DIR$/Index/templates/muttemp.html" />
+        <option value="$PROJECT_DIR$/Search/templates/Gene.html" />
+        <option value="$PROJECT_DIR$/Search/templates/muttemp.html" />
+        <option value="$PROJECT_DIR$/Search/__init__.py" />
+        <option value="$PROJECT_DIR$/Search/Mutatioin.py" />
+        <option value="$PROJECT_DIR$/Visualization/VisulizationCNVCombine.py" />
+        <option value="$PROJECT_DIR$/Search/Gene.py" />
+        <option value="$PROJECT_DIR$/Search/templates/GeneDetail_cnv.html" />
+        <option value="$PROJECT_DIR$/Visualization/Visualization_of_regulatory_element_DNMs.py" />
+        <option value="$PROJECT_DIR$/Visualization/VisualiazeAllDnmsOnAllTranscript.py" />
+        <option value="$PROJECT_DIR$/Visualization/Transcript_DNM_visualization.py" />
+        <option value="$PROJECT_DIR$/Visualization/VisualizePartTranscriptOneDNM.py" />
+        <option value="$PROJECT_DIR$/Search/MutationImpactTranscript.py" />
+        <option value="$PROJECT_DIR$/Search/GetBrainExpressedTranscript.py" />
+        <option value="$PROJECT_DIR$/Visualization/VisualiazeOneDnmOnAllTranscript.py" />
+        <option value="$PROJECT_DIR$/Search/templates/MutationDetail.html" />
+        <option value="$PROJECT_DIR$/Visualization/VisualizeGtexTranscriptExprss.py" />
+        <option value="$PROJECT_DIR$/Visualization/VisulizationCNV.py" />
+        <option value="$PROJECT_DIR$/Document/templates/Document.html" />
+        <option value="$PROJECT_DIR$/Search/templates/MutationResults.html" />
+        <option value="$PROJECT_DIR$/Search/templates/GeneDetailMutation.html" />
+        <option value="$PROJECT_DIR$/Document/templates/doc.html" />
+        <option value="$PROJECT_DIR$/Document/templates/Instruction.html" />
+        <option value="$PROJECT_DIR$/Search/templates/GeneDetail_transcript.html" />
+        <option value="$PROJECT_DIR$/Search/templates/GeneDetail_information.html" />
+        <option value="$PROJECT_DIR$/Search/templates/GeneDetail_mutation.html" />
+        <option value="$PROJECT_DIR$/Search/templates/GeneDetail_PPI.html" />
+        <option value="$PROJECT_DIR$/Search/templates/GeneDetail_expression.html" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>AngularJS</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="PsyMuKB_v3.6_Aliyun" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PsyMuKB_v3.6_Aliyun" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PsyMuKB_v3.6_Aliyun" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PsyMuKB_v3.6_Aliyun" type="462c0819:PsiDirectoryNode" />
+              <item name="Contact" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PsyMuKB_v3.6_Aliyun" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PsyMuKB_v3.6_Aliyun" type="462c0819:PsiDirectoryNode" />
+              <item name="Contact" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PsyMuKB_v3.6_Aliyun" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PsyMuKB_v3.6_Aliyun" type="462c0819:PsiDirectoryNode" />
+              <item name="Document" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PsyMuKB_v3.6_Aliyun" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PsyMuKB_v3.6_Aliyun" type="462c0819:PsiDirectoryNode" />
+              <item name="Document" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PsyMuKB_v3.6_Aliyun" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PsyMuKB_v3.6_Aliyun" type="462c0819:PsiDirectoryNode" />
+              <item name="Download" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PsyMuKB_v3.6_Aliyun" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PsyMuKB_v3.6_Aliyun" type="462c0819:PsiDirectoryNode" />
+              <item name="Download" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PsyMuKB_v3.6_Aliyun" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PsyMuKB_v3.6_Aliyun" type="462c0819:PsiDirectoryNode" />
+              <item name="Index" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PsyMuKB_v3.6_Aliyun" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PsyMuKB_v3.6_Aliyun" type="462c0819:PsiDirectoryNode" />
+              <item name="Index" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PsyMuKB_v3.6_Aliyun" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PsyMuKB_v3.6_Aliyun" type="462c0819:PsiDirectoryNode" />
+              <item name="Search" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PsyMuKB_v3.6_Aliyun" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PsyMuKB_v3.6_Aliyun" type="462c0819:PsiDirectoryNode" />
+              <item name="Search" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PsyMuKB_v3.6_Aliyun" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PsyMuKB_v3.6_Aliyun" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PsyMuKB_v3.6_Aliyun" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PsyMuKB_v3.6_Aliyun" type="462c0819:PsiDirectoryNode" />
+              <item name="Visualization" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Python代码\PsyMuKB_Refactor_v3\Visualization" />
+      <recent name="F:\PsyMuKB.net\code\PsyMuKB_Refactor_v3\static" />
+      <recent name="F:\6、代码集\PsyMuKB_Refactor\Search\static\Img" />
+      <recent name="F:\6、代码集\PsyMuKB_Refactor\Search\static\js" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\PsyMuKB.net\code\PsyMuKB_v3.6_Aliyun\Visualization" />
+      <recent name="F:\PsyMuKB.net\code\PsyMuKB_v3.6_Aliyun\Search\templates" />
+      <recent name="F:\PsyMuKB.net\code\PsyMuKB_v3.6_Aliyun\static\Img" />
+      <recent name="F:\PsyMuKB.net\code\PsyMuKB_v3.6_Aliyun\Document\templates" />
+      <recent name="F:\PsyMuKB.net\code\PsyMuKB_v3.6_Aliyun\static" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.VisualiazeOneDnmOnAllTranscript">
+    <configuration name="Index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/PsyMuKB_v3.6_Aliyun/Index/templates/Index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="Transcript_DNM_visualization" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="PsyMuKB_Refactor" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Visualization" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Visualization/Transcript_DNM_visualization.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="VisualiazeOneDnmOnAllTranscript" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="PsyMuKB_Refactor" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Visualization" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Visualization/VisualiazeOneDnmOnAllTranscript.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Visualization_of_regulatory_element_DNMs" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="PsyMuKB_Refactor" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Visualization" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Visualization/Visualization_of_regulatory_element_DNMs.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Flask (Main.py)" type="Python.FlaskServer" temporary="true" nameIsGenerated="true">
+      <module name="PsyMuKB_Refactor" />
+      <option name="target" value="$PROJECT_DIR$/Main.py" />
+      <option name="targetType" value="PATH" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration name="PsyMuKB_Refactor" type="Python.FlaskServer">
+      <option name="flaskDebug" value="true" />
+      <module name="PsyMuKB_Refactor" />
+      <option name="target" value="$PROJECT_DIR$/Main.py" />
+      <option name="targetType" value="PATH" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="D:\Anaconda3\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Flask server.PsyMuKB_Refactor" />
+      <item itemvalue="Flask server.Flask (Main.py)" />
+      <item itemvalue="JavaScript Debug.Index.html" />
+      <item itemvalue="Python.Transcript_DNM_visualization" />
+      <item itemvalue="Python.Visualization_of_regulatory_element_DNMs" />
+      <item itemvalue="Python.VisualiazeOneDnmOnAllTranscript" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.VisualiazeOneDnmOnAllTranscript" />
+        <item itemvalue="Flask server.Flask (Main.py)" />
+        <item itemvalue="JavaScript Debug.Index.html" />
+        <item itemvalue="Python.Visualization_of_regulatory_element_DNMs" />
+        <item itemvalue="Python.Transcript_DNM_visualization" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f3fe6124-3537-4a5b-967c-da7e2764dfed" name="Default" comment="" />
+      <created>1537717537062</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1537717537062</updated>
+      <workItem from="1558145243058" duration="12545000" />
+      <workItem from="1558177825462" duration="33500000" />
+      <workItem from="1558312449013" duration="2764000" />
+      <workItem from="1558315518920" duration="30638000" />
+      <workItem from="1558404441060" duration="17023000" />
+      <workItem from="1558523363340" duration="45000" />
+      <workItem from="1558527525276" duration="597000" />
+      <workItem from="1558529547002" duration="372000" />
+      <workItem from="1558537166191" duration="8346000" />
+      <workItem from="1558576731530" duration="2310000" />
+      <workItem from="1558601045078" duration="1713000" />
+      <workItem from="1558630022570" duration="699000" />
+      <workItem from="1558846893008" duration="198000" />
+      <workItem from="1558874741980" duration="1053000" />
+      <workItem from="1559272790277" duration="811000" />
+      <workItem from="1559401229072" duration="3054000" />
+      <workItem from="1559715531464" duration="3449000" />
+      <workItem from="1559885903329" duration="1431000" />
+      <workItem from="1560137468721" duration="242000" />
+      <workItem from="1560185563664" duration="755000" />
+      <workItem from="1560186504408" duration="813000" />
+      <workItem from="1560258079091" duration="5149000" />
+      <workItem from="1560425054051" duration="2085000" />
+      <workItem from="1560842995505" duration="707000" />
+      <workItem from="1561021890782" duration="1363000" />
+      <workItem from="1561135528085" duration="12194000" />
+      <workItem from="1561622977681" duration="4054000" />
+      <workItem from="1561739821081" duration="20265000" />
+      <workItem from="1562303330087" duration="1854000" />
+      <workItem from="1562566265126" duration="3216000" />
+      <workItem from="1563460664222" duration="4897000" />
+      <workItem from="1565004146411" duration="59000" />
+      <workItem from="1565052085652" duration="623000" />
+      <workItem from="1565188603463" duration="1356000" />
+      <workItem from="1565672268466" duration="1127000" />
+      <workItem from="1567752373645" duration="2706000" />
+      <workItem from="1569939349904" duration="1703000" />
+      <workItem from="1570041605988" duration="7268000" />
+      <workItem from="1570157754179" duration="4295000" />
+      <workItem from="1570294043134" duration="3592000" />
+      <workItem from="1570355382506" duration="132000" />
+      <workItem from="1570709853446" duration="131000" />
+      <workItem from="1570721567751" duration="414000" />
+      <workItem from="1570781722066" duration="2611000" />
+      <workItem from="1570935543518" duration="898000" />
+      <workItem from="1570953051240" duration="720000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="205777000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15298508" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.7990405" weight="0.32719395" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.9248401" weight="0.31260228" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.57952756" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32900432" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49945235" weight="0.3287827" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32843137" />
+      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.075159915" side_tool="true" weight="0.31744313" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" weight="0.020788912" />
+      <window_info anchor="right" id="Database" order="4" weight="0.02238806" />
+      <window_info anchor="right" id="R Graphics" order="5" />
+      <window_info anchor="right" id="R Packages" order="6" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17430703" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.7990405" weight="0.32719395" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.9248401" weight="0.31744313" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.57952756" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32900432" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49945235" weight="0.3287827" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32843137" />
+      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.075159915" side_tool="true" weight="0.31744313" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" weight="0.020788912" />
+      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.02238806" />
+      <window_info anchor="right" id="R Graphics" order="5" />
+      <window_info anchor="right" id="R Packages" order="6" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/PsyMuKB_v3_5$Main.coverage" NAME="Main Coverage Results" MODIFIED="1558373496328" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_v3_5$Flask__Main_py_.coverage" NAME="Flask (Main.py) Coverage Results" MODIFIED="1558452888917" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_v3_6$Visualization_of_regulatory_element_DNMs.coverage" NAME="Visualization_of_regulatory_element_DNMs Coverage Results" MODIFIED="1558545643664" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_v3_6$Flask__Main_py_.coverage" NAME="Flask (Main.py) Coverage Results" MODIFIED="1558545744424" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_v3_6_Aliyun$Flask__Main_py_.coverage" NAME="Flask (Main.py) Coverage Results" MODIFIED="1561288508734" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_v3_6_Aliyun$VisualiazeOneDnmOnAllTranscript.coverage" NAME="VisualiazeOneDnmOnAllTranscript Coverage Results" MODIFIED="1569971799691" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_v3_5$GetDisorderAndMutationTableData.coverage" NAME="GetDisorderAndMutationTableData Coverage Results" MODIFIED="1558254913157" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Search" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_v3_6$Transcript_DNM_visualization.coverage" NAME="Transcript_DNM_visualization Coverage Results" MODIFIED="1558543018283" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visualization" />
+    <SUITE FILE_PATH="coverage/PsyMuKB_Refactor_v3$Main.coverage" NAME="Main Coverage Results" MODIFIED="1558174892654" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Search/MutationScore.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="547">
+          <caret line="77" column="25" selection-start-line="77" selection-start-column="25" selection-end-line="77" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Index/DNM_Pie.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="172" selection-start-line="172" selection-end-line="172" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Document/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="33" lean-forward="true" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
+          <folding>
+            <element signature="e#336#362#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Document/templates/muttemp.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="163" column="32" selection-start-line="163" selection-start-column="32" selection-end-line="163" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Browse/templates/muttemp.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="83">
+          <caret line="154" column="36" selection-start-line="154" selection-start-column="36" selection-end-line="154" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/muttemp.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="153" lean-forward="true" selection-start-line="153" selection-end-line="153" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Download/templates/muttemp.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="143" column="28" lean-forward="true" selection-start-line="143" selection-start-column="28" selection-end-line="143" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/templates/CNV.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="36" column="43" lean-forward="true" selection-start-line="36" selection-start-column="43" selection-end-line="36" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/templates/DNV.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="84" column="14" selection-start-line="84" selection-start-column="14" selection-end-line="84" selection-end-column="14" />
+          <folding>
+            <element signature="e#862#1443#0#HTML" />
+            <element signature="e#1455#2862#0#HTML" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Document/templates/Instruction.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23579">
+          <caret line="1241" column="54" selection-start-line="1241" selection-start-column="54" selection-end-line="1241" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="174" selection-start-line="174" selection-end-line="174" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Index/templates/Index_copy.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7201">
+          <caret line="383" column="26" selection-start-line="383" selection-start-column="26" selection-end-line="383" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Visualization/VisualizeProteinProteinNetwork.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1824">
+          <caret line="99" column="77" selection-start-line="99" selection-start-column="77" selection-end-line="99" selection-end-column="77" />
+          <folding>
+            <element signature="e#328#342#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/templates/GeneDetailMutation_0807.html" />
+    <entry file="file://$PROJECT_DIR$/Search/templates/MutationResults_0807.html" />
+    <entry file="file://$PROJECT_DIR$/Contact/templates/Contact.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="89" column="50" lean-forward="true" selection-start-line="89" selection-start-column="50" selection-end-line="89" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Index/templates/muttemp.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="166" lean-forward="true" selection-start-line="166" selection-end-line="166" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Index/templates/Index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="381" column="29" selection-start-line="381" selection-start-column="29" selection-end-line="381" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/templates/Gene.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="116" column="6" selection-start-line="116" selection-start-column="6" selection-end-line="116" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/templates/muttemp.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="142" lean-forward="true" selection-start-line="142" selection-end-line="142" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/Mutatioin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="227" selection-start-line="227" selection-end-line="227" />
+          <folding>
+            <element signature="e#340#364#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Visualization/VisualizeBrainSpanExpression_plotly.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Visualization/VisulizationCNVCombine.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="44" column="85" selection-start-line="44" selection-start-column="40" selection-end-line="44" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/templates/GeneDetail_cnv.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="173" column="14" selection-start-line="173" selection-start-column="14" selection-end-line="173" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/templates/MutationResults.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12996">
+          <caret line="684" column="80" selection-start-line="684" selection-start-column="80" selection-end-line="684" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/templates/GeneDetailMutation.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="517" column="32" selection-start-line="517" selection-start-column="32" selection-end-line="517" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/Gene.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+          <folding>
+            <element signature="e#337#361#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Visualization/VisualizePartTranscriptOneDNM.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8873">
+          <caret line="472" column="47" selection-start-line="472" selection-start-column="47" selection-end-line="472" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/MutationImpactTranscript.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="15" column="37" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/GetBrainExpressedTranscript.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3762">
+          <caret line="202" column="18" selection-start-line="202" selection-start-column="18" selection-end-line="202" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Visualization/VisualiazeOneDnmOnAllTranscript.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5890">
+          <caret line="656" selection-start-line="656" selection-end-line="656" />
+          <folding>
+            <element signature="e#548#3792#0" />
+            <element signature="e#3828#12685#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Visualization/Visualization_of_regulatory_element_DNMs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17993">
+          <caret line="951" selection-start-line="951" selection-end-line="951" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Document/templates/Document.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="474" column="61" lean-forward="true" selection-start-line="474" selection-start-column="61" selection-end-line="474" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Visualization/VisualizeGtexTranscriptExprss.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="170" column="37" selection-start-line="170" selection-start-column="37" selection-end-line="170" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/templates/MutationDetail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="832">
+          <caret line="608" column="10" selection-start-line="608" selection-start-column="10" selection-end-line="608" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Visualization/VisualizeGtexGeneExpress.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="165" column="19" selection-start-line="165" selection-start-column="14" selection-end-line="165" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Visualization/VisualizeMouseBrainExpression.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="31" column="51" selection-start-line="31" selection-start-column="51" selection-end-line="31" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Visualization/VisualizeProteinExpress_old.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Visualization/VisualizeProteinExpress.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="433">
+          <caret line="153" selection-start-line="46" selection-start-column="14" selection-end-line="46" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Visualization/VisualizeBrainSpanExpression.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="424" column="15" lean-forward="true" selection-start-line="424" selection-start-column="15" selection-end-line="424" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Visualization/VisualizeGSExpression.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="24" column="15" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Visualization/VisualiazeAllDnmsOnAllTranscript.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="550" column="19" selection-start-line="550" selection-start-column="19" selection-end-line="550" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Visualization/Transcript_DNM_visualization.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="482">
+          <caret line="627" column="10" selection-start-line="627" selection-start-column="10" selection-end-line="627" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Download/templates/Download.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="136" column="52" selection-start-line="136" selection-start-column="49" selection-end-line="136" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Visualization/VisulizationCNV.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14953">
+          <caret line="787" column="29" selection-start-line="787" selection-start-column="29" selection-end-line="787" selection-end-column="29" />
+          <folding>
+            <element signature="e#341#355#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/templates/GeneDetail_transcript.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="209" column="15" selection-start-line="209" selection-start-column="15" selection-end-line="209" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/templates/GeneDetail_information.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="225" column="71" lean-forward="true" selection-start-line="225" selection-start-column="71" selection-end-line="225" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/templates/GeneDetail_PPI.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="266" column="27" lean-forward="true" selection-start-line="266" selection-start-column="27" selection-end-line="266" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/templates/GeneDetail_mutation.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="243" column="58" lean-forward="true" selection-start-line="243" selection-start-column="58" selection-end-line="243" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Search/templates/GeneDetail_expression.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="451">
+          <caret line="210" column="88" lean-forward="true" selection-start-line="210" selection-start-column="88" selection-end-line="210" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

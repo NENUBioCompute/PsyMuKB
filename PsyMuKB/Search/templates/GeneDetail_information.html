@@ -1,0 +1,513 @@
+{% include "muttemp.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block content %}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/locale/bootstrap-table-bootstrap-table-en-US.min.js"></script>
+    <script src="\static\bootstrap-table-export.js"></script>
+    <script src="\static\tableExport.js"></script>
+    <script src="\static\nav.js"></script>
+    <script type="text/javascript" src="/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/jquery.js"></script>
+    <script type="text/javascript"
+            src="/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-collapse.js"></script>
+    <style type="text/css">
+
+        .container {
+            padding-right: 0px;
+            padding-left: 0px;
+        }
+
+        body {
+        {#background-color: rgba(204, 204, 204, 0.1);#}
+        }
+
+        .accordion {
+            border: 1px solid #ffffff;
+            background-color: #ffffff;
+            border-radius: 3px;
+            padding: 20px;
+            margin: 30px;
+        }
+
+        .little_title {
+            color: #663333;
+            font-size: 24px;
+            font-family: "Verdana";
+            padding: 5px;
+            border-bottom: 3px solid #663333;
+        }
+
+        .col-md-12 {
+            margin-top: 10px;
+        }
+
+        .accordion-heading {
+            background: url('/static/subtitle.png') no-repeat;
+            background-size: 400px 50px;
+            height: 50px;
+            width: 400px;
+            display: inline-block;
+            vertical-align: middle;
+            color: #fff;
+            padding-left: 40px;
+        }
+
+        .row {
+            margin-top: 20px;
+        }
+
+        /*fixednav*/
+        .fixednav {
+            position: fixed;
+            top: 50px;
+            left: 30%;
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+            position: fixed;
+            z-index: 999;
+            background-color: rgba(0, 123, 182, 0.8);
+        }
+
+        header ul {
+            height: 30px;
+            list-style-type: none;
+            padding-left: 25px;
+        }
+
+        header li {
+            float: left;
+            padding-right: 20px;
+
+        }
+
+        header li a {
+            text-decoration: none;
+            color: #D3D3D3;
+            font-size: 15px;
+            border-left: 3px solid #333333;
+            padding-left: 5px;
+        }
+
+        {#header li a:hover {#}
+        {#    text-decoration: none;#}
+        {#    color: #FFFFFF;#}
+        {#    border-bottom: 3px solid #FFFFFF;#}
+        {
+        #}#}
+    </style>
+    <style>
+        /*footer*/
+        .footer {
+            background-color: #007BB6;
+            width: 100%;
+            display: block;
+            height: 50px;
+            display: flex;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .foot a {
+            text-decoration: none;
+            color: #CCCCCC;
+        }
+
+        .foot a:hover {
+            text-decoration: none;
+            color: #fff;
+            border-bottom: 3px solid #FFFFFF;
+        }
+
+        .foot-p {
+            position: absolute;
+        {#top:100px;#} left: 40%;
+            text-align: center;
+        }
+
+        .line2 {
+            position: absolute;
+            top: -30px;
+            left: -25%;
+            text-align: center;
+        }
+    </style>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129012764-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-129012764-1');
+    </script>
+    <style type="text/css">
+        .tab {
+            position: fixed;
+            top: 50px;
+            {#left: 7%;#}
+        {#border-bottom-right-radius: 5px;#}{#border-bottom-left-radius: 5px;#}
+            z-index: 999;
+        {#background-color: rgba(0,123,182, 0.8);#}
+        }
+
+        .tab .nav-tabs {
+            border-bottom: 0 none;
+            background: #eaeaea;
+        }
+
+        .tab .nav-tabs li a {
+            background: transparent;
+            border-radius: 0;
+            font-size: 16px;
+            border: none;
+            color: #333;
+            padding: 12px 22px;
+        }
+
+        .tab .nav-tabs li.active a, .tab .nav-tabs li.active a i {
+            border: 0 none;
+            background: #e67e22;
+            color: #fff;
+        }
+
+        .tab .nav-tabs li.active a:after {
+            content: "";
+            position: absolute;
+            left: 45%;
+            bottom: -14px;
+            border: 7px solid transparent;
+            border-top: 7px solid #e67e22;
+        }
+
+        .tab .tab-content {
+            padding: 5px;
+            color: #5a5c5d;
+            font-size: 14px;
+            line-height: 20px;
+            margin-top: 5px;
+            border-bottom: 1px solid #e67e22;
+        }
+
+        @media only screen and (max-width: 480px) {
+            .tab .nav-tabs, .tab .nav-tabs li {
+                width: 100%;
+                background: transparent;
+            }
+
+            .tab .nav-tabs li.active a {
+                border-radius: 10px 10px 0 0;
+            }
+
+            .tab .nav-tabs li:first-child a {
+                border-bottom-left-radius: 0;
+            }
+
+            .tab .nav-tabs li a {
+                margin-bottom: 10px;
+                border: 1px solid lightgray;
+            }
+
+            .tab .nav-tabs li.active a:after {
+                border: none;
+            }
+        }
+    </style>
+
+{#    <div class="container>#}
+    <div class="container">
+        <div class="accordion-heading-nav" style="font-size: x-large;">
+            <nav class="tab" id="myScrollspy">
+                <ul class="nav nav-tabs" data-spy="affix">
+                    <li class="active"><a href="#">Gene Information</a></li>
+                    <li><a href="/GeneDetail/{{ entrez_id }}/Expression">Expression</a></li>
+                    <li><a href="/GeneDetail/{{ entrez_id }}/DenovoVariants"><i>De Novo</i> Variant</a></li>
+                    <li><a href="/GeneDetail/{{ entrez_id }}/Transcripts">Transcript</a></li>
+                    <li><a href="/GeneDetail/{{ entrez_id }}/PPI">Protein-Protein Interaction</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <body>
+    <div class="container text-justify">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="accordion-group">
+                    <div class="accordion-body collapse in">
+                        <div class="accordion-inner">
+                            <!-- Gene Basic Information-->
+                            {#                            <div class="accordion-heading" style="font-size: x-large;">Gene Information</div>#}
+                            <div class="little_title">Basic information</div>
+                            <table data-class="table table-hover" data-toggle="table" data-striped="true">
+                                <thead style="background-color:#007BB6; color: white;">
+                                <tr>
+                                    <th>Entrez ID</th>
+                                    <th>Official symbol</th>
+                                    <th>Synonyms</th>
+                                    <th>Description</th>
+                                    <th>Location</th>
+                                    <th>Type of protein</th>
+                                    <th>External annotation</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for i in message %}
+                                    <tr>
+                                        <td>{{ i['ENTREZ_ID'] }}</td>
+                                        <td>{{ i['Symbol'] }}</td>
+                                        {% if i['NAME'] is string %}
+                                            <td>{{ i['NAME'] }}</td>
+                                        {% else %}
+                                            <td>{{ i['NAME']|join(', ') }}</td>
+                                        {% endif %}
+                                        <td>{{ i['description'] }}</td>
+                                        <td>{{ i['LOC_BAND'] }}</td>
+                                        <td>{{ i['TYPE'] }}</td>
+                                        <td>
+                                            <a href="https://www.genecards.org/cgi-bin/carddisp.pl?gene={{ i['Symbol'] }}"
+                                               target="_blank">Genecard</a></td>
+
+                                    </tr>
+                                    </tbody>
+                                    </table>
+                                    <!--Gene Summary-->
+                                    <div class="little_title">Summary</div>
+                                    <table class="table table-bordered table-hover table-striped"
+                                           style="margin-top:10px; " data-class="table table-hover"
+                                           data-toggle="table" data-show-export="false">
+                                        <thead style="background-color:#007BB6; color: white">
+                                        {#                                        <tr style="background-color:#669999">#}
+                                        <th>uniprot_summary</th>
+                                        <th>refseq_summary</th>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td class="col-md-6">{{ i['uniprot_summary']|replace('"','',count=2) }}</td>
+                                            <td class="col-md-6">{{ i['refseq_summary']|replace('"','',count=2) }}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <div class="little_title">Assessment Table</div>
+                                    <table class="table table-bordered table-hover table-striped"
+                                           style="margin-top:10px; " data-class="table table-hover"
+                                           data-toggle="table" data-show-export="false">
+                                    <thead style="background-color:#007BB6; color: white;">
+                                    <tr>
+                                        <th>Caregory</th>
+                                        <th>Description</th>
+                                        <th>Value</th>
+                                        <th>Value Range ( Low - High )</th>
+                                        <th>Comment</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>PLI</td>
+                                        <td>The probability of being loss-of-function (LoF) intolerant</td>
+                                        {#                                        <td>{{ i['pLI'] }}</td>#}
+                                        {% if i['pLI'] in ['.', 'None', None, ''] %}
+                                            <td>-</td>
+                                        {% else %}
+                                            <td>{{ i['pLI'] }}</td>
+                                        {% endif %}
+                                        {#                                        {% endif %}#}
+                                        <td>[0, ..., 1]</td>
+                                        <td>Genes with high pLI scores (pLI ≥ 0.9) are extremely LoF intolerant, whereby
+                                            genes with low pLI scores (pLI ≤ 0.1) are LoF tolerant. The score is
+                                            calculated based on high-quality exome sequence data (ExAC) for 60,706
+                                            individuals of diverse ethnicities.
+                                        </td>
+                                    </tr>
+                                    {#                                    <tr>#}
+                                    {#                                        <td>Haploinsufficiency_Score</td>#}
+                                    {#                                        <td>{{ i['Haploinsufficiency_Score'] }}</td>#}
+                                    {#                                        <td>[0, ..., 1]</td>#}
+                                    {#                                    </tr>#}
+                                    <tr>
+                                        <td>Haploinsufficiency (HI) score rank</td>
+                                        <td>Predicted probability of exhibiting haploinsufficiency</td>
+                                        {% if i['HI_Rank'] in ['.', 'None', None, ''] %}
+                                            <td>-</td>
+                                        {% else %}
+                                            <td>{{ i['HI_Rank'] }}</td>
+                                        {% endif %}
+                                        <td>[100, ..., 1]</td>
+                                        <td>High ranks (e.g. 0-10%) indicate a gene is more likely to exhibit
+                                            haploinsufficiency, low ranks (e.g. 90-100%) indicate a gene is more likely
+                                            to NOT exhibit haploinsufficiency (DECIPHER, PMID: 20976243).
+                                            haploinsufficiency means a single functional copy of a gene is insufficient
+                                            to maintain its normal function and is extremely intolerant of LoF
+                                            variation.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gene brain expressed</td>
+                                        <td>Queried gene is expressed in brain tissues</td>
+                                        <td>
+                                            {% if i['GeneBrainExpress'] or i['GeneBrainSpanExpress'] %}
+                                                True
+                                            {% else %}
+                                                Flase
+                                            {% endif %}
+                                        </td>
+                                        <td>[False, True]</td>
+                                        <td>The gene expression data are extracted from GTEx v7 and BrainSpan. A gene
+                                            with the expression value of (log 2 based (TPM+1)) at least 1 TPM/RPKM/FPKM
+                                            in one or more tissues related to the brain is considered brain-expressed.
+                                        </td>
+                                    </tr>
+                                    {#                                    <tr>#}
+                                    {#                                        <td>{{ i['GeneBrainSpanExpress'] }}</td>#}
+                                    {#                                        <td>The gene expression data are extracted from BrainSpan.#}
+                                    {#                                        </td>#}
+                                    {#                                    </tr>#}
+                                    <tr>
+                                        <td>Protein brain expressed</td>
+                                        <td>Queried protein is expressed in brain tissues</td>
+                                        <td>{{ i['ProteinBrainExpress'] }}</td>
+                                        <td>[False, True]</td>
+                                        <td>The protein expression data are extracted from ProteomicsDB (v2018.09). A
+                                            protein with the expression value of (log based 10 (iBAQ intensity)) at
+                                            least 0.5 in one or more tissues related to the brain is considered
+                                            brain-expressed protein.
+                                        </td>
+                                    </tr>
+                                    <tr>
+
+                                        <td rowspan="2">Carrying LoF DNMs</td>
+                                        <td rowspan="2">Number of loss-of-function DNMs hit the queried gene</td>
+                                        <td><a href="/GeneDetail/{{ entrez_id }}/DenovoVariants" target="_blank">{{ mutation_count.get("all").get("frameshift")
+                                                + mutation_count.get("all").get("nonsense")
+                                                + mutation_count.get("all").get("splice-site")-(
+                                                    mutation_count.get("PTB").get("frameshift")+mutation_count.get("non-PTB").get("frameshift") + mutation_count.get("Mixed healthy control").get("frameshift")+mutation_count.get("Sibling Control").get("frameshift")+
+                                                    mutation_count.get("PTB").get("nonsense")+mutation_count.get("non-PTB").get("nonsense") + mutation_count.get("Mixed healthy control").get("nonsense")+mutation_count.get("Sibling Control").get("nonsense")+
+                                                    mutation_count.get("PTB").get("splice-site")+mutation_count.get("non-PTB").get("splice-site") + mutation_count.get("Mixed healthy control").get("splice-site")+mutation_count.get("Sibling Control").get("splice-site")
+                                                )-mutation_count.get("Others").get("frameshift")-mutation_count.get("Others").get("nonsense")-mutation_count.get("Others").get("splice-site") }}</a><br>(Case)
+                                        </td>
+                                        <td>[0, ..., 67] with average of 0.160</td>
+                                        <td rowspan="2">Loss of function (LoF) mutations include frameshift indels,
+                                            nonsense (stop-gained) and splice-site mutations, which can result in the
+                                            gene product having less or no function and can have deleterious
+                                            consequences.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="/GeneDetail/{{ entrez_id }}/DenovoVariants" target="_blank">
+                                                {{ mutation_count.get("PTB").get("frameshift")+mutation_count.get("non-PTB").get("frameshift") + mutation_count.get("Mixed healthy control").get("frameshift")+mutation_count.get("Sibling Control").get("frameshift")+
+                                                    mutation_count.get("PTB").get("nonsense")+mutation_count.get("non-PTB").get("nonsense") + mutation_count.get("Mixed healthy control").get("nonsense")+mutation_count.get("Sibling Control").get("nonsense")+
+                                                    mutation_count.get("PTB").get("splice-site")+mutation_count.get("non-PTB").get("splice-site") + mutation_count.get("Mixed healthy control").get("splice-site")+mutation_count.get("Sibling Control").get("splice-site") }}
+                                            </a><br>(Control)
+                                        </td>
+                                        <td>[0, ..., 6] with average of 0.044</td>
+                                        {#                                        <td></td>#}
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2">Carrying missense DNMs</td>
+                                        <td rowspan="2">Number of missense DNMs hit the queried gene</td>
+                                        <td><a href="/GeneDetail/{{ entrez_id }}/DenovoVariants" target="_blank">
+                                            {{ mutation_count.get("all").get("missense")-mutation_count.get("PTB").get("missense")-mutation_count.get("non-PTB").get("missense") - mutation_count.get("Mixed healthy control").get("missense")-mutation_count.get("Sibling Control").get("missense")
+                                                -mutation_count.get("Others").get("missense") }}</a><br>(Case)
+                                        </td>
+                                        <td>[0, ..., 55] with average of 0.846</td>
+                                        <td rowspan="2">Missense mutations can result in changes in protein sequences,
+                                            but are commonly considered to have less deleterious impacts than LoF
+                                            mutations.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="/GeneDetail/{{ entrez_id }}/DenovoVariants" target="_blank">
+                                                {{ mutation_count.get("PTB").get("missense")+mutation_count.get("non-PTB").get("missense") + mutation_count.get("Mixed healthy control").get("missense")+mutation_count.get("Sibling Control").get("missense") }}</a><br>(Control)
+                                        </td>
+                                        <td>[0, ..., 21] with average of 0.300</td>
+                                    </tr>
+                                    <tr>
+                                        <td>FMRP binding targets</td>
+                                        <td>FMRP inteacting parters</td>
+                                        <td>
+                                            {% if  i['FMRP binding target'] == '0' %}
+                                                False
+                                            {% elif i['FMRP binding target'] == '1' %}
+                                                True
+                                            {% else %}
+                                                {{ i['FMRP binding target'] }}
+                                            {% endif %}
+                                        </td>
+                                        <td>[False, True]</td>
+                                        <td>FMRP loss of function causes Fragile X syndrome (FXS). The binding targets
+                                            identified crosslinking immunoprecipitation (HITS-CLIP) in mouse brains
+                                            (PMID:21784246). Many FMRP targets are among genes implicated in different
+                                            neuropsychiatric diseases, such as autism, schizophrenia.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Postsynaptic density (PSD)</td>
+                                        <td>Protein associates with postsynaptic membranes of excitatory synapses</td>
+                                        <td>
+                                            {% if  i['G2C human postsynaptic density genes'] == '0' %}
+                                                False
+                                            {% elif i['G2C human postsynaptic density genes'] == '1' %}
+                                                True
+                                            {% else %}
+                                                {{ i['G2C human postsynaptic density genes'] }}
+                                            {% endif %}
+                                        </td>
+                                        <td>[False, True]</td>
+                                        <td>Abnormalities with PSD proteins are linked to various neuropsychiatric
+                                            diseases including neurodevelopmental disorders.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Human essential genes</td>
+                                        <td>-</td>
+                                        <td>
+                                            {% if  i['Human essential genes'] == '0' %}
+                                                False
+                                            {% elif i['Human essential genes'] == '1' %}
+                                                True
+                                            {% else %}
+                                                {{ i['Human essential genes'] }}
+                                            {% endif %}
+                                        </td>
+                                        <td>[False, True]</td>
+                                        <td>Genes are thought to be critical for human survival.</td>
+                                    </tr>
+                                {% endfor %}
+
+
+                                </tbody>
+                                </table>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+
+        <div class="foot-p">
+            {#           <img class="line2" alt=""  src="/static/line2.png" style="width: 600px; height: 60px;" />#}
+            <p>
+                <small>© 2018 bmi.sjtu.edu.cn. All rights reserved.</small>
+                <br/>
+                <small>浙ICP备18030141号.</small>
+            </p>
+
+        </div>
+    </div>
+
+
+    </body>
+
+{% endblock %}

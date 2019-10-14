@@ -1,0 +1,117 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% include "muttemp.html" %}
+{% block content %} 
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="/static/bootstrap-table/dist/bootstrap-table.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script href="/static/bootstrap-table/dist/bootstrap-table.js"></script>
+<!-- Latest compiled and minified Locales -->
+<script src="/static/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<style type="text/css">
+
+body{
+	background-color:rgba(204,204,204,0.1);
+}
+.table{
+	border:1px solid #ffffff;
+	background-color:#ffffff;
+ 	border-radius:3px;
+ 	padding:20px;
+}
+</style>
+<style>
+/*footer*/
+.footer
+{
+    background-color:#007BB6;
+    width:100%;
+    display: block;
+    height:50px;
+     display: flex;
+     margin-top:20px;
+     position:relative;
+}
+.foot
+{
+    height:100px;
+    left:25%;
+    float:left;
+    font-size:15px;
+    color:#fff;
+    padding:0;
+    position:relative;
+    margin:20px;
+}
+.foot a{
+    text-decoration:none;
+    color:#CCCCCC;
+}
+.foot a:hover{
+    text-decoration:none;
+    color:#fff;
+    border-bottom:3px solid  #FFFFFF;
+}
+.foot-p
+{
+    position:absolute;
+    {#top:130px;#}
+    left:40%;
+    text-align:center;
+}
+.line2
+{
+    position:absolute;
+    top:-30px;
+    left:-25%;
+    text-align:center;
+}
+</style>
+<div class="container">
+         {% if message %}
+         	<div class="table">
+         	    <table id="table" data-class="table table-hover"  data-toggle="table" data-pagination="true" data-show-pagination-switch="true" data-page-size=10>
+         		<thead style="background-color:#007BB6; color: white">
+                    <tr>
+                        <th data-field="ID">EntrezID</th>
+                        <th data-field="sym">Symbol</th>
+                        <th data-field="chr">Chr</th>
+                        <th data-field="Band">Band</th>
+                        <th data-field="Type">Type</th>
+                        <th data-field="Gene Detail">Gene Information</th>
+                        <th data-field="Mutation Detail">Mutation Information</th>
+                    </tr>
+         		</thead>
+         		<tbody>
+         		    {% for i in message %}
+         		        <tr>
+                            <td>{{ i['ENTREZ_ID'] }}</td>
+                            <td>{{ i['Symbol'] }}</td>
+                            <td>{{ i['LOC_CHR'] }}</td>
+                            <td>{{ i['LOC_BAND'] }}</td>
+                            <td>{{ i['TYPE'] }}</td>
+                            <td>
+                                <a href="/GeneDetail/{{ i['ENTREZ_ID'] }}/GeneInformation" target="_blank">Detail</a>
+                            </td>
+                            <td>
+                                <a href="/Mutations/{{ i['ENTREZ_ID'] }}" target="_blank">Detail</a>
+                            </td>
+         		        </tr>
+         		    {% endfor %}
+         		</tbody>
+			</table>
+            </div>
+		 {% else %}
+		 	<p class="page-header">Sorry, your searching has no result in our knowledgebase.</p>
+         {% endif %}
+     </div>
+{% endblock %}
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<div class="footer">
+        <div class="foot-p">
+{#           <img class="line2" alt=""  src="/static/line2.png" style="width: 600px; height: 60px;" />#}
+            <p><small>© 2018 bmi.sjtu.edu.cn. All rights reserved.</small><br />
+                <small>浙ICP备18030141号.</small></p>
+
+        </div>
+</div>

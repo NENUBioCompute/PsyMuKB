@@ -1,0 +1,472 @@
+{% include "muttemp.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block content %}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="/static/bootstrap-table/dist/bootstrap-table.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script href="/static/bootstrap-table/dist/bootstrap-table.js"></script>
+    <!-- Latest compiled and minified Locales -->
+    <script src="/static/bootstrap-table/dist/bootstrap-table.min.js"></script>
+    <script src="\static\bootstrap-table-export.js"></script>
+    <script src="\static\tableExport.js"></script>
+    <script src="\static\nav.js"></script>
+    <script src="../static/assets-master/js/cytoscape.min.js"></script>
+    <script type="text/javascript" src="/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/jquery.js"></script>
+    <script type="text/javascript"
+            src="/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-collapse.js"></script>
+    <style type="text/css">
+        .container {
+            padding-right: 0px;
+            padding-left: 0px;
+        }
+
+        body {
+        {#background-color: rgba(204, 204, 204, 0.1);#}
+        }
+
+        .accordion {
+            border: 1px solid #ffffff;
+            background-color: #ffffff;
+            border-radius: 3px;
+            padding: 20px;
+            margin: 30px;
+        }
+
+        .little_title {
+            color: #663333;
+            font-size: 24px;
+            font-family: "Verdana";
+            padding: 5px;
+            border-bottom: 3px solid #663333;
+        }
+
+        .col-md-12 {
+            margin-top: 10px;
+        }
+
+        .accordion-heading {
+            background: url('/static/subtitle.png') no-repeat;
+            background-size: 400px 50px;
+            height: 50px;
+            width: 400px;
+            display: inline-block;
+            vertical-align: middle;
+            color: #fff;
+            padding-left: 40px;
+        }
+
+        .row {
+            margin-top: 20px;
+        }
+
+        /*fixednav*/
+        .fixednav {
+            position: fixed;
+            top: 50px;
+            left: 30%;
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+            position: fixed;
+            z-index: 999;
+            background-color: rgba(0, 123, 182, 0.8);
+        }
+
+        header ul {
+            height: 30px;
+            list-style-type: none;
+            padding-left: 25px;
+        }
+
+        header li {
+            float: left;
+            padding-right: 20px;
+
+        }
+
+        header li a {
+            text-decoration: none;
+            color: #D3D3D3;
+            font-size: 15px;
+            border-left: 3px solid #333333;
+            padding-left: 5px;
+        }
+
+        header li a:hover {
+            text-decoration: none;
+            color: #FFFFFF;
+            border-bottom: 3px solid #FFFFFF;
+        }
+    </style>
+    <style type="text/css">
+        .tab{
+          position: fixed;
+            top: 50px;
+            {#left: 30%;#}
+            {#border-bottom-right-radius: 5px;#}
+            {#border-bottom-left-radius: 5px;#}
+            {#position: fixed;#}
+            z-index: 999;
+            {#background-color: rgba(0,123,182, 0.8);#}
+        }
+        .tab .nav-tabs {
+        border-bottom: 0 none;
+        background: #eaeaea;
+        }
+        .tab .nav-tabs li a {
+        background: transparent;
+        border-radius: 0;
+        font-size: 16px;
+        border: none;
+        color: #333;
+        padding: 12px 22px;
+        }
+        .tab .nav-tabs li.active a, .tab .nav-tabs li.active a i {
+        border: 0 none;
+        background:#e67e22;
+        color: #fff;
+        }
+        .tab .nav-tabs li.active a:after {
+        content: "";
+        position: absolute;
+        left: 45%;
+        bottom: -14px;
+        border: 7px solid transparent;
+        border-top: 7px solid #e67e22;
+        }
+        .tab .tab-content {
+        padding: 5px;
+        color: #5a5c5d;
+        font-size: 14px;
+        line-height: 20px;
+        margin-top: 5px;
+        border-bottom: 1px solid #e67e22;
+        }
+        @media only screen and (max-width: 480px) {
+        .tab .nav-tabs, .tab .nav-tabs li {
+        width: 100%;
+        background: transparent;
+        }
+        .tab .nav-tabs li.active a {
+        border-radius: 10px 10px 0 0;
+        }
+        .tab .nav-tabs li:first-child a {
+        border-bottom-left-radius: 0;
+        }
+        .tab .nav-tabs li a {
+        margin-bottom: 10px;
+        border: 1px solid lightgray;
+        }
+        .tab .nav-tabs li.active a:after {
+        border: none;
+        }
+        }
+        </style>
+    <style>
+        /*footer*/
+        .footer
+        {
+            background-color:#007BB6;
+            width:100%;
+            display: block;
+            height:50px;
+             display: flex;
+             margin-top:20px;
+             position:relative;
+        }
+        .foot a{
+            text-decoration:none;
+            color:#CCCCCC;
+        }
+        .foot a:hover{
+            text-decoration:none;
+            color:#fff;
+            border-bottom:3px solid  #FFFFFF;
+        }
+        .foot-p
+        {
+            position:absolute;
+            {#top:100px;#}
+            left:40%;
+            text-align:center;
+        }
+    </style>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129012764-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-129012764-1');
+    </script>
+    <script type="text/javascript" src="../static/Js/plotly.min.js"></script>
+
+    <div class="container">
+        <div class="accordion-heading-nav" style="font-size: x-large;">
+            <nav class="tab" id="myScrollspy">
+                <ul class="nav nav-tabs" data-spy="affix">
+                    <li><a href="/GeneDetail/{{ id }}/GeneInformation">Gene Information</a></li>
+                    <li><a href="/GeneDetail/{{ id }}/Expression">Expression</a></li>
+                    <li><a href="/GeneDetail/{{ id }}/DenovoVariants"><i>De Novo</i> Variant</a></li>
+                    <li class="active"><a href="/GeneDetail/{{ id }}/Transcripts">Transcript</a></li>
+                    <li><a href="/GeneDetail/{{ id }}/PPI">Protein-Protein Interaction</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <body>
+    <div class="container text-justify">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="collapseFour" class="accordion-group">
+{#                    <div class="accordion-heading" style="font-size: x-large;">#}
+{#                        Transcripts#}
+{#                    </div>#}
+                    <div class="little_title">
+                        Visualization of regulatory element with DNMs in transcripts
+                    </div>
+                    {% if pic6 %}
+                        <div class="row">
+                            <div class="col-md-9">
+                                {{ pic6|safe }}
+                            </div>
+                            <div class="col-md-3">
+                                </br>
+                                </br>
+                                <img src="/static/leg2.png" style="width: 100%;height: 100%;">
+                            </div>
+                        </div>
+                    {% endif %}
+                    <hr/>
+                    <div class="little_title">
+                        Visualization of <i>de novo</i> variants in transcripts
+                    </div>
+
+                    {% if pic5 %}
+                        <div class="row">
+                            <div class="col-md-9">
+                                {{ pic5|safe }}
+                            </div>
+                            <div class="col-md-3">
+                                </br>
+                                </br>
+                                <img src="/static/leg1.png" style="width: 100%;height: 100%;">
+                            </div>
+                        </div>
+                    {% endif %}
+
+
+                    <div class="little_title">
+                        Visualization of original <i>de novo</i> CNV set
+                    </div>
+                    {% if pic8 %}
+                        {{ pic8|safe }}
+                        <p> We combined CNVs (detected from the same clinical phenotype) which share at least 50% of the genomic regions into a "unique CNVs" set. The unique CNV set can be viewed from <a href="/GeneDetail/{{ name }}/cnv" target="_blank">here</a>.</p>
+                    {% else %}
+                        <div style="align-self: center;">&nbsp; &nbsp;There is no corresponding data published yet, we will update it when such data available. </div>
+                    {% endif %}
+
+                    <hr/>
+
+
+                    <div class="accordion-body collapse in">
+                        <div class="accordion-inner">
+                            <div>
+                                <div>
+                                    <div>
+                                    <div class="little_title" >
+                                             Gencode transcripts (data source: Gencode)
+                                        </div>
+                                        {% for j in message %}
+                                            {% if j['Trans_Gencode'] %}
+                                                <table data-class="table table-hover" data-toggle="table"
+                                                       data-pagination="true"
+                                                       data-show-pagination-switch="true" data-page-size=5>
+                                                    <thead style="background-color:#007BB6; color: white">
+                                                    <tr>
+                                                        <th>TranscriptID</th>
+                                                        <th>Transcript_exon_region</th>
+                                                        <th>Coding_exon_region</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {% for i in j['Trans_Gencode'] %}
+                                                        <tr>
+                                                            {% if i['TranscriptID'] is string %}
+                                                                <td>{{ i['TranscriptID'] }}</td>
+                                                            {% else %}
+                                                                <td>{{ i['TranscriptID']|join(',') }}</td>
+                                                            {% endif %}
+                                                            <td>{{ i['transcript_exon_region'] }}</td>
+                                                            <td>{{ i['coding_exon_region'] }}</td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                                <hr/>
+                                            {% else %}
+                                                <div>
+                                                    <br>There is no corresponding data published yet, we will update it when such data available.
+                                                    <hr/>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                    <div>
+                                        <div class="little_title" >
+                                            Refseq transcripts (data source: Refseq)
+                                        </div>
+                                        {% for j in message %}
+                                            {% if j['Trans_Ref'] %}
+                                                <table data-class="table table-hover" data-toggle="table"
+                                                       data-pagination="true"
+                                                       data-show-pagination-switch="true" data-page-size=5>
+                                                    <thead style="background-color:#007BB6; color: white">
+                                                    <tr>
+                                                        <th>TranscriptID</th>
+                                                        <th>Transcript_exon_region</th>
+                                                        <th>Coding_exon_region</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {% for i in j['Trans_Ref'] %}
+                                                        <tr>
+                                                            {% if i['TranscriptID'] is string %}
+                                                                <td>{{ i['TranscriptID'] }}</td>
+                                                            {% else %}
+                                                                <td>{{ i['TranscriptID']|join(',') }}</td>
+                                                            {% endif %}
+                                                            <td>"{{ i['transcript_exon_region'] }}"</td>
+                                                            <td>{{ i['coding_exon_region'] }}</td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                                <hr/>
+                                            {% else %}
+                                                <div>
+                                                    <br>There is no corresponding data published yet, we will update it when such data available.
+                                                    <hr/>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div>
+                                    {% for j in message %}
+                                        {% if j['Enhance'] %}
+                                            <div class="little_title">
+                                                Enhancer of <i>{{ message[0]['Symbol'] }}</i>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <table data-class="table table-hover" data-toggle="table"
+                                                           data-pagination="true" data-show-pagination-switch="true"
+                                                           data-page-size=10>
+                                                        <thead style="background-color:#007BB6; color: white">
+                                                        <tr>
+                                                            <th>Chrom</th>
+                                                            <th>Start</th>
+
+                                                            <th>End</th>
+                                                            <th>Score</th>
+                                                            <th>Attributes</th>
+
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        {% for i in j['Enhance'] %}
+
+                                                            <tr>
+                                                                <td>{{ i['chrom'] }}</td>
+                                                                <td>{{ i['start'] }}</td>
+
+                                                                <td>{{ i['end'] }}</td>
+                                                                <td>{{ i['score'] }}</td>
+                                                                <td style="word-break:break-all; word-wrap:break-all;">{{ i['attributes'] }}</td>
+
+                                                            </tr>
+                                                        {% endfor %}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <div>
+                                    {% for j in message %}
+                                        {% if j['Promote'] %}
+                                            <div class="little_title">
+                                                Promoter of <i>{{ message[0]['Symbol'] }}</i>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <table data-class="table table-hover" data-toggle="table"
+                                                           data-pagination="true" data-show-pagination-switch="true"
+                                                           data-page-size=10>
+                                                        <thead style="background-color:#007BB6; color: white">
+                                                        <tr>
+                                                            <th>Chrom</th>
+                                                            <th>Start</th>
+
+                                                            <th>End</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        {% for i in j['Promote'] %}
+                                                            <tr>
+                                                                <td>{{ i['chrom'] }}</td>
+                                                                <td>{{ i['start'] }}</td>
+
+                                                                <td>{{ i['end'] }}</td>
+
+                                                            </tr>
+                                                        {% endfor %}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="footer">
+
+        <div class="foot-p">
+{#           <img class="line2" alt=""  src="/static/line2.png" style="width: 600px; height: 60px;" />#}
+            <p><small>© 2018 bmi.sjtu.edu.cn. All rights reserved.</small><br />
+                <small>浙ICP备18030141号.</small></p>
+
+        </div>
+</div>
+
+
+    </body>
+
+{% endblock %}
+

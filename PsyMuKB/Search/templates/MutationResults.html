@@ -1,0 +1,705 @@
+{% include "muttemp.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/locale/bootstrap-table-bootstrap-table-en-US.min.js"></script>
+    <script src="\static\bootstrap-table-export.js"></script>
+    <script src="\static\tableExport.js"></script>
+    <script src="\static\nav.js"></script>
+    <script src="js\mt.js"></script>
+    <script type="text/javascript" src="/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/jquery.js"></script>
+    <script type="text/javascript"
+            src="/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-collapse.js"></script>
+    <link href="/static/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+    <style type="text/css">
+        @font-face {
+            font-family: 'FontAwesome';
+            src: url('/static/font-awesome/fonts/fontawesome-webfont.eot?v=4.7.0');
+            src: url('/static/font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'), url('../fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'), url('../fonts/fontawesome-webfont.woff?v=4.7.0') format('woff'), url('../fonts/fontawesome-webfont.ttf?v=4.7.0') format('truetype'), url('../fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        .icon {
+            font-family: FontAwesome;
+        }
+    </style>
+    <style type="text/css">
+
+        body {
+            background-color: rgba(204, 204, 204, 0.1);
+        }
+
+        .accordion {
+            border: 1px solid #ffffff;
+            background-color: #ffffff;
+            border-radius: 3px;
+            padding: 20px;
+            margin: 30px;
+        }
+
+        .little_title {
+            color: #663333;
+            font-size: 24px;
+            font-family: "Verdana";
+            padding: 5px;
+            border-bottom: 3px solid #663333;
+        }
+
+        .col-md-12 {
+            margin-top: 10px;
+        }
+
+        .accordion-heading {
+            background: url('/static/subtitle.png') no-repeat;
+            background-size: 400px 50px;
+            height: 50px;
+            width: 400px;
+            display: inline-block;
+            vertical-align: middle;
+            color: #fff;
+            padding-left: 40px;
+        }
+
+        .row {
+            margin-top: 20px;
+        }
+
+        /*fixednav*/
+        .fixednav {
+            position: fixed;
+            top: 50px;
+            left: 30%;
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+            position: fixed;
+            z-index: 999;
+            background-color: rgba(102, 153, 153, 0.8);
+        }
+
+        header ul {
+            height: 30px;
+            list-style-type: none;
+            padding-left: 25px;
+        }
+
+        header li {
+            float: left;
+            padding-right: 20px;
+
+        }
+
+        header li a {
+            text-decoration: none;
+            color: #D3D3D3;
+            font-size: 15px;
+            border-left: 3px solid #333333;
+            padding-left: 5px;
+        }
+
+        header li a:hover {
+            text-decoration: none;
+            color: #FFFFFF;
+            border-bottom: 3px solid #FFFFFF;
+        }
+    </style>
+    <style>
+        .table__score {
+            display: block;
+            margin: 0 auto;
+            width: 60px;
+            height: 28px;
+            line-height: 30px;
+            text-align: center;
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+        {#background: #8cc83f;#}
+        }
+    </style>
+    <style>
+        /*footer*/
+        .footer {
+            background-color: #007BB6;
+            width: 100%;
+            display: block;
+            height: 50px;
+            display: flex;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .foot a {
+            text-decoration: none;
+            color: #CCCCCC;
+        }
+
+        .foot a:hover {
+            text-decoration: none;
+            color: #fff;
+            border-bottom: 3px solid #FFFFFF;
+        }
+
+        .foot-p {
+            position: absolute;
+        {#top:100px;#} left: 40%;
+            text-align: center;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("[data-toggle='tooltip']").tooltip();
+        });
+    </script>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Potential Severity Level: </h4>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li><strong>High: </strong>All LoF mutations, and the missense mutations predicted to be at
+                            least deleterious or pathogenic by 3 of 5 function prediction tools (SIFT, Polyphen2,
+                            GERP++, CADD, and Clinvar).
+                        </li>
+                        <li><strong>Medium: </strong>Missense that is predicted to be deleterious or pathogenic by from
+                            1 or 2 of 5 function prediction tools (SIFT, Polyphen2, GERP++, CADD, and Clinvar).
+                        </li>
+                        <li><strong>Low: </strong>All others.</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span
+                            class="glyphicon glyphicon-remove" aria-hidden="true"></span>Close
+                    </button>
+                    {#                                        <button type="button" id="btn_submit" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>#}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-justify">
+        {#        <div id="first-step">#}
+        {#            <center>#}
+        {#                <h2><strong>Related Mutations List</strong></h2>#}
+        {#                <p><strong>Choose mutation type and click a single mutation to show the impact details in mRNA and#}
+        {#                    protein level.</strong></p>#}
+        {#                <p>#}
+        {#                    <select id="mutaion_type">#}
+        {#                        <option value="cdm">Coding <i>de novo</i> mutations (DNMs)</option>#}
+        {#                        <option value="ncdm">Noncoding <i>de novo</i>mutations (DNMs)</option>#}
+        {#                        <option value="cnv"><i>De novo</i> copy number variations (CNVs)</option>#}
+        {#                        <option value="all" selected="selected">All</option>#}
+        {#                    </select>#}
+        {#                    <button class="btn-success mutation-type" onclick="getMutationSelect()"> Show</button>#}
+        {#                </p>#}
+        {#            </center>#}
+        {#        </div>#}
+
+        {% for j in message %}
+            {% if 'DNM' in j %}
+                <div id="table-cdm">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="little_title">
+                                Coding <i>de novo</i> mutations (DNMs) of <i>{{ j['Symbol'] }}</i>
+                            </div>
+                            <table id="coding_tb" data-class="table table-hover table-bordered table-striped"
+                                   data-toggle="table" data-pagination="true" data-fixed-columns="true"
+                                   data-fixed-number="5"
+                                   data-show-pagination-switch="true" data-page-size=5 data-search="true"
+                                   data-search-on-enter-key="true" data-show-refresh="true" data-undefined-text="."
+                                   data-select-item-name="radioName">
+                                <thead style="background-color:#007BB6; color: white">
+                                <tr>
+                                    <th>Impact details in <br>mRNA and protein level</th>
+                                    <th data-field="chr" data-sortable="true"><span data-toggle="tooltip"
+                                                                                    data-placement="top"
+                                                                                    title="Chromosome number">Chr</span>
+                                    </th>
+                                    <th data-sortable="true"><span data-toggle="tooltip" data-placement="top"
+                                                                   title="Genomic position on the chromosome as to hg19 (1-based coordinate)">Position</span>
+                                    </th>
+                                    <th><span data-toggle="tooltip" data-placement="top"
+                                              title="Reference nucleotide allele > Alternate nucleotide allele">Variant</span>
+                                    </th>
+                                    <th data-sortable="true"><span data-toggle="tooltip" data-placement="top"
+                                                                   title="Exonic variant function, e.g., nonsynonymous, synonymous, frameshift insertion">Exonic Func</span>
+                                    </th>
+                                    <th data-sortable="true"><span data-toggle="tooltip" data-placement="top"
+                                                                   title="Sample from case or control set">Case or control</span>
+                                    </th>
+                                    <th data-sortable="true"><span data-toggle="tooltip" data-placement="top"
+                                                                   title="Main phenotype of the patients for inclusion in the study">Primary Phenotype</span>
+                                    </th>
+                                    <th data-sortable="true">
+                                        {#                                        <span data-toggle="tooltip" data-placement="top" title="Impact level evaluated by types of mutations and predict tools (SIFT, Polyphen2, GERP++, CADD, and Clinvar).">#}
+                                        Potential Severity Level
+                                        {#                                        </span>#}
+                                        <span onclick="ds()"><span class="icon">&#xf29c</span></span></th>
+                                    <script>
+                                        function ds() {
+                                            $("#myModalLabel").text("Impact Level");
+                                            $('#myModal').modal();
+                                        }
+                                    </script>
+                                     <th>View in <br>UCSC Genome Browser</th>
+                                    <th><span data-toggle="tooltip" data-placement="top"
+                                              title="Loss of function">LoF</span></th>
+                                    <th><span data-toggle="tooltip" data-placement="top"
+                                              title="SIFT prediction">SIFT</span></th>
+                                    <th><span data-toggle="tooltip" data-placement="top"
+                                              title="Pholyphen2 prediction based on HDIV">Polyphen2</span></th>
+                                    <th><span data-toggle="tooltip" data-placement="top"
+                                              title='GREP++ "rejected substitutions" (RS) score'>GERP++</span></th>
+                                    <th><span data-toggle="tooltip" data-placement="top"
+                                              title="Combined Annotation Dependent Depletion, phred-scaled scores, 10 means 10% percentile highest scores, 20 means 1% percentile highest scores, and 30% means 0.1% percentile highest scores.">CADD</span>
+                                    </th>
+                                    <th><span data-toggle="tooltip" data-placement="top"
+                                              title="ClinVar_SIG">ClinVar</span></th>
+                                    <th><span data-toggle="tooltip" data-placement="top"
+                                              title="Mutation site in protein structure">Mutation site in <br>protein structure</span>
+                                    </th>
+                                    <th><span data-toggle="tooltip" data-placement="top"
+                                              title="Sample ID of the variant carrier">Sample ID</span></th>
+                                    <th><span data-toggle="tooltip" data-placement="top"
+                                              title="The Study that indicates the variant">Study</span></th>
+                                    <th><span data-toggle="tooltip" data-placement="top"
+                                              title="Validation status of the variant">Validation</span></th>
+                                    <th><span data-toggle="tooltip" data-placement="top"
+                                              title="Average alternative allele frequency of the variant in all 1000G sets">1000G_ALL</span>
+                                    </th>
+                                    <th><span data-toggle="tooltip" data-placement="top"
+                                              title="Frequency of the variant in the ExAC database">ExAC_Freq</span>
+                                    </th>
+                                    <th><span data-toggle="tooltip" data-placement="top"
+                                              title="Allele frequency in gnomAD exome set">gnomAD_exome_ALL</span></th>
+                                    <th><span data-toggle="tooltip" data-placement="top"
+                                              title="Allele frequency in gnomAD genome set">gnomAD_genome_ALL</span>
+                                    </th>
+                                    <th><span data-toggle="tooltip" data-placement="top"
+                                              title="DeepSEA score from DeepSEA, a deep learning-based algorithmic framework for predicting the chromatin effects of sequence alterations with single nucleotide sensitivity.">DeepSea_Score</span>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for i in j['DNM'] %}
+                                    {% if i['Func refGene'] in ['exonic', 'exonic;splicing', 'splicing'] %}
+                                        <tr>
+                                            <td><a target="_blank"
+                                                   href="/MutationDetails/gene={{ entrez_id }},location=coding-dnm,position={{ i['Position'] }},chr={{ i['chr'] }}">view</a>
+                                            </td>
+                                            <td class="chr">{{ i['chr'] }}</td>
+                                           <td class="pos">chr{{ i['chr'] }}:{{ i['Position'] }}-{{ i.get('Position2') }}</td>
+                                            <td>{{ i['Variant'] }}</td>
+                                            {% if i['Exonic Func'] == 'nonsynonymous SNV' %}
+                                                <td>missense (nonsynonymous SNV)</td>
+                                            {% elif i['Exonic Func'] == 'stopgain' %}
+                                                <td>nonsense (stopgain)</td>
+                                            {% else %}
+                                                <td>{{ i['Exonic Func'] }}</td>
+                                            {% endif %}
+                                            {% if  i['Disorder'] in ['Fetal preterm birth (PTB)', 'Fetal non-Preterm birth (non-PTB)','Uncharacterized (Mixed healthy control)','Sibling Control'] %}
+                                                <td>Control</td>
+                                            {% else %}
+                                                <td>Case</td>
+                                            {% endif %}
+                                            {% if i['Disorder'] is string %}
+                                                <td>{{ i['Disorder'] }}</td>
+                                            {% else %}
+                                                <td>{{ i['Disorder']|join(',') }}</td>
+                                            {% endif %}
+                                            {#                                            <td>{{ i['ENTREZ_ID'] }}</td>#}
+                                            {% if mutation_score_list[loop.index0] == 'Low' %}
+                                                <td><span class="table__score"
+                                                          style="background-color: #FFB3A7">Low</span></td>
+                                            {% elif mutation_score_list[loop.index0] == 'Medium' %}
+                                                <td><span class="table__score"
+                                                          style="background-color: #DB5A6D">Medium</span></td>
+                                            {% elif mutation_score_list[loop.index0] == 'High' %}
+                                                <td><span class="table__score"
+                                                          style="background-color: #ee100b">High</span></td>
+                                            {% endif %}
+                                             <td>
+                                        <a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg19&lastVirtModeType=default&lastVirtModeExtraState=&virtModeType=default&virtMode=0&nonVirtPosition=&position=chr{{ i['chr'] }}%3A{{ i['Position'] }}-{{ i['Position'] }}"
+                                           target="_blank">view</a></td>
+
+                                            {% if i['Exonic Func'] in ['frameshift substitution', 'frameshift deletion', 'frameshift insertion', 'stopgain', 'Splice-site mutation'] %}
+                                                <td><span style="color: red">{{ i['Exonic Func'] }}</span></td>
+                                            {% else %}
+                                                <td>{{ i['Exonic Func'] }}</td>
+                                            {% endif %}
+                                            {% if i['SIFT_pred'] == 'D' %}
+                                                <td><span style="color: red">{{ i['SIFT_pred'] }}</span></td>
+                                            {% else %}
+                                                {% if i['SIFT_pred'] in ['', None, ' ', '-'] %}
+                                                    <td>.</td>
+                                                {% else %}
+                                                    <td>{{ i['SIFT_pred'] }}</td>
+                                                {% endif %}
+                                            {% endif %}
+                                            {% if i['Polyphen2_HVAR_pred'] == 'D' %}
+                                                <td><span style="color: red">{{ i['Polyphen2_HVAR_pred'] }}</span></td>
+                                            {% else %}
+                                                {% if i['Polyphen2_HVAR_pred'] in ['', None, ' ', '-'] %}
+                                                    <td>.</td>
+                                                {% else %}
+                                                    <td>{{ i['Polyphen2_HVAR_pred'] }}</td>
+                                                {% endif %}
+                                            {% endif %}
+                                            {% if i.get('GERP++_RS') not in ['.', '-', '', None, '_'] %}
+                                                {% if i.get('GERP++_RS')|float >= 5.6 %}
+                                                    <td><span style="color: red">{{ i['GERP++_RS'] }}</span></td>
+                                                {% else %}
+                                                    <td>{{ i['GERP++_RS'] }}</td>
+                                                {% endif %}
+                                            {% else %}
+                                                <td>.</td>
+                                            {% endif %}
+                                            {% if i.get('CADD_phred') not in ['.', '-', '', None] %}
+                                                {% if i['CADD_phred']|float >= 30 %}
+                                                    <td><span style="color: red">{{ i['CADD_phred'] }}</span></td>
+                                                {% else %}
+                                                    <td>{{ i['CADD_phred'] }}</td>
+                                                {% endif %}
+                                            {% else %}
+                                                <td>.</td>
+                                            {% endif %}
+                                            {% if  'pathogenic'in i.get('ClinVar_SIG') or 'Pathogenic'in i.get('ClinVar_SIG') %}
+                                                <td><span style="color: red">{{ i['ClinVar_SIG'] }}</span></td>
+                                            {% else %}
+                                                {% if i['ClinVar_SIG'] in ['', None, ' ', '-'] %}
+                                                    <td>.</td>
+                                                {% else %}
+                                                    <td>{{ i['ClinVar_SIG'] }}</td>
+                                                {% endif %}
+                                            {% endif %}
+
+                                            <td>
+                                                <a href="http://hg19.cravat.us/MuPIT_Interactive/?gm=chr{{ i['chr'] +":" + i['Position'] }}"
+                                                   target="_blank">muPIT</a>
+                                            </td>
+                                            <td>{{ i['SampleID'] }}</td>
+                                            <td>
+                                                <a href="https://www.ncbi.nlm.nih.gov/pubmed/{{ i['PMID'] }}">{{ i['1st author'] }}</a>
+                                            </td>
+                                            <td>{{ i['Validation'] }}</td>
+                                            {% if i['1000G_Freq'] in ['', None, ' ', '-'] %}
+                                                <td>.</td>
+                                            {% else %}
+                                                <td>{{ i['1000G_Freq'] }}</td>
+                                            {% endif %}
+                                            {% if i['ExAC_Freq'] in ['', None, ' ', '-'] %}
+                                                <td>.</td>
+                                            {% else %}
+                                                <td>{{ i['ExAC_Freq'] }}</td>
+                                            {% endif %}
+                                            {% if i['gnomAD_exome_ALL'] in ['', None, ' ', '-'] %}
+                                                <td>.</td>
+                                            {% else %}
+                                                <td>{{ i['gnomAD_exome_ALL'] }}</td>
+                                            {% endif %}
+                                            {% if i['gnomAD_genome_ALL'] in ['', None, ' ', '-'] %}
+                                                <td>.</td>
+                                            {% else %}
+                                                <td>{{ i['gnomAD_genome_ALL'] }}</td>
+                                            {% endif %}
+                                            {% if i['DeepSea_Score'] in ['', None, ' ', '-'] %}
+                                                <td>.</td>
+                                            {% else %}
+                                                <td>{{ i['DeepSea_Score'] }}</td>
+                                            {% endif %}
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                                </tbody>
+                                {#                                <script>#}
+                                {#alert($('#table').bootstrapTable('getSelections'));#}
+                                {#                                    $('#coding_tb').on('click-row.bs.table', function (e, row, element, field) {#}
+                                {#                                        gene=85358,location=coding-dnm,position=51137146,chr=22#}
+                                {#                                        if (field != 13 && field != 15) {#}
+                                {#                                            var gene_location = (window.location.href).split('/')[4].replace(/#/,'');#}
+                                {#                                            alert(gene_location);#}
+                                {#                                            var location = 'coding-dnm';#}
+                                {#                                            var chr = row[0];#}
+                                {#                                            var position = row[1];#}
+                                {#                                            alert(row[1]);//获取到姓名#}
+                                {#                                            window.location.href = "/MutationDetails/" + 'gene=' + gene_location + ',location='#}
+                                {#                                                + location + ',position=' + position + ',chr=' + chr;#}
+                                {#                                        }#}
+                                {#                                    });#}
+                                {#                                </script>#}
+                            </table>
+                            * Values in red font present counted severity level assessments; The "."s in cells mean
+                            "N/A" for values. For more details on the annotation category, please see <a
+                                href="http://psymukb.net/Document/Instruction" target="_blank">document</a>.
+                            <hr>
+
+                        </div>
+                    </div>
+                </div>
+                <div id="table-ncdm">
+                    <div style="margin-top:20px;" class="little_title">
+                        Non-coding <i>de novo</i> mutations (DNMs) of <i>{{ j['Symbol'] }}</i>
+                    </div>
+                    <table id="noncoding_tb" data-class="table table-hover" data-toggle="table" data-pagination="true"
+                           data-show-pagination-switch="true" data-page-size=5 data-search="true"
+                           data-search-on-enter-key="true" data-show-refresh="true" data-undefined-text=".">
+                        <thead style="background-color:#007BB6; color: white">
+                        <tr>
+
+                            <th data-sortable="true"><span data-toggle="tooltip" data-placement="top"
+                                                           title="Chromosome number">Chr</span></th>
+                            <th data-sortable="true"><span data-toggle="tooltip" data-placement="top"
+                                                           title="Genomic position on the chromosome as to hg19 (1-based coordinate)">Position</span>
+                            </th>
+                            <th><span data-toggle="tooltip" data-placement="top"
+                                      title="Reference nucleotide allele > Alternate nucleotide allele">Variant</span>
+                            </th>
+                            <th data-sortable="true"><span data-toggle="tooltip" data-placement="top"
+                                                           title="Regions (e.g., exonic, intronic, non-coding RNA)) that one variant hits">Func.refGene</span>
+                            </th>
+                            <th>View in <br>UCSC Genome Browser</th>
+                            <th data-sortable="true"><span data-toggle="tooltip" data-placement="top"
+                                                           title="Sample from case or control set">Case or control</span>
+                            </th>
+                            <th data-sortable="true"><span data-toggle="tooltip" data-placement="top"
+                                                           title="Main phenotype of the patients for inclusion in the study">Primary Phenotype</span>
+                            </th>
+                            <th><span data-toggle="tooltip" data-placement="top"
+                                      title="Sample ID of the variant carrier">Sample ID</span></th>
+                            <th><span data-toggle="tooltip" data-placement="top"
+                                      title="The Study that indicates the variant">Study</span></th>
+                            <th><span data-toggle="tooltip" data-placement="top"
+                                      title="Validation status of the variant">Validation</span></th>
+                            <th><span data-toggle="tooltip" data-placement="top"
+                                      title="Average alternative allele frequency of the variant in all 1000G sets">1000G_ALL</span>
+                            </th>
+                            <th><span data-toggle="tooltip" data-placement="top"
+                                      title="Combined Annotation Dependent Depletion, phred-scaled scores, 10 means 10% percentile highest scores, 20 means 1% percentile highest scores, and 30% means 0.1% percentile highest scores">CADD_phred</span>
+                            </th>
+                            <th><span data-toggle="tooltip" data-placement="top"
+                                      title="Allele frequency in gnomAD genome set">GnomAD_genome_ALL</span></th>
+                            <th><span data-toggle="tooltip" data-placement="top" title="The identifier of enhancer">Enhancer_ID</span>
+                            </th>
+                            <th><span data-toggle="tooltip" data-placement="top"
+                                      title="The chromosome number of the enhancer">Enhancer_Chr</span></th>
+                            <th><span data-toggle="tooltip" data-placement="top"
+                                      title="The start position of the enhancer on the chromosome">Enhancer_Start</span>
+                            </th>
+                            <th><span data-toggle="tooltip" data-placement="top"
+                                      title="The end position of the enhancer on the chromosome">Enhancer_End</span>
+                            </th>
+                            <th><span data-toggle="tooltip" data-placement="top"
+                                      title="The target gene ID of the enhancer">Enhancer_Target_GeneID</span></th>
+                            <th><span data-toggle="tooltip" data-placement="top" title="The identifier of promoter">Promoter_ID</span>
+                            </th>
+                            <th><span data-toggle="tooltip" data-placement="top"
+                                      title="The chromosome number of the promoter">Promoter_Chr</span></th>
+                            <th><span data-toggle="tooltip" data-placement="top"
+                                      title="The start position of the promoter on the chromosome">Promoter_Start</span>
+                            </th>
+                            <th><span data-toggle="tooltip" data-placement="top"
+                                      title="The end position of the promoter on the chromosome">Promoter_End</span>
+                            </th>
+                            <th><span data-toggle="tooltip" data-placement="top"
+                                      title="The target gene ID of the promoter">Promoter_Target_Geneid</span></th>
+                            <th><span data-toggle="tooltip" data-placement="top"
+                                      title="The target gene symbol of the promoter">Promoter_Gene_Symbol</span></th>
+                            <th><span data-toggle="tooltip" data-placement="top"
+                                      title="DeepSEA score from DeepSEA, a deep learning-based algorithmic framework for predicting the chromatin effects of sequence alterations with single nucleotide sensitivity">DeepSea_Score</span>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for i in j['DNM'] %}
+                            {% if i['Func refGene'] in ['intergenic', 'ncRNA_exonic', 'ncRNA_exonic;splicing', 'ncRNA_intronic', 'ncRNA_splicing', 'downstream', 'intronic', 'upstream', 'upstream;downstream', 'UTR3', 'UTR5', 'UTR5;UTR3'] %}
+                                <tr>
+                                    {#                                    <td><a target="_blank"#}
+                                    {#                                           href="/MutationDetails/gene={{ entrez_id }},location=non-coding-dnm,position={{ i['Position'] }},chr={{ i['chr'] }}">view</a>#}
+                                    {#                                    </td>#}
+
+                                    <td class="chr">{{ i['chr'] }}</td>
+                                    <td class="pos">chr{{ i['chr'] }}:{{ i['Position'] }}-{{ i.get('Position2') }}</td>
+{#                                    <td class="alt_pos">{{ i['Position'] }}</td>#}
+                                    <td>{{ i['Variant'] }}</td>
+                                    <td>{{ i['Func refGene'] }}</td>
+                                    <td>
+                                        <a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg19&lastVirtModeType=default&lastVirtModeExtraState=&virtModeType=default&virtMode=0&nonVirtPosition=&position=chr{{ i['chr'] }}%3A{{ i['Position'] }}-{{ i['Position'] }}"
+                                           target="_blank">view</a></td>
+                                    {% if  i['Disorder'] in ['Fetal preterm birth (PTB)', 'Fetal non-Preterm birth (non-PTB)','Uncharacterized (Mixed healthy control)','Sibling Control'] %}
+                                        <td>Control</td>
+                                    {% else %}
+                                        <td>Case</td>
+                                    {% endif %}
+                                    {% if i['Disorder'] is string %}
+                                        <td>{{ i['Disorder'] }}</td>
+                                    {% else %}
+                                        <td>{{ i['Disorder']|join(',') }}</td>
+                                    {% endif %}
+                                    <td>{{ i['SampleID'] }}</td>
+                                    <td>
+                                        <a href="https://www.ncbi.nlm.nih.gov/pubmed/{{ i['PMID'] }}">{{ i['1st author'] }}</a>
+                                    </td>
+                                    <td>{{ i['Validation'] }}</td>
+                                    <td>{{ i['1000G_Freq'] }}</td>
+                                    <td>{{ i['CADD_phred'] }}</td>
+                                    <td>{{ i['gnomAD_genome_ALL'] }}</td>
+                                    <td>{{ i['enhancerid'] }}</td>
+                                    <td>{{ i['enh_chr'] }}</td>
+                                    <td>{{ i['e_start'] }}</td>
+                                    <td>{{ i['e_end'] }}</td>
+                                    <td>{{ i['enh_target_geneid'] }}</td>
+                                    <td>{{ i['promoterid'] }}</td>
+                                    <td>{{ i['pro_chr'] }}</td>
+                                    <td>{{ i['p_start'] }}</td>
+                                    <td>{{ i['p_end'] }}</td>
+                                    <td>{{ i['pro_target_geneid'] }}</td>
+                                    <td>{{ i['pro_gene_symbol'] }}</td>
+                                    <td>{{ i['DeepSea_Score'] }}</td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                        </tbody>
+                        {#                        <script>#}
+                        {#                            $('#noncoding_tb').on('click-row.bs.table', function (e, row, element, field) {#}
+                        {#gene=85358,location=non-coding-dnm,position=51153476,chr=22#}
+                        {#                                if (field != 8) {#}
+                        {#                                    var gene_location = (window.location.href).split('/')[4].replace(/#/,'');;#}
+                        {#                                    var location = 'non-coding-dnm';#}
+                        {#                                    var chr = row[0];#}
+                        {#                                    var position = row[1];#}
+                        {#                                    window.location.href = "/MutationDetails/" + 'gene=' + gene_location + ',location='#}
+                        {#                                        + location + ',position=' + position + ',chr=' + chr;#}
+                        {#                                }#}
+                        {#alert(field);#}
+                        {##}
+                        {#                            });#}
+                        {#                        </script>#}
+                    </table>
+                    More details on annotation category, see <a href="http://psymukb.net/Document/Instruction"
+                                                                target="_blank">document</a>.
+                    <hr>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        {% for j in message %}
+            {% if j['CNV'] %}
+                <div id="table-cnv">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="little_title">
+                                <i>De novo</i> copy number variations (CNVs) of <i>{{ j['Symbol'] }}</i>
+                            </div>
+
+
+                            <table data-class="table table-hover" data-toggle="table" data-pagination="true"
+                                   data-show-pagination-switch="true" data-page-size=5>
+                                <thead style="background-color:#007BB6; color: white">
+                                <tr>
+                                    <th><span data-toggle="tooltip" data-placement="top"
+                                              title="Chromosome number">Chr</span></th>
+                                    <th><span data-toggle="tooltip" data-placement="top" title="CNV ID">CNV_ID</span>
+                                    </th>
+                                    <th><span data-toggle="tooltip" data-placement="top"
+                                              title="CytoBand location of the CNV">Band</span></th>
+                                    <th><span data-toggle="tooltip" data-placement="top"
+                                              title="Mutation type of the CNV">Mutation Type</span></th>
+                                    <th><span data-toggle="tooltip" data-placement="top"
+                                              title="CNV start position in hg19">Start</span></th>
+                                    <th><span data-toggle="tooltip" data-placement="top"
+                                              title="CNV end position in hg19">End</span></th>
+                                    <th><span data-toggle="tooltip" data-placement="top"
+                                              title="Clinical phenotype of the CNV carrier">Disorder</span></th>
+                                    <th><span data-toggle="tooltip" data-placement="top"
+                                              title="Patient ID of the CNV carrier">Patient ID</span></th>
+                                    <th><span data-toggle="tooltip" data-placement="top"
+                                              title="The Study that indicates the CNV">Study</span></th>
+                                    <th><span data-toggle="tooltip" data-placement="top"
+                                              title="The total number of probands involved in the study">Of probands</span>
+                                    </th>
+                                    <th><span data-toggle="tooltip" data-placement="top"
+                                              title="The total number of controls involved in the study">Of controls</span>
+                                    </th>
+                                    <th><span data-toggle="tooltip" data-placement="top" title="Genes the CNV hits">Gene Symbols</span>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for i in j['CNV'] %}
+                                    <tr>
+                                        {#                                <td><input type="radio" name="checkItem"/></td>#}
+                                        <td>{{ i['chr'] }}</td>
+                                        <td>{{ i['CNV_ID'] }}</td>
+                                        <td>{{ i['Band'] }}</td>
+                                        <td>{{ i['mutation type'] }}</td>
+                                        <td class="start">{{ i['start'] }}</td>
+                                        <td class="end">{{ i['end'] }}</td>
+                                        {% if i['Disorder'] is string %}
+                                            <td>{{ i['Disorder'] }}</td>
+                                        {% else %}
+                                            <td>{{ i['Disorder']|join(',') }}</td>
+                                        {% endif %}
+                                        <td>{{ i['Patient ID'] }}</td>
+                                        <td>
+                                            <a href="https://www.ncbi.nlm.nih.gov/pubmed/{{ i['pmid'] }}">{{ i['First author'] }}</a>
+                                        </td>
+                                        <td>{{ i['of probands'] }}</td>
+                                        <td>{{ i['of controls'] }}</td>
+                                        {% if i['genesymbol'] is string %}
+                                            <td style="word-break:break-all; word-wrap:break-all;">{{ i['genesymbol'] }}</td>
+                                        {% else %}
+                                            <td style="word-break:break-all; word-wrap:break-all;">{{ i['genesymbol']|join(',') }}</td>
+                                        {% endif %}
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    {#    <script language="javascript" type="text/javascript">#}
+    {#        function getMutationSelect() {#}
+    {#            var selected = document.getElementById("mutaion_type").value;#}
+    {#            if (selected == 'cdm') {#}
+    {#                document.getElementById("table-cdm").style.display = "block";#}
+    {#                document.getElementById("table-ncdm").style.display = "none";#}
+    {#                document.getElementById("table-cnv").style.display = "none";#}
+    {#            } else if (selected == 'ncdm') {#}
+    {#                document.getElementById("table-cdm").style.display = "none";#}
+    {#                document.getElementById("table-ncdm").style.display = "block";#}
+    {#                document.getElementById("table-cnv").style.display = "none";#}
+    {#            } else if (selected == 'cnv') {#}
+    {#                document.getElementById("table-cdm").style.display = "none";#}
+    {#                document.getElementById("table-ncdm").style.display = "none";#}
+    {#                document.getElementById("table-cnv").style.display = "block";#}
+    {#            } else {#}
+    {#                document.getElementById("table-cdm").style.display = "block";#}
+    {#                document.getElementById("table-ncdm").style.display = "block";#}
+    {#                document.getElementById("table-cnv").style.display = "block";#}
+    {#            }#}
+    {#        }#}
+    {#    </script>#}
+    <div class="footer">
+        <div class="foot-p">
+            <p>
+                <small>© 2018 bmi.sjtu.edu.cn. All rights reserved.</small>
+                <br/>
+                <small>浙ICP备18030141号.</small>
+            </p>
+        </div>
+    </div>
+
+{% endblock %}

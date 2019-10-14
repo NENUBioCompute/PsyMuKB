@@ -1,0 +1,963 @@
+{% include "muttemp.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block content %}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/locale/bootstrap-table-bootstrap-table-en-US.min.js"></script>
+    <script src="\static\bootstrap-table-export.js"></script>
+    <script src="\static\tableExport.js"></script>
+    <script src="\static\nav.js"></script>
+    <script src="../static/assets-master/js/cytoscape.min.js"></script>
+    <script src="../static/assets-master/js/echarts.min.js"></script>
+    <script type="text/javascript" src="/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/jquery.js"></script>
+    <script type="text/javascript"
+            src="/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-collapse.js"></script>
+    <style type="text/css">
+        .container {
+            padding-right: 0px;
+            padding-left: 0px;
+        }
+
+        body {
+        {#background-color: rgba(204, 204, 204, 0.1);#}
+        }
+
+        .accordion {
+            border: 1px solid #ffffff;
+            background-color: #ffffff;
+            border-radius: 3px;
+            padding: 20px;
+            margin: 30px;
+        }
+
+        .little_title {
+            color: #663333;
+            font-size: 24px;
+            font-family: "Verdana";
+            padding: 5px;
+            border-bottom: 3px solid #663333;
+        }
+
+        .col-md-12 {
+            margin-top: 10px;
+        }
+
+        .accordion-heading {
+            background: url('/static/subtitle.png') no-repeat;
+            background-size: 400px 50px;
+            height: 50px;
+            width: 400px;
+            display: inline-block;
+            vertical-align: middle;
+            color: #fff;
+            padding-left: 40px;
+        }
+
+        .row {
+            margin-top: 20px;
+        }
+
+        /*fixednav*/
+        .fixednav {
+            position: fixed;
+            top: 50px;
+            left: 30%;
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+            position: fixed;
+            z-index: 999;
+            background-color: rgba(0,123,182, 0.8);
+        }
+
+        header ul {
+            height: 30px;
+            list-style-type: none;
+            padding-left: 25px;
+        }
+
+        header li {
+            float: left;
+            padding-right: 20px;
+
+        }
+
+        header li a {
+            text-decoration: none;
+            color: #D3D3D3;
+            font-size: 15px;
+            border-left: 3px solid #333333;
+            padding-left: 5px;
+        }
+
+        header li a:hover {
+            text-decoration: none;
+            color: #FFFFFF;
+            border-bottom: 3px solid #FFFFFF;
+        }
+    </style>
+    <style>
+        .active a {
+            text-decoration: none;
+            color: #5599FF;
+            border-bottom: 3px solid #FFFFFF;
+        }
+    </style>
+    <style type="text/css">
+        .tab{
+          position: fixed;
+            top: 50px;
+            {#left: 30%;#}
+            {#border-bottom-right-radius: 5px;#}
+            {#border-bottom-left-radius: 5px;#}
+            {#position: fixed;#}
+            z-index: 999;
+            {#background-color: rgba(0,123,182, 0.8);#}
+        }
+        .tab .nav-tabs {
+        border-bottom: 0 none;
+        background: #eaeaea;
+        }
+        .tab .nav-tabs li a {
+        background: transparent;
+        border-radius: 0;
+        font-size: 16px;
+        border: none;
+        color: #333;
+        padding: 12px 22px;
+        }
+        .tab .nav-tabs li.active a, .tab .nav-tabs li.active a i {
+        border: 0 none;
+        background:#e67e22;
+        color: #fff;
+        }
+        .tab .nav-tabs li.active a:after {
+        content: "";
+        position: absolute;
+        left: 45%;
+        bottom: -14px;
+        border: 7px solid transparent;
+        border-top: 7px solid #e67e22;
+        }
+        .tab .tab-content {
+        padding: 5px;
+        color: #5a5c5d;
+        font-size: 14px;
+        line-height: 20px;
+        margin-top: 5px;
+        border-bottom: 1px solid #e67e22;
+        }
+        @media only screen and (max-width: 480px) {
+        .tab .nav-tabs, .tab .nav-tabs li {
+        width: 100%;
+        background: transparent;
+        }
+        .tab .nav-tabs li.active a {
+        border-radius: 10px 10px 0 0;
+        }
+        .tab .nav-tabs li:first-child a {
+        border-bottom-left-radius: 0;
+        }
+        .tab .nav-tabs li a {
+        margin-bottom: 10px;
+        border: 1px solid lightgray;
+        }
+        .tab .nav-tabs li.active a:after {
+        border: none;
+        }
+        }
+        </style>
+    <style>
+        /*footer*/
+        .footer
+        {
+            background-color:#007BB6;
+            width:100%;
+            display: block;
+            height:50px;
+             display: flex;
+             margin-top:20px;
+             position:relative;
+        }
+        .foot a{
+            text-decoration:none;
+            color:#CCCCCC;
+        }
+        .foot a:hover{
+            text-decoration:none;
+            color:#fff;
+            border-bottom:3px solid  #FFFFFF;
+        }
+        .foot-p
+        {
+            position:absolute;
+            {#top:100px;#}
+            left:40%;
+            text-align:center;
+        }
+    </style>
+    <style>
+        .table_head
+        {
+            /* Rotate div */
+            transform:rotate(360deg);
+            -ms-transform:rotate(9deg); /* Internet Explorer */
+            -moz-transform:rotate(9deg); /* Firefox */
+            -webkit-transform:rotate(9deg); /* Safari 和 Chrome */
+            -o-transform:rotate(9deg); /* Opera */
+        }
+        .vr.text span, .vr.text {
+          writing-mode: vertical-rl;
+          -webkit-writing-mode: vertical-rl;
+          -ms-writing-mode: bt-rl;
+        }
+        .vrt{
+          writing-mode: vertical-rl;
+          -webkit-writing-mode: vertical-rl;
+          -ms-writing-mode: vertical-rl;
+        }
+    </style>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129012764-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-129012764-1');
+    </script>
+     <script>
+        $(function () { $("[data-toggle='tooltip']").tooltip(); });
+    </script>
+    <script type="text/javascript" src="../static/Js/plotly.min.js"></script>
+{#    <style type="text/css">.table {table-layout:fixed;word-break:break-all;}</style>#}
+    <div class="container">
+        <div class="accordion-heading-nav" style="font-size: x-large;">
+            <nav class="tab" id="myScrollspy">
+                <ul class="nav nav-tabs" data-spy="affix">
+                    <li><a href="/GeneDetail/{{ id }}/GeneInformation">Gene Information</a></li>
+                    <li><a href="/GeneDetail/{{ id }}/Expression">Expression</a></li>
+                    <li class="active"><a href="/GeneDetail/{{ id }}/DenovoVariants"><i>De Novo</i> Variant</a></li>
+                    <li><a href="/GeneDetail/{{ id }}/Transcripts">Transcript</a></li>
+                    <li><a href="/GeneDetail/{{ id }}/PPI">Protein-Protein Interaction</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+               <div class="accordion-group">
+{#                    <div class="accordion-heading" style="font-size: x-large;">#}
+{#                        <i>De novo</i> Variants#}
+{#                    </div>#}
+                    <div class="accordion-body collapse in">
+                        <div class="accordion-inner">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {% if mutation_count %}
+                                        <div style="overflow:scroll;">
+                                        <table class="table table-bordered table-hover table-striped table-condensed"
+                                               data-fixed-columns="true" data-fixed-number="3" style="min-width:1000px;">
+                                            <thead>
+                                                <tr bgcolor="#007BB6">
+                                                    <th rowspan="2" style='vertical-align: middle;text-align: center;'><span style="color: white;" >Variant type</span></th>
+                                                    <th colspan="4" rowspan="2" style='vertical-align: middle;text-align: center;'><span style="color: white;">Phenotypes</span></th>
+                                                     <th rowspan="2" class="vr text" style="vertical-align: middle;"><span data-toggle="tooltip" data-placement="top" title="Total" style="color: white;">Total</span></th>
+                                                    <th colspan="27" style='vertical-align: middle;text-align: center;'><span style="color: white;">Case</span></th>
+                                                    <th colspan="4" style='vertical-align: middle;text-align: center;'><span style="color: white;">Control</span></th>
+                                                    <th rowspan="2" class="vr text"><span data-toggle="tooltip" data-placement="top" title="Others" style="color: white;">Others</span></th>
+                                                </tr>
+                                                <tr bgcolor="#007BB6" >
+                                                    <th class="vr text" style="vertical-align: text-top;"> <span data-toggle="tooltip" data-placement="top" title="Acromelic Frontonasal Dysostosis" style="color: white;">AFND</span></th>
+                                                    <th class="vr text" style="vertical-align: top;"><span data-toggle="tooltip" data-placement="top" title="Amyotrophic Lateral Sclerosis" style="color: white;">ALS</span></th>
+                                                    <th class="vr text" style="vertical-align: top;"><span data-toggle="tooltip" data-placement="top" title="Anophthalmia and Microphthalmia" style="color: white;">A/M</span></th>
+                                                    <th class="vr text" style="vertical-align: top;"><span data-toggle="tooltip" data-placement="top" title="Attention Deficit Hyperactivity Disorder" style="color: white;">ADHD</span></th>
+                                                    <th class="vr text"  style="vertical-align: top; width: 10px"><span data-toggle="tooltip" data-placement="top" title="Autism" style="color: white;">ASD</span></th>
+                                                    <th class="vr text" style="vertical-align: top;"><span data-toggle="tooltip" data-placement="top" title="Bipolar Disorder" style="color: white;">BP</span></th>
+                                                    <th class="vr text" style="vertical-align: top;"><span data-toggle="tooltip" data-placement="top" title="Cantu Syndrome" style="color: white;">CS</span></th>
+                                                    <th class="vr text" style="vertical-align: top;"><span data-toggle="tooltip" data-placement="top" title="Cerebral Palsy" style="color: white;">CP</span></th>
+                                                    <th class="vr text" style="vertical-align: top;"><span data-toggle="tooltip" data-placement="top" title="Congenital Diaphragmatic Hernia" style="color: white;">CDH</span></th>
+                                                    <th class="vr text" style="vertical-align: top;"><span data-toggle="tooltip" data-placement="top" title="Congenital Heart Disease" style="color: white;">CHD</span></th>
+                                                    <th class="vr text" style="vertical-align: top;"><span data-toggle="tooltip" data-placement="top" title="Developmental and Epileptic Encephalopathies" style="color: white;">DEE</span></th>
+                                                    <th class="vr text" style="vertical-align: top;"><span data-toggle="tooltip" data-placement="top" title="Developmental Delay" style="color: white;">DD</span></th>
+                                                    <th class="vr text" style="vertical-align: top;"><span data-toggle="tooltip" data-placement="top" title="Early-onset Alzheimer Disorder" style="color: white;">eoAD</span></th>
+                                                    <th class="vr text" style="vertical-align: top;"><span data-toggle="tooltip" data-placement="top" title="Early-onset High Myopia" style="color: white;">eoHM</span></th>
+                                                    <th class="vr text" style="vertical-align: top;"><span data-toggle="tooltip" data-placement="top" title="Early-onset Parkinson Disorder" style="color: white;">eoPD</span></th>
+                                                    <th class="vr text" style="vertical-align: top;"><span data-toggle="tooltip" data-placement="top" title="Epileptic Encephalopathies" style="color: white;">EE</span></th>
+                                                    <th class="vr text" style="vertical-align: top;"><span data-toggle="tooltip" data-placement="top" title="Infantile Spasms" style="color: white;">IS</span></th>
+                                                    <th class="vr text" style="vertical-align: top;"><span data-toggle="tooltip" data-placement="top" title="Intellectual disability" style="color: white;">ID</span></th>
+                                                    <th class="vr text" style="vertical-align: top;"><span data-toggle="tooltip" data-placement="top" title="Lennox Gastaut Syndrome" style="color: white;">LGS</span></th>
+                                                    <th class="vr text" style="vertical-align: top;"><span data-toggle="tooltip" data-placement="top" title="Mesial Temporal Lobe Epilepsy with Hippocampal Sclerosis " style="color: white;">MTLE-HS</span></th>
+                                                    <th class="vr text" style="vertical-align: top;"><span data-toggle="tooltip" data-placement="top" title="Mix (Autism or Schizophrenia)" style="color: white;">ASD or SCZ</span></th>
+                                                    <th class="vr text" style="vertical-align: top;"><span data-toggle="tooltip" data-placement="top" title="Neural Tube Defects" style="color: white;">NTD</span></th>
+                                                    <th class="vr text" style="vertical-align: top;"><span data-toggle="tooltip" data-placement="top" title="Obsessive-Compulsive Disorder" style="color: white;">OCD</span></th>
+                                                    <th class="vr text" style="vertical-align: top;"><span data-toggle="tooltip" data-placement="top" title="Schizophrenia" style="color: white;">SCZ</span></th>
+                                                    <th class="vr text" style="vertical-align: top;"><span data-toggle="tooltip" data-placement="top" title="Sotos-like syndrome" style="color: white;">Sotos</span></th>
+                                                    <th class="vr text" style="vertical-align: top;"><span data-toggle="tooltip" data-placement="top" title="Sporadic Infantile Spasm Syndrome" style="color: white;">SISS</span></th>
+                                                    <th class="vr text" style="vertical-align: top;"><span data-toggle="tooltip" data-placement="top" title="Tourette Disorder" style="color: white;">TD</span></th>
+
+                                                    <th class="vr text" style="vertical-align: top;"><span data-toggle="tooltip" data-placement="top" title="Sibling Control" style="color: white;">Sibling </span></th>
+                                                    <th class="vr text" style="vertical-align: top;"><span data-toggle="tooltip" data-placement="top" title="Fetal non-Preterm birth" style="color: white;">non-PTB</span></th>
+                                                    <th class="vr text" style="vertical-align: top;"><span data-toggle="tooltip" data-placement="top" title="Fetal preterm birth" style="color: white;">PTB</span></th>
+                                                    <th class="vr text" style="vertical-align: top;"><span data-toggle="tooltip" data-placement="top" title="Uncharacterized (Mixed healthy control)" style="color: white;">Mh</span></th>
+                                                </tr>
+                                            </thead>
+                                                <tr>
+                                                <th rowspan="15" style='vertical-align: middle;text-align: center;'><i>De novo</i> variants hit small genomic regions (DNMs)</th>
+                                                <th rowspan="9" style='vertical-align: middle;text-align: center;'>DNM hits protein coding regions</th>
+                                                <th colspan="3" style='vertical-align: middle;text-align: center;'>All mutations</th>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_coding-all" target="_blank">{{ mutation_count.get("all").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AFND_coding-all" target="_blank">{{ mutation_count.get("AFND").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ALS_coding-all" target="_blank">{{ mutation_count.get("ALS").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_A/M_coding-all" target="_blank">{{ mutation_count.get("A/M").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_coding-all" target="_blank">{{ mutation_count.get("ADHD").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_coding-all" target="_blank">{{ mutation_count.get("ASD").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BP_coding-all" target="_blank">{{ mutation_count.get("BP").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CS_coding-all" target="_blank">{{ mutation_count.get("CS").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CP_coding-all" target="_blank">{{ mutation_count.get("CP").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CDH_coding-all" target="_blank">{{ mutation_count.get("CDH").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_coding-all" target="_blank">{{ mutation_count.get("CHD").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_coding-all" target="_blank">{{ mutation_count.get("DEE").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_coding-all" target="_blank">{{ mutation_count.get("DD").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoAD_coding-all" target="_blank">{{ mutation_count.get("eoAD").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoHM_coding-all" target="_blank">{{ mutation_count.get("eoHM").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoPD_coding-all" target="_blank">{{ mutation_count.get("eoPD").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_coding-all" target="_blank">{{ mutation_count.get("EE").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_IS_coding-all" target="_blank">{{ mutation_count.get("IS").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_coding-all" target="_blank">{{ mutation_count.get("ID").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_LGS_coding-all" target="_blank">{{ mutation_count.get("LGS").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_MTLE-HS_coding-all" target="_blank">{{ mutation_count.get("MTLE-HS").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD or SCZ_coding-all" target="_blank">{{ mutation_count.get("ASD or SCZ").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_NTD_coding-all" target="_blank">{{ mutation_count.get("NTD").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_coding-all" target="_blank">{{ mutation_count.get("OCD").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_coding-all" target="_blank">{{ mutation_count.get("SCZ").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sotos-like syndrome_coding-all" target="_blank">{{ mutation_count.get("Sotos-like syndrome").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SISS_coding-all" target="_blank">{{ mutation_count.get("SISS").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TD_coding-all" target="_blank">{{ mutation_count.get("TD").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sibling Control_coding-all" target="_blank">{{ mutation_count.get("Sibling Control").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_non-PTB_coding-all" target="_blank">{{ mutation_count.get("non-PTB").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_PTB_coding-all" target="_blank">{{ mutation_count.get("PTB").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Mixed healthy control_coding-all" target="_blank">{{ mutation_count.get("Mixed healthy control").get("coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_coding-all" target="_blank">{{ mutation_count.get("Others").get("coding-all") }}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="7" style='vertical-align: middle;text-align: center;'>Non-symonymous</td>
+                                                <td rowspan="3" style='vertical-align: middle;text-align: center;'>Loss of Functions (LoF)</td>
+                                                <td style='vertical-align: middle;text-align: center;'>Frameshift</td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_frameshift" target="_blank">{{ mutation_count.get("all").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AFND_frameshift" target="_blank">{{ mutation_count.get("AFND").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ALS_frameshift" target="_blank">{{ mutation_count.get("ALS").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_A/M_frameshift" target="_blank">{{ mutation_count.get("A/M").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_frameshift" target="_blank">{{ mutation_count.get("ADHD").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_frameshift" target="_blank">{{ mutation_count.get("ASD").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BP_frameshift" target="_blank">{{ mutation_count.get("BP").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CS_frameshift" target="_blank">{{ mutation_count.get("CS").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CP_frameshift" target="_blank">{{ mutation_count.get("CP").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CDH_frameshift" target="_blank">{{ mutation_count.get("CDH").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_frameshift" target="_blank">{{ mutation_count.get("CHD").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_frameshift" target="_blank">{{ mutation_count.get("DEE").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_frameshift" target="_blank">{{ mutation_count.get("DD").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoAD_frameshift" target="_blank">{{ mutation_count.get("eoAD").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoHM_frameshift" target="_blank">{{ mutation_count.get("eoHM").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoPD_frameshift" target="_blank">{{ mutation_count.get("eoPD").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_frameshift" target="_blank">{{ mutation_count.get("EE").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_IS_frameshift" target="_blank">{{ mutation_count.get("IS").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_frameshift" target="_blank">{{ mutation_count.get("ID").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_LGS_frameshift" target="_blank">{{ mutation_count.get("LGS").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_MTLE-HS_frameshift" target="_blank">{{ mutation_count.get("MTLE-HS").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD or SCZ_frameshift" target="_blank">{{ mutation_count.get("ASD or SCZ").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_NTD_frameshift" target="_blank">{{ mutation_count.get("NTD").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_frameshift" target="_blank">{{ mutation_count.get("OCD").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_frameshift" target="_blank">{{ mutation_count.get("SCZ").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sotos-like syndrome_frameshift" target="_blank">{{ mutation_count.get("Sotos-like syndrome").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SISS_frameshift" target="_blank">{{ mutation_count.get("SISS").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TD_frameshift" target="_blank">{{ mutation_count.get("TD").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sibling Control_frameshift" target="_blank">{{ mutation_count.get("Sibling Control").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_non-PTB_frameshift" target="_blank">{{ mutation_count.get("non-PTB").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_PTB_frameshift" target="_blank">{{ mutation_count.get("PTB").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Mixed healthy control_frameshift" target="_blank">{{ mutation_count.get("Mixed healthy control").get("frameshift") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_frameshift" target="_blank">{{ mutation_count.get("Others").get("frameshift") }}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td style='vertical-align: middle;text-align: center;'>Nonsense</td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_nonsense" target="_blank">{{ mutation_count.get("all").get("nonsense") }}</a></td>
+                                               <td><a href="/GeneDetailMutation/{{ name }}_AFND_nonsense" target="_blank">{{ mutation_count.get("AFND").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ALS_nonsense" target="_blank">{{ mutation_count.get("ALS").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_A/M_nonsense" target="_blank">{{ mutation_count.get("A/M").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_nonsense" target="_blank">{{ mutation_count.get("ADHD").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_nonsense" target="_blank">{{ mutation_count.get("ASD").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BP_nonsense" target="_blank">{{ mutation_count.get("BP").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CS_nonsense" target="_blank">{{ mutation_count.get("CS").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CP_nonsense" target="_blank">{{ mutation_count.get("CP").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CDH_nonsense" target="_blank">{{ mutation_count.get("CDH").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_nonsense" target="_blank">{{ mutation_count.get("CHD").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_nonsense" target="_blank">{{ mutation_count.get("DEE").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_nonsense" target="_blank">{{ mutation_count.get("DD").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoAD_nonsense" target="_blank">{{ mutation_count.get("eoAD").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoHM_nonsense" target="_blank">{{ mutation_count.get("eoHM").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoPD_nonsense" target="_blank">{{ mutation_count.get("eoPD").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_nonsense" target="_blank">{{ mutation_count.get("EE").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_IS_nonsense" target="_blank">{{ mutation_count.get("IS").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_nonsense" target="_blank">{{ mutation_count.get("ID").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_LGS_nonsense" target="_blank">{{ mutation_count.get("LGS").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_MTLE-HS_nonsense" target="_blank">{{ mutation_count.get("MTLE-HS").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD or SCZ_nonsense" target="_blank">{{ mutation_count.get("ASD or SCZ").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_NTD_nonsense" target="_blank">{{ mutation_count.get("NTD").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_nonsense" target="_blank">{{ mutation_count.get("OCD").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_nonsense" target="_blank">{{ mutation_count.get("SCZ").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sotos-like syndrome_nonsense" target="_blank">{{ mutation_count.get("Sotos-like syndrome").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SISS_nonsense" target="_blank">{{ mutation_count.get("SISS").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TD_nonsense" target="_blank">{{ mutation_count.get("TD").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sibling Control_nonsense" target="_blank">{{ mutation_count.get("Sibling Control").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_non-PTB_nonsense" target="_blank">{{ mutation_count.get("non-PTB").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_PTB_nonsense" target="_blank">{{ mutation_count.get("PTB").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Mixed healthy control_nonsense" target="_blank">{{ mutation_count.get("Mixed healthy control").get("nonsense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_nonsense" target="_blank">{{ mutation_count.get("Others").get("nonsense") }}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td style='vertical-align: middle;text-align: center;'>Splice-site</td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_splice-site" target="_blank">{{ mutation_count.get("all").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AFND_splice-site" target="_blank">{{ mutation_count.get("AFND").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ALS_splice-site" target="_blank">{{ mutation_count.get("ALS").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_A/M_splice-site" target="_blank">{{ mutation_count.get("A/M").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_splice-site" target="_blank">{{ mutation_count.get("ADHD").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_splice-site" target="_blank">{{ mutation_count.get("ASD").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BP_splice-site" target="_blank">{{ mutation_count.get("BP").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CS_splice-site" target="_blank">{{ mutation_count.get("CS").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CP_splice-site" target="_blank">{{ mutation_count.get("CP").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CDH_splice-site" target="_blank">{{ mutation_count.get("CDH").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_splice-site" target="_blank">{{ mutation_count.get("CHD").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_splice-site" target="_blank">{{ mutation_count.get("DEE").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_splice-site" target="_blank">{{ mutation_count.get("DD").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoAD_splice-site" target="_blank">{{ mutation_count.get("eoAD").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoHM_splice-site" target="_blank">{{ mutation_count.get("eoHM").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoPD_splice-site" target="_blank">{{ mutation_count.get("eoPD").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_splice-site" target="_blank">{{ mutation_count.get("EE").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_IS_splice-site" target="_blank">{{ mutation_count.get("IS").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_splice-site" target="_blank">{{ mutation_count.get("ID").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_LGS_splice-site" target="_blank">{{ mutation_count.get("LGS").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_MTLE-HS_splice-site" target="_blank">{{ mutation_count.get("MTLE-HS").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD or SCZ_splice-site" target="_blank">{{ mutation_count.get("ASD or SCZ").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_NTD_splice-site" target="_blank">{{ mutation_count.get("NTD").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_splice-site" target="_blank">{{ mutation_count.get("OCD").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_splice-site" target="_blank">{{ mutation_count.get("SCZ").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sotos-like syndrome_splice-site" target="_blank">{{ mutation_count.get("Sotos-like syndrome").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SISS_splice-site" target="_blank">{{ mutation_count.get("SISS").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TD_splice-site" target="_blank">{{ mutation_count.get("TD").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sibling Control_splice-site" target="_blank">{{ mutation_count.get("Sibling Control").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_non-PTB_splice-site" target="_blank">{{ mutation_count.get("non-PTB").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_PTB_splice-site" target="_blank">{{ mutation_count.get("PTB").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Mixed healthy control_splice-site" target="_blank">{{ mutation_count.get("Mixed healthy control").get("splice-site") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_splice-site" target="_blank">{{ mutation_count.get("Others").get("splice-site") }}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" style='vertical-align: middle;text-align: center;'>Missense</td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_missense" target="_blank">{{ mutation_count.get("all").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AFND_missense" target="_blank">{{ mutation_count.get("AFND").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ALS_missense" target="_blank">{{ mutation_count.get("ALS").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_A/M_missense" target="_blank">{{ mutation_count.get("A/M").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_missense" target="_blank">{{ mutation_count.get("ADHD").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_missense" target="_blank">{{ mutation_count.get("ASD").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BP_missense" target="_blank">{{ mutation_count.get("BP").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CS_missense" target="_blank">{{ mutation_count.get("CS").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CP_missense" target="_blank">{{ mutation_count.get("CP").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CDH_missense" target="_blank">{{ mutation_count.get("CDH").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_missense" target="_blank">{{ mutation_count.get("CHD").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_missense" target="_blank">{{ mutation_count.get("DEE").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_missense" target="_blank">{{ mutation_count.get("DD").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoAD_missense" target="_blank">{{ mutation_count.get("eoAD").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoHM_missense" target="_blank">{{ mutation_count.get("eoHM").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoPD_missense" target="_blank">{{ mutation_count.get("eoPD").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_missense" target="_blank">{{ mutation_count.get("EE").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_IS_missense" target="_blank">{{ mutation_count.get("IS").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_missense" target="_blank">{{ mutation_count.get("ID").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_LGS_missense" target="_blank">{{ mutation_count.get("LGS").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_MTLE-HS_missense" target="_blank">{{ mutation_count.get("MTLE-HS").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD or SCZ_missense" target="_blank">{{ mutation_count.get("ASD or SCZ").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_NTD_missense" target="_blank">{{ mutation_count.get("NTD").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_missense" target="_blank">{{ mutation_count.get("OCD").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_missense" target="_blank">{{ mutation_count.get("SCZ").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sotos-like syndrome_missense" target="_blank">{{ mutation_count.get("Sotos-like syndrome").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SISS_missense" target="_blank">{{ mutation_count.get("SISS").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TD_missense" target="_blank">{{ mutation_count.get("TD").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sibling Control_missense" target="_blank">{{ mutation_count.get("Sibling Control").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_non-PTB_missense" target="_blank">{{ mutation_count.get("non-PTB").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_PTB_missense" target="_blank">{{ mutation_count.get("PTB").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Mixed healthy control_missense" target="_blank">{{ mutation_count.get("Mixed healthy control").get("missense") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_missense" target="_blank">{{ mutation_count.get("Others").get("missense") }}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" style='vertical-align: middle;text-align: center;'>Start gain</td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_start gain" target="_blank">{{ mutation_count.get("all").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AFND_start gain" target="_blank">{{ mutation_count.get("AFND").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ALS_start gain" target="_blank">{{ mutation_count.get("ALS").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_A/M_start gain" target="_blank">{{ mutation_count.get("A/M").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_start gain" target="_blank">{{ mutation_count.get("ADHD").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_start gain" target="_blank">{{ mutation_count.get("ASD").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BP_start gain" target="_blank">{{ mutation_count.get("BP").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CS_start gain" target="_blank">{{ mutation_count.get("CS").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CP_start gain" target="_blank">{{ mutation_count.get("CP").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CDH_start gain" target="_blank">{{ mutation_count.get("CDH").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_start gain" target="_blank">{{ mutation_count.get("CHD").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_start gain" target="_blank">{{ mutation_count.get("DEE").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_start gain" target="_blank">{{ mutation_count.get("DD").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoAD_start gain" target="_blank">{{ mutation_count.get("eoAD").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoHM_start gain" target="_blank">{{ mutation_count.get("eoHM").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoPD_start gain" target="_blank">{{ mutation_count.get("eoPD").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_start gain" target="_blank">{{ mutation_count.get("EE").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_IS_start gain" target="_blank">{{ mutation_count.get("IS").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_start gain" target="_blank">{{ mutation_count.get("ID").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_LGS_start gain" target="_blank">{{ mutation_count.get("LGS").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_MTLE-HS_start gain" target="_blank">{{ mutation_count.get("MTLE-HS").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD or SCZ_start gain" target="_blank">{{ mutation_count.get("ASD or SCZ").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_NTD_start gain" target="_blank">{{ mutation_count.get("NTD").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_start gain" target="_blank">{{ mutation_count.get("OCD").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_start gain" target="_blank">{{ mutation_count.get("SCZ").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sotos-like syndrome_start gain" target="_blank">{{ mutation_count.get("Sotos-like syndrome").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SISS_start gain" target="_blank">{{ mutation_count.get("SISS").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TD_start gain" target="_blank">{{ mutation_count.get("TD").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sibling Control_start gain" target="_blank">{{ mutation_count.get("Sibling Control").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_non-PTB_start gain" target="_blank">{{ mutation_count.get("non-PTB").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_PTB_start gain" target="_blank">{{ mutation_count.get("PTB").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Mixed healthy control_start gain" target="_blank">{{ mutation_count.get("Mixed healthy control").get("start gain") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_start gain" target="_blank">{{ mutation_count.get("Others").get("start gain") }}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" style='vertical-align: middle;text-align: center;'>Stoploss</td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_stoploss" target="_blank">{{ mutation_count.get("all").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AFND_stoploss" target="_blank">{{ mutation_count.get("AFND").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ALS_stoploss" target="_blank">{{ mutation_count.get("ALS").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_A/M_stoploss" target="_blank">{{ mutation_count.get("A/M").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_stoploss" target="_blank">{{ mutation_count.get("ADHD").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_stoploss" target="_blank">{{ mutation_count.get("ASD").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BP_stoploss" target="_blank">{{ mutation_count.get("BP").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CS_stoploss" target="_blank">{{ mutation_count.get("CS").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CP_stoploss" target="_blank">{{ mutation_count.get("CP").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CDH_stoploss" target="_blank">{{ mutation_count.get("CDH").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_stoploss" target="_blank">{{ mutation_count.get("CHD").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_stoploss" target="_blank">{{ mutation_count.get("DEE").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_stoploss" target="_blank">{{ mutation_count.get("DD").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoAD_stoploss" target="_blank">{{ mutation_count.get("eoAD").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoHM_stoploss" target="_blank">{{ mutation_count.get("eoHM").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoPD_stoploss" target="_blank">{{ mutation_count.get("eoPD").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_stoploss" target="_blank">{{ mutation_count.get("EE").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_IS_stoploss" target="_blank">{{ mutation_count.get("IS").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_stoploss" target="_blank">{{ mutation_count.get("ID").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_LGS_stoploss" target="_blank">{{ mutation_count.get("LGS").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_MTLE-HS_stoploss" target="_blank">{{ mutation_count.get("MTLE-HS").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD or SCZ_stoploss" target="_blank">{{ mutation_count.get("ASD or SCZ").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_NTD_stoploss" target="_blank">{{ mutation_count.get("NTD").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_stoploss" target="_blank">{{ mutation_count.get("OCD").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_stoploss" target="_blank">{{ mutation_count.get("SCZ").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sotos-like syndrome_stoploss" target="_blank">{{ mutation_count.get("Sotos-like syndrome").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SISS_stoploss" target="_blank">{{ mutation_count.get("SISS").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TD_stoploss" target="_blank">{{ mutation_count.get("TD").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sibling Control_stoploss" target="_blank">{{ mutation_count.get("Sibling Control").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_non-PTB_stoploss" target="_blank">{{ mutation_count.get("non-PTB").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_PTB_stoploss" target="_blank">{{ mutation_count.get("PTB").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Mixed healthy control_stoploss" target="_blank">{{ mutation_count.get("Mixed healthy control").get("stoploss") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_stoploss" target="_blank">{{ mutation_count.get("Others").get("stoploss") }}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" style='vertical-align: middle;text-align: center;'>Non-frameshit</td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_Non-frameshit" target="_blank">{{ mutation_count.get("all").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AFND_Non-frameshit" target="_blank">{{ mutation_count.get("AFND").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ALS_Non-frameshit" target="_blank">{{ mutation_count.get("ALS").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_A/M_Non-frameshit" target="_blank">{{ mutation_count.get("A/M").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_Non-frameshit" target="_blank">{{ mutation_count.get("ADHD").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_Non-frameshit" target="_blank">{{ mutation_count.get("ASD").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BP_Non-frameshit" target="_blank">{{ mutation_count.get("BP").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CS_Non-frameshit" target="_blank">{{ mutation_count.get("CS").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CP_Non-frameshit" target="_blank">{{ mutation_count.get("CP").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CDH_Non-frameshit" target="_blank">{{ mutation_count.get("CDH").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_Non-frameshit" target="_blank">{{ mutation_count.get("CHD").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_Non-frameshit" target="_blank">{{ mutation_count.get("DEE").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_Non-frameshit" target="_blank">{{ mutation_count.get("DD").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoAD_Non-frameshit" target="_blank">{{ mutation_count.get("eoAD").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoHM_Non-frameshit" target="_blank">{{ mutation_count.get("eoHM").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoPD_Non-frameshit" target="_blank">{{ mutation_count.get("eoPD").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_Non-frameshit" target="_blank">{{ mutation_count.get("EE").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_IS_Non-frameshit" target="_blank">{{ mutation_count.get("IS").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_Non-frameshit" target="_blank">{{ mutation_count.get("ID").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_LGS_Non-frameshit" target="_blank">{{ mutation_count.get("LGS").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_MTLE-HS_Non-frameshit" target="_blank">{{ mutation_count.get("MTLE-HS").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD or SCZ_Non-frameshit" target="_blank">{{ mutation_count.get("ASD or SCZ").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_NTD_Non-frameshit" target="_blank">{{ mutation_count.get("NTD").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_Non-frameshit" target="_blank">{{ mutation_count.get("OCD").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_Non-frameshit" target="_blank">{{ mutation_count.get("SCZ").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sotos-like syndrome_Non-frameshit" target="_blank">{{ mutation_count.get("Sotos-like syndrome").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SISS_Non-frameshit" target="_blank">{{ mutation_count.get("SISS").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TD_Non-frameshit" target="_blank">{{ mutation_count.get("TD").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sibling Control_Non-frameshit" target="_blank">{{ mutation_count.get("Sibling Control").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_non-PTB_Non-frameshit" target="_blank">{{ mutation_count.get("non-PTB").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_PTB_Non-frameshit" target="_blank">{{ mutation_count.get("PTB").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Mixed healthy control_Non-frameshit" target="_blank">{{ mutation_count.get("Mixed healthy control").get("Non-frameshit") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_Non-frameshit" target="_blank">{{ mutation_count.get("Others").get("Non-frameshit") }}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3" style='vertical-align: middle;text-align: center;'>Synonymous SNV</td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_synonymous SNV" target="_blank">{{ mutation_count.get("all").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AFND_synonymous SNV" target="_blank">{{ mutation_count.get("AFND").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ALS_synonymous SNV" target="_blank">{{ mutation_count.get("ALS").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_A/M_synonymous SNV" target="_blank">{{ mutation_count.get("A/M").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_synonymous SNV" target="_blank">{{ mutation_count.get("ADHD").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_synonymous SNV" target="_blank">{{ mutation_count.get("ASD").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BP_synonymous SNV" target="_blank">{{ mutation_count.get("BP").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CS_synonymous SNV" target="_blank">{{ mutation_count.get("CS").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CP_synonymous SNV" target="_blank">{{ mutation_count.get("CP").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CDH_synonymous SNV" target="_blank">{{ mutation_count.get("CDH").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_synonymous SNV" target="_blank">{{ mutation_count.get("CHD").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_synonymous SNV" target="_blank">{{ mutation_count.get("DEE").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_synonymous SNV" target="_blank">{{ mutation_count.get("DD").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoAD_synonymous SNV" target="_blank">{{ mutation_count.get("eoAD").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoHM_synonymous SNV" target="_blank">{{ mutation_count.get("eoHM").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoPD_synonymous SNV" target="_blank">{{ mutation_count.get("eoPD").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_synonymous SNV" target="_blank">{{ mutation_count.get("EE").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_IS_synonymous SNV" target="_blank">{{ mutation_count.get("IS").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_synonymous SNV" target="_blank">{{ mutation_count.get("ID").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_LGS_synonymous SNV" target="_blank">{{ mutation_count.get("LGS").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_MTLE-HS_synonymous SNV" target="_blank">{{ mutation_count.get("MTLE-HS").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD or SCZ_synonymous SNV" target="_blank">{{ mutation_count.get("ASD or SCZ").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_NTD_synonymous SNV" target="_blank">{{ mutation_count.get("NTD").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_synonymous SNV" target="_blank">{{ mutation_count.get("OCD").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_synonymous SNV" target="_blank">{{ mutation_count.get("SCZ").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sotos-like syndrome_synonymous SNV" target="_blank">{{ mutation_count.get("Sotos-like syndrome").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SISS_synonymous SNV" target="_blank">{{ mutation_count.get("SISS").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TD_synonymous SNV" target="_blank">{{ mutation_count.get("TD").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sibling Control_synonymous SNV" target="_blank">{{ mutation_count.get("Sibling Control").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_non-PTB_synonymous SNV" target="_blank">{{ mutation_count.get("non-PTB").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_PTB_synonymous SNV" target="_blank">{{ mutation_count.get("PTB").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Mixed healthy control_synonymous SNV" target="_blank">{{ mutation_count.get("Mixed healthy control").get("synonymous SNV") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_synonymous SNV" target="_blank">{{ mutation_count.get("Others").get("synonymous SNV") }}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <th rowspan="6" style='vertical-align: middle;text-align: center;'>DNM hits non-coding regions</th>
+                                                <th colspan="3" style='vertical-align: middle;text-align: center;'>All mutations</th>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_non-coding-all" target="_blank">{{ mutation_count.get("all").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AFND_non-coding-all" target="_blank">{{ mutation_count.get("AFND").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ALS_non-coding-all" target="_blank">{{ mutation_count.get("ALS").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_A/M_non-coding-all" target="_blank">{{ mutation_count.get("A/M").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_non-coding-all" target="_blank">{{ mutation_count.get("ADHD").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_non-coding-all" target="_blank">{{ mutation_count.get("ASD").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BP_non-coding-all" target="_blank">{{ mutation_count.get("BP").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CS_non-coding-all" target="_blank">{{ mutation_count.get("CS").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CP_non-coding-all" target="_blank">{{ mutation_count.get("CP").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CDH_non-coding-all" target="_blank">{{ mutation_count.get("CDH").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_non-coding-all" target="_blank">{{ mutation_count.get("CHD").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_non-coding-all" target="_blank">{{ mutation_count.get("DEE").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_non-coding-all" target="_blank">{{ mutation_count.get("DD").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoAD_non-coding-all" target="_blank">{{ mutation_count.get("eoAD").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoHM_non-coding-all" target="_blank">{{ mutation_count.get("eoHM").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoPD_non-coding-all" target="_blank">{{ mutation_count.get("eoPD").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_non-coding-all" target="_blank">{{ mutation_count.get("EE").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_IS_non-coding-all" target="_blank">{{ mutation_count.get("IS").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_non-coding-all" target="_blank">{{ mutation_count.get("ID").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_LGS_non-coding-all" target="_blank">{{ mutation_count.get("LGS").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_MTLE-HS_non-coding-all" target="_blank">{{ mutation_count.get("MTLE-HS").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD or SCZ_non-coding-all" target="_blank">{{ mutation_count.get("ASD or SCZ").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_NTD_non-coding-all" target="_blank">{{ mutation_count.get("NTD").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_non-coding-all" target="_blank">{{ mutation_count.get("OCD").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_non-coding-all" target="_blank">{{ mutation_count.get("SCZ").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sotos-like syndrome_non-coding-all" target="_blank">{{ mutation_count.get("Sotos-like syndrome").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SISS_non-coding-all" target="_blank">{{ mutation_count.get("SISS").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TD_non-coding-all" target="_blank">{{ mutation_count.get("TD").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sibling Control_non-coding-all" target="_blank">{{ mutation_count.get("Sibling Control").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_non-PTB_non-coding-all" target="_blank">{{ mutation_count.get("non-PTB").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_PTB_non-coding-all" target="_blank">{{ mutation_count.get("PTB").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Mixed healthy control_non-coding-all" target="_blank">{{ mutation_count.get("Mixed healthy control").get("non-coding-all") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_non-coding-all" target="_blank">{{ mutation_count.get("Others").get("non-coding-all") }}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3" style='vertical-align: middle;text-align: center;'>Intronic</td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_intronic" target="_blank">{{ mutation_count.get("all").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AFND_intronic" target="_blank">{{ mutation_count.get("AFND").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ALS_intronic" target="_blank">{{ mutation_count.get("ALS").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_A/M_intronic" target="_blank">{{ mutation_count.get("A/M").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_intronic" target="_blank">{{ mutation_count.get("ADHD").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_intronic" target="_blank">{{ mutation_count.get("ASD").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BP_intronic" target="_blank">{{ mutation_count.get("BP").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CS_intronic" target="_blank">{{ mutation_count.get("CS").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CP_intronic" target="_blank">{{ mutation_count.get("CP").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CDH_intronic" target="_blank">{{ mutation_count.get("CDH").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_intronic" target="_blank">{{ mutation_count.get("CHD").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_intronic" target="_blank">{{ mutation_count.get("DEE").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_intronic" target="_blank">{{ mutation_count.get("DD").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoAD_intronic" target="_blank">{{ mutation_count.get("eoAD").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoHM_intronic" target="_blank">{{ mutation_count.get("eoHM").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoPD_intronic" target="_blank">{{ mutation_count.get("eoPD").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_intronic" target="_blank">{{ mutation_count.get("EE").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_IS_intronic" target="_blank">{{ mutation_count.get("IS").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_intronic" target="_blank">{{ mutation_count.get("ID").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_LGS_intronic" target="_blank">{{ mutation_count.get("LGS").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_MTLE-HS_intronic" target="_blank">{{ mutation_count.get("MTLE-HS").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD or SCZ_intronic" target="_blank">{{ mutation_count.get("ASD or SCZ").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_NTD_intronic" target="_blank">{{ mutation_count.get("NTD").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_intronic" target="_blank">{{ mutation_count.get("OCD").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_intronic" target="_blank">{{ mutation_count.get("SCZ").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sotos-like syndrome_intronic" target="_blank">{{ mutation_count.get("Sotos-like syndrome").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SISS_intronic" target="_blank">{{ mutation_count.get("SISS").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TD_intronic" target="_blank">{{ mutation_count.get("TD").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sibling Control_intronic" target="_blank">{{ mutation_count.get("Sibling Control").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_non-PTB_intronic" target="_blank">{{ mutation_count.get("non-PTB").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_PTB_intronic" target="_blank">{{ mutation_count.get("PTB").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Mixed healthy control_intronic" target="_blank">{{ mutation_count.get("Mixed healthy control").get("intronic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_intronic" target="_blank">{{ mutation_count.get("Others").get("intronic") }}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3" style='vertical-align: middle;text-align: center;'>UTR region</td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_UTR region" target="_blank">{{ mutation_count.get("all").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AFND_UTR region" target="_blank">{{ mutation_count.get("AFND").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ALS_UTR region" target="_blank">{{ mutation_count.get("ALS").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_A/M_UTR region" target="_blank">{{ mutation_count.get("A/M").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_UTR region" target="_blank">{{ mutation_count.get("ADHD").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_UTR region" target="_blank">{{ mutation_count.get("ASD").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BP_UTR region" target="_blank">{{ mutation_count.get("BP").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CS_UTR region" target="_blank">{{ mutation_count.get("CS").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CP_UTR region" target="_blank">{{ mutation_count.get("CP").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CDH_UTR region" target="_blank">{{ mutation_count.get("CDH").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_UTR region" target="_blank">{{ mutation_count.get("CHD").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_UTR region" target="_blank">{{ mutation_count.get("DEE").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_UTR region" target="_blank">{{ mutation_count.get("DD").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoAD_UTR region" target="_blank">{{ mutation_count.get("eoAD").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoHM_UTR region" target="_blank">{{ mutation_count.get("eoHM").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoPD_UTR region" target="_blank">{{ mutation_count.get("eoPD").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_UTR region" target="_blank">{{ mutation_count.get("EE").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_IS_UTR region" target="_blank">{{ mutation_count.get("IS").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_UTR region" target="_blank">{{ mutation_count.get("ID").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_LGS_UTR region" target="_blank">{{ mutation_count.get("LGS").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_MTLE-HS_UTR region" target="_blank">{{ mutation_count.get("MTLE-HS").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD or SCZ_UTR region" target="_blank">{{ mutation_count.get("ASD or SCZ").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_NTD_UTR region" target="_blank">{{ mutation_count.get("NTD").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_UTR region" target="_blank">{{ mutation_count.get("OCD").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_UTR region" target="_blank">{{ mutation_count.get("SCZ").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sotos-like syndrome_UTR region" target="_blank">{{ mutation_count.get("Sotos-like syndrome").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SISS_UTR region" target="_blank">{{ mutation_count.get("SISS").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TD_UTR region" target="_blank">{{ mutation_count.get("TD").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sibling Control_UTR region" target="_blank">{{ mutation_count.get("Sibling Control").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_non-PTB_UTR region" target="_blank">{{ mutation_count.get("non-PTB").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_PTB_UTR region" target="_blank">{{ mutation_count.get("PTB").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Mixed healthy control_UTR region" target="_blank">{{ mutation_count.get("Mixed healthy control").get("UTR region") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_UTR region" target="_blank">{{ mutation_count.get("Others").get("UTR region") }}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3" style='vertical-align: middle;text-align: center;'>Up-/down-stream</td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_up-down-stream" target="_blank">{{ mutation_count.get("all").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AFND_up-down-stream" target="_blank">{{ mutation_count.get("AFND").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ALS_up-down-stream" target="_blank">{{ mutation_count.get("ALS").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_A/M_up-down-stream" target="_blank">{{ mutation_count.get("A/M").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_up-down-stream" target="_blank">{{ mutation_count.get("ADHD").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_up-down-stream" target="_blank">{{ mutation_count.get("ASD").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BP_up-down-stream" target="_blank">{{ mutation_count.get("BP").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CS_up-down-stream" target="_blank">{{ mutation_count.get("CS").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CP_up-down-stream" target="_blank">{{ mutation_count.get("CP").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CDH_up-down-stream" target="_blank">{{ mutation_count.get("CDH").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_up-down-stream" target="_blank">{{ mutation_count.get("CHD").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_up-down-stream" target="_blank">{{ mutation_count.get("DEE").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_up-down-stream" target="_blank">{{ mutation_count.get("DD").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoAD_up-down-stream" target="_blank">{{ mutation_count.get("eoAD").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoHM_up-down-stream" target="_blank">{{ mutation_count.get("eoHM").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoPD_up-down-stream" target="_blank">{{ mutation_count.get("eoPD").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_up-down-stream" target="_blank">{{ mutation_count.get("EE").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_IS_up-down-stream" target="_blank">{{ mutation_count.get("IS").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_up-down-stream" target="_blank">{{ mutation_count.get("ID").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_LGS_up-down-stream" target="_blank">{{ mutation_count.get("LGS").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_MTLE-HS_up-down-stream" target="_blank">{{ mutation_count.get("MTLE-HS").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD or SCZ_up-down-stream" target="_blank">{{ mutation_count.get("ASD or SCZ").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_NTD_up-down-stream" target="_blank">{{ mutation_count.get("NTD").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_up-down-stream" target="_blank">{{ mutation_count.get("OCD").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_up-down-stream" target="_blank">{{ mutation_count.get("SCZ").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sotos-like syndrome_up-down-stream" target="_blank">{{ mutation_count.get("Sotos-like syndrome").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SISS_up-down-stream" target="_blank">{{ mutation_count.get("SISS").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TD_up-down-stream" target="_blank">{{ mutation_count.get("TD").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sibling Control_up-down-stream" target="_blank">{{ mutation_count.get("Sibling Control").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_non-PTB_up-down-stream" target="_blank">{{ mutation_count.get("non-PTB").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_PTB_up-down-stream" target="_blank">{{ mutation_count.get("PTB").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Mixed healthy control_up-down-stream" target="_blank">{{ mutation_count.get("Mixed healthy control").get("up-down-stream") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_up-down-stream" target="_blank">{{ mutation_count.get("Others").get("up-down-stream") }}</a></td>
+                                            </tr>
+                                             <tr>
+                                                <td colspan="3" style='vertical-align: middle;text-align: center;'>Intergenic</td>
+                                                  <td><a href="/GeneDetailMutation/{{ name }}_all_intergenic" target="_blank">{{ mutation_count.get("all").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AFND_intergenic" target="_blank">{{ mutation_count.get("AFND").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ALS_intergenic" target="_blank">{{ mutation_count.get("ALS").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_A/M_intergenic" target="_blank">{{ mutation_count.get("A/M").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_intergenic" target="_blank">{{ mutation_count.get("ADHD").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_intergenic" target="_blank">{{ mutation_count.get("ASD").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BP_intergenic" target="_blank">{{ mutation_count.get("BP").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CS_intergenic" target="_blank">{{ mutation_count.get("CS").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CP_intergenic" target="_blank">{{ mutation_count.get("CP").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CDH_intergenic" target="_blank">{{ mutation_count.get("CDH").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_intergenic" target="_blank">{{ mutation_count.get("CHD").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_intergenic" target="_blank">{{ mutation_count.get("DEE").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_intergenic" target="_blank">{{ mutation_count.get("DD").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoAD_intergenic" target="_blank">{{ mutation_count.get("eoAD").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoHM_intergenic" target="_blank">{{ mutation_count.get("eoHM").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoPD_intergenic" target="_blank">{{ mutation_count.get("eoPD").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_intergenic" target="_blank">{{ mutation_count.get("EE").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_IS_intergenic" target="_blank">{{ mutation_count.get("IS").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_intergenic" target="_blank">{{ mutation_count.get("ID").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_LGS_intergenic" target="_blank">{{ mutation_count.get("LGS").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_MTLE-HS_intergenic" target="_blank">{{ mutation_count.get("MTLE-HS").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD or SCZ_intergenic" target="_blank">{{ mutation_count.get("ASD or SCZ").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_NTD_intergenic" target="_blank">{{ mutation_count.get("NTD").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_intergenic" target="_blank">{{ mutation_count.get("OCD").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_intergenic" target="_blank">{{ mutation_count.get("SCZ").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sotos-like syndrome_intergenic" target="_blank">{{ mutation_count.get("Sotos-like syndrome").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SISS_intergenic" target="_blank">{{ mutation_count.get("SISS").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TD_intergenic" target="_blank">{{ mutation_count.get("TD").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sibling Control_intergenic" target="_blank">{{ mutation_count.get("Sibling Control").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_non-PTB_intergenic" target="_blank">{{ mutation_count.get("non-PTB").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_PTB_intergenic" target="_blank">{{ mutation_count.get("PTB").get("intergenic") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Mixed healthy control_intergenic" target="_blank">{{ mutation_count.get("Mixed healthy control").get("intergenic") }}</a></td>
+                                                 <td><a href="/GeneDetailMutation/{{ name }}_Others_intergenic" target="_blank">{{ mutation_count.get("Others").get("intergenic") }}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3" style='vertical-align: middle;text-align: center;'>Non-coding RNA</td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_ncRNA" target="_blank">{{ mutation_count.get("all").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AFND_ncRNA" target="_blank">{{ mutation_count.get("AFND").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ALS_ncRNA" target="_blank">{{ mutation_count.get("ALS").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_A/M_ncRNA" target="_blank">{{ mutation_count.get("A/M").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_ncRNA" target="_blank">{{ mutation_count.get("ADHD").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_ncRNA" target="_blank">{{ mutation_count.get("ASD").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BP_ncRNA" target="_blank">{{ mutation_count.get("BP").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CS_ncRNA" target="_blank">{{ mutation_count.get("CS").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CP_ncRNA" target="_blank">{{ mutation_count.get("CP").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CDH_ncRNA" target="_blank">{{ mutation_count.get("CDH").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_ncRNA" target="_blank">{{ mutation_count.get("CHD").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_ncRNA" target="_blank">{{ mutation_count.get("DEE").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_ncRNA" target="_blank">{{ mutation_count.get("DD").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoAD_ncRNA" target="_blank">{{ mutation_count.get("eoAD").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoHM_ncRNA" target="_blank">{{ mutation_count.get("eoHM").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoPD_ncRNA" target="_blank">{{ mutation_count.get("eoPD").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_ncRNA" target="_blank">{{ mutation_count.get("EE").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_IS_ncRNA" target="_blank">{{ mutation_count.get("IS").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_ncRNA" target="_blank">{{ mutation_count.get("ID").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_LGS_ncRNA" target="_blank">{{ mutation_count.get("LGS").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_MTLE-HS_ncRNA" target="_blank">{{ mutation_count.get("MTLE-HS").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD or SCZ_ncRNA" target="_blank">{{ mutation_count.get("ASD or SCZ").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_NTD_ncRNA" target="_blank">{{ mutation_count.get("NTD").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_ncRNA" target="_blank">{{ mutation_count.get("OCD").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_ncRNA" target="_blank">{{ mutation_count.get("SCZ").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sotos-like syndrome_ncRNA" target="_blank">{{ mutation_count.get("Sotos-like syndrome").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SISS_ncRNA" target="_blank">{{ mutation_count.get("SISS").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TD_ncRNA" target="_blank">{{ mutation_count.get("TD").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sibling Control_ncRNA" target="_blank">{{ mutation_count.get("Sibling Control").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_non-PTB_ncRNA" target="_blank">{{ mutation_count.get("non-PTB").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_PTB_ncRNA" target="_blank">{{ mutation_count.get("PTB").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Mixed healthy control_ncRNA" target="_blank">{{ mutation_count.get("Mixed healthy control").get("ncRNA") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_ncRNA" target="_blank">{{ mutation_count.get("Others").get("ncRNA") }}</a></td>
+
+                                            </tr>
+                                            <tr>
+                                                <th rowspan="2" style='vertical-align: middle;text-align: center;'><i>De novo</i> variants hit large genomic regions</th>
+                                                <th rowspan="2" style='vertical-align: middle;text-align: center;'>Copy number variants (CNVs)</th>
+                                                <td colspan="3" style='vertical-align: middle;text-align: center;'>Deletion</td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_deletion" target="_blank">{{ mutation_count.get("all").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AFND_deletion" target="_blank">{{ mutation_count.get("AFND").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ALS_deletion" target="_blank">{{ mutation_count.get("ALS").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_A/M_deletion" target="_blank">{{ mutation_count.get("A/M").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_deletion" target="_blank">{{ mutation_count.get("ADHD").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_deletion" target="_blank">{{ mutation_count.get("ASD").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BP_deletion" target="_blank">{{ mutation_count.get("BP").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CS_deletion" target="_blank">{{ mutation_count.get("CS").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CP_deletion" target="_blank">{{ mutation_count.get("CP").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CDH_deletion" target="_blank">{{ mutation_count.get("CDH").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_deletion" target="_blank">{{ mutation_count.get("CHD").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_deletion" target="_blank">{{ mutation_count.get("DEE").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_deletion" target="_blank">{{ mutation_count.get("DD").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoAD_deletion" target="_blank">{{ mutation_count.get("eoAD").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoHM_deletion" target="_blank">{{ mutation_count.get("eoHM").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoPD_deletion" target="_blank">{{ mutation_count.get("eoPD").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_deletion" target="_blank">{{ mutation_count.get("EE").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_IS_deletion" target="_blank">{{ mutation_count.get("IS").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_deletion" target="_blank">{{ mutation_count.get("ID").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_LGS_deletion" target="_blank">{{ mutation_count.get("LGS").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_MTLE-HS_deletion" target="_blank">{{ mutation_count.get("MTLE-HS").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD or SCZ_deletion" target="_blank">{{ mutation_count.get("ASD or SCZ").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_NTD_deletion" target="_blank">{{ mutation_count.get("NTD").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_deletion" target="_blank">{{ mutation_count.get("OCD").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_deletion" target="_blank">{{ mutation_count.get("SCZ").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sotos-like syndrome_deletion" target="_blank">{{ mutation_count.get("Sotos-like syndrome").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SISS_deletion" target="_blank">{{ mutation_count.get("SISS").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TD_deletion" target="_blank">{{ mutation_count.get("TD").get("deletion") }}</a></td>
+                                                <td colspan="4" style='vertical-align: middle;text-align: center;'><a href="/GeneDetailMutation/{{ name }}_Control_deletion" target="_blank">{{ mutation_count.get("Control").get("deletion") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_deletion" target="_blank">{{ mutation_count.get("Others").get("deletion") }}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3" style='vertical-align: middle;text-align: center;'>Duplication</td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_all_duplication" target="_blank">{{ mutation_count.get("all").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_AFND_duplication" target="_blank">{{ mutation_count.get("AFND").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ALS_duplication" target="_blank">{{ mutation_count.get("ALS").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_A/M_duplication" target="_blank">{{ mutation_count.get("A/M").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ADHD_duplication" target="_blank">{{ mutation_count.get("ADHD").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD_duplication" target="_blank">{{ mutation_count.get("ASD").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_BP_duplication" target="_blank">{{ mutation_count.get("BP").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CS_duplication" target="_blank">{{ mutation_count.get("CS").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CP_duplication" target="_blank">{{ mutation_count.get("CP").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CDH_duplication" target="_blank">{{ mutation_count.get("CDH").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_CHD_duplication" target="_blank">{{ mutation_count.get("CHD").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DEE_duplication" target="_blank">{{ mutation_count.get("DEE").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_DD_duplication" target="_blank">{{ mutation_count.get("DD").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoAD_duplication" target="_blank">{{ mutation_count.get("eoAD").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoHM_duplication" target="_blank">{{ mutation_count.get("eoHM").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_eoPD_duplication" target="_blank">{{ mutation_count.get("eoPD").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_EE_duplication" target="_blank">{{ mutation_count.get("EE").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_IS_duplication" target="_blank">{{ mutation_count.get("IS").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ID_duplication" target="_blank">{{ mutation_count.get("ID").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_LGS_duplication" target="_blank">{{ mutation_count.get("LGS").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_MTLE-HS_duplication" target="_blank">{{ mutation_count.get("MTLE-HS").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_ASD or SCZ_duplication" target="_blank">{{ mutation_count.get("ASD or SCZ").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_NTD_duplication" target="_blank">{{ mutation_count.get("NTD").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_OCD_duplication" target="_blank">{{ mutation_count.get("OCD").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SCZ_duplication" target="_blank">{{ mutation_count.get("SCZ").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Sotos-like syndrome_duplication" target="_blank">{{ mutation_count.get("Sotos-like syndrome").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_SISS_duplication" target="_blank">{{ mutation_count.get("SISS").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_TD_duplication" target="_blank">{{ mutation_count.get("TD").get("duplication") }}</a></td>
+                                                <td colspan="4" style='vertical-align: middle;text-align: center;'><a href="/GeneDetailMutation/{{ name }}_Control_duplication" target="_blank">{{ mutation_count.get("Control").get("duplication") }}</a></td>
+                                                <td><a href="/GeneDetailMutation/{{ name }}_Others_duplication" target="_blank">{{ mutation_count.get("Others").get("duplication") }}</a></td>
+                                            </tr>
+
+                                        </table>
+                                        </div>
+
+                                    {% endif %}
+
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+
+        <div class="foot-p">
+{#           <img class="line2" alt=""  src="/static/line2.png" style="width: 600px; height: 60px;" />#}
+            <p><small>© 2018 bmi.sjtu.edu.cn. All rights reserved.</small><br />
+                <small>浙ICP备18030141号.</small></p>
+
+        </div>
+</div>
+
+
+    </body>
+
+{% endblock %}
+

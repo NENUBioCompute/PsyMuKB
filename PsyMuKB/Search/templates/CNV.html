@@ -1,0 +1,59 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% include "muttemp.html" %}
+{% block content %} 
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/locale/bootstrap-table-bootstrap-table-en-US.min.js"></script>
+<script src="\static\bootstrap-table-export.js"></script>
+<script src="\static\tableExport.js"></script>
+<div class="container">
+         {% if message and message != []%}
+	<div class="row">
+		<div class="col-md-12">
+
+         	<table data-class="table table-hover"  data-toggle="table" data-pagination="true" data-show-pagination-switch="true" data-page-size=10>
+         		<thead>
+         		<tr>
+         			<th>Chr</th>
+    				<th>Mutation Type</th>
+    				<th>Band</th>
+    				<th>Start</th>
+    				<th>End</th>
+    				<th>Disorder</th>
+    				<th>Gene Symbols</th>
+
+         		</tr>
+         		</thead>
+         	<tbody>
+         	{% for i in message %}
+         		<tr>
+
+         			<td>{{ i['chr'] }}</td>
+    				<td>{{ i['mutation type'] }}</td>
+    				<td>{{ i['Band'] }}</td>
+    				<td>{{ i['start'] }}</td>
+    				<td>{{ i['end'] }}</td>
+    				{% if i['Disorder'] is string %}
+    					<td>{{ i['Disorder'] }}</td>
+    				{% else  %}
+         				<td>{{ i['Disorder']|join(',') }}</td>
+         			{% endif %}
+         			{% if i['genesymbol'] is string %}
+         				<td style="word-break:break-all; word-wrap:break-all;">{{ i['genesymbol'] }}</td>
+         			{% else  %}
+         				<td style="word-break:break-all; word-wrap:break-all;">{{ i['genesymbol']|join(',') }}</td>
+         			{% endif %}
+         		</tr>
+         	{% endfor %}
+         	</tbody>
+			</table>
+		 </div>
+    </div>
+     {% else %}
+             No match found !
+    {% endif %}
+        
+</div>
+{% endblock %}
