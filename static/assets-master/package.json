@@ -13,7 +13,7 @@
     "echarts-china-provinces-js": "^1.0.0",
     "echarts-countries-js": "^1.0.3",
     "echarts-united-kingdom-js": "0.0.1",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-rename": "^1.2.2",
     "jupyter-echarts": "^1.3.7"
   },
